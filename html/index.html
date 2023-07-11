@@ -9,78 +9,200 @@
 /*   Updated: 2023/07/11 14:20:39 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ -->
+
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carnicería Carpasan 21 SL</title>
-    <link rel="stylesheet" href="/Carpasan-21-SL/css/main.css" />
-  </head>
-  <body>
-    <header>
-      <div class="top-bar">
-        <div class="container">
-          <div class="logo">
-            <img src="/Carpasan-21-SL/Carpasan.PNG" />
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnicería Carpasan 21 SL</title>
+  <link rel="stylesheet" href="/Carpasan-21-SL/css/main.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="container">
+        <div class="logo">
+          <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Carnicería Carpasan 21 SL">
+        </div>
+        <div class="top-bar-right">
           <h1>Carnicería Carpasan 21 SL</h1>
         </div>
       </div>
-      <nav>
-        <div class="container">
-          <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Ofertas</a></li>
-            <li><a href="#">Contacto</a></li>
-            <div class="search-cart">
-              <li>
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Buscar productos"
-                />
-              </li>
-              <li>
-                <a href="carrito.html" class="cart-icon">
-                  <img src="images/cart-icon.png" alt="Carrito de compra" />
-                  <span class="cart-count">0</span>
-                </a>
-              </li>
-            </div>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="container">
-          <h2>Bienvenido a la Carnicería Carpasan 21 SL</h2>
-          <p>
-            Ofrecemos una amplia variedad de productos frescos y de alta
-            calidad.
-          </p>
-          <a href="#" class="btn">Ver productos</a>
-        </div>
-      </section>
-
-      <section class="social-feed">
-        <div class="container">
-          <!-- Contenido de la sección del feed de redes sociales -->
-        </div>
-      </section>
-    </main>
-
-    <footer>
+    </div>
+    <nav>
       <div class="container">
-        <p>
-          &copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos reservados.
-        </p>
+        <ul class="nav-links">
+          <li><a href="/Carpasan-21-SL/html/index.html">Inicio</a></li>
+          <li><a href="/Carpasan-21-SL/html/products.html">Productos</a></li>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><div class="search-cart">
+            <input type="text" id="search-input" placeholder="Buscar productos"> </li>
+          <li><a href="carrito.html" class="cart-icon">
+            <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Carrito de compra">
+            <span class="cart-count">0</span>
+          </a></li>
+          </div></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="foto_producto">
+        <div class="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="">
+              <div class="carousel-caption">
+                <h3>Frescura del producto</h3>
+                <p>Garantizamos la frescura de cada producto que ofrecemos.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="">
+              <div class="carousel-caption">
+                <h3>Tradición de fabricación</h3>
+                <p>Elaboramos nuestros productos con métodos tradicionales.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="">
+              <div class="carousel-caption">
+                <h3>Cuidado de la calidad</h3>
+                <p>La calidad es nuestra máxima prioridad en cada producto.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="">
+              <div class="carousel-caption">
+                <h3>Rapidez de envío</h3>
+                <p>Entregamos nuestros productos de manera rápida y segura.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control prev">&#8249;</button>
+          <button class="carousel-control next">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+  <section class="featured-products">
+    <div class="container">
+      <h2>Productos Destacados</h2>
+      <div class="product-list">
+        <div class="product-item">
+          <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Producto 1">
+          <h3>Producto 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a href="#" class="btn">Ver Detalles</a>
+        </div>
+        <div class="product-item">
+          <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Producto 2">
+          <h3>Producto 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a href="#" class="btn">Ver Detalles</a>
+        </div>
+        <div class="product-item">
+          <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Producto 3">
+          <h3>Producto 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <a href="#" class="btn">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subscription">
+    <div class="container">
+      <h2>¡Suscríbete a nuestro boletín!</h2>
+      <p>Recibe las últimas noticias, ofertas especiales y promociones exclusivas directamente en tu correo electrónico.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Ingresa tu correo electrónico" required>
+        <button type="submit" class="btn">Suscribirse</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="location">
+    <div class="container">
+      <h2>Nuestra ubicación</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.8132214996485!2d-3.4851275!3d40.1041847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4212121ba4a11b%3A0xb0686e435e98e408!2sAyuntamiento%20de%20Villaconejos.!5e0!3m2!1sen!2ses!4v1626353208947!5m2!1sen!2ses" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+  
+
+   <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Contáctanos</h3>
+            <p>123 Calle Principal, Villaconejos, Madrid</p>
+            <p>Teléfono: +34 123 456 789</p>
+            <p>Email: info@carniceriacarpasan21.com</p>
+          </div>
+          <div class="footer-section">
+            <h3>Horario de Atención</h3>
+            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+            <p>Sábados: 9:00 AM - 1:00 PM</p>
+          </div>
+          <div class="footer-section">
+            <h3>Síguenos</h3>
+            <div class="social-links">
+              <a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/facebook.png" alt="Facebook"></a>
+              <a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/instagram.png" alt="Instagram"></a>
+              <a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/twitter.png" alt="Twitter"></a>
+            </div>
+          </div>
+        </div>
+        <p class="footer-copy">&copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos reservados.</p>
       </div>
     </footer>
 
-    <script src="Carpasan-21-SL/js/main.js"></script>
-  </body>
-</html>
+</main>
+
+  <script src="/Carpasan-21-SL/js/main.js"></script>
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const carouselItems = carousel.querySelectorAll('.carousel-item');
+    const prevButton = carousel.querySelector('.carousel-control.prev');
+    const nextButton = carousel.querySelector('.carousel-control.next');
+    let currentIndex = 0;
+
+    function showItem(index) {
+      carouselItems[currentIndex].classList.remove('active');
+      currentIndex = (index + carouselItems.length) % carouselItems.length;
+      carouselItems[currentIndex].classList.add('active');
+    }
+
+    prevButton.addEventListener('click', () => {
+      showItem(currentIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+      showItem(currentIndex + 1);
+    });
+
+    // Rotación automática de las imágenes
+    let intervalId;
+
+    function startAutoRotation() {
+      intervalId = setInterval(() => {
+        showItem(currentIndex + 1);
+      }, 5000);
+    }
+
+    function stopAutoRotation() {
+      clearInterval(intervalId);
+    }
+
+    carousel.addEventListener('mouseover', stopAutoRotation);
+    carousel.addEventListener('mouseout', startAutoRotation);
+
+    startAutoRotation();
+  </script>
+
+</body>
+</html

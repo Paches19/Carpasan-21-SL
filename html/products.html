@@ -1,0 +1,108 @@
+<!-- /* ********************************************************************* */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   products.html                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
+/*   Updated: 2023/07/11 18:59:34 by adpachec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */ -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnicería Carpasan 21 SL - Productos</title>
+  <link rel="stylesheet" href="/Carpasan-21-SL/css/products.css">
+  <link rel="stylesheet" href="/Carpasan-21-SL/css/main.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+		<div class="container">
+		  <div class="logo">
+			<img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Carnicería Carpasan 21 SL">
+		  </div>
+		  <div class="top-bar-right">
+			<h1>Carnicería Carpasan 21 SL</h1>
+		  </div>
+		</div>
+	  </div>
+	  <nav>
+		<div class="container">
+		  <ul class="nav-links">
+			<li><a href="/Carpasan-21-SL/html/index.html">Inicio</a></li>
+			<li><a href="/Carpasan-21-SL/html/products.html">Productos</a></li>
+			<li><a href="#">Ofertas</a></li>
+			<li><a href="#">Contacto</a></li>
+			<li><div class="search-cart">
+			  <input type="text" id="search-input" placeholder="Buscar productos"> </li>
+			<li><a href="carrito.html" class="cart-icon">
+			  <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Carrito de compra">
+			  <span class="cart-count">0</span>
+			</a></li>
+			</div></li>
+		  </ul>
+		</div>
+	  </nav>
+  </header>
+
+  <section class="sidebar">
+    <div class="menu-container">
+      <h2>Variedad</h2>
+      <ul class="categories">
+        <li><a href="#" class="category" data-filter="vaca">Vaca</a></li>
+        <li><a href="#" class="category" data-filter="pollo">Pollo</a></li>
+        <li><a href="#" class="category" data-filter="cerdo">Cerdo</a></li>
+        <li><a href="#" class="category" data-filter="embutido">Embutido</a></li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="product-list">
+    <div class="container">
+      <div class="grid-buttons">
+        <button class="grid-button active" data-columns="3">Grid 3 columnas</button>
+        <button class="grid-button" data-columns="5">Grid 5 columnas</button>
+      </div>
+      <div id="product-container"></div>
+    </div>
+  </section>
+
+
+  </main>
+
+  <footer>
+	<div class="container">
+	  <div class="footer-content">
+		<div class="footer-section">
+		  <h3>Contáctanos</h3>
+		  <p>123 Calle Principal, Villaconejos, Madrid</p>
+		  <p>Teléfono: +34 123 456 789</p>
+		  <p>Email: info@carniceriacarpasan21.com</p>
+		</div>
+		<div class="footer-section">
+		  <h3>Horario de Atención</h3>
+		  <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+		  <p>Sábados: 9:00 AM - 1:00 PM</p>
+		</div>
+		<div class="footer-section">
+		  <h3>Síguenos</h3>
+		  <div class="social-links">
+			<a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/facebook.png" alt="Facebook"></a>
+			<a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/instagram.png" alt="Instagram"></a>
+			<a href="#" class="social-icon"><img src="/Carpasan-21-SL/images/twitter.png" alt="Twitter"></a>
+		  </div>
+		</div>
+	  </div>
+	  <p class="footer-copy">&copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos reservados.</p>
+	</div>
+  </footer>
+
+  <script src="/Carpasan-21-SL/js/products.js"></script>
+
+</body>
+</html>

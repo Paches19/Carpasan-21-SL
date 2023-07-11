@@ -1,0 +1,241 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   products.css                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
+/*   Updated: 2023/07/11 20:00:46 by adpachec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* Estilos del aside (menú) */
+.menu {
+	width: 200px;
+	background-color: #F8F8F8;
+	padding: 20px;
+	color: #000000;
+  }
+  
+  .menu-header {
+	margin-bottom: 20px;
+  }
+  
+  .menu-header h2 {
+	font-size: 24px;
+  }
+  
+  .menu-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  }
+  
+  .menu-item {
+	margin-bottom: 10px;
+  }
+  
+  .menu-link {
+	color: #000000;
+	text-decoration: none;
+  }
+  
+  .subcategories {
+	margin-top: 10px;
+	padding-left: 20px;
+  }
+  
+  .subcategories li {
+	margin-bottom: 5px;
+  }
+  
+  .subcategories a {
+	color: #666666;
+	text-decoration: none;
+  }
+  
+  /* Estilos de la sección de productos */
+  .products-section {
+	padding: 20px;
+  }
+  
+  .filters {
+	margin-bottom: 20px;
+	/* Estilos para los filtros */
+  }
+  
+  .search-bar {
+	margin-bottom: 20px;
+	/* Estilos para la barra de búsqueda */
+  }
+  
+  .category-images {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 20px;
+  }
+  
+  .category-image {
+	width: 150px;
+	text-align: center;
+	margin-right: 20px;
+  }
+  
+  .category-image img {
+	width: 100%;
+	height: auto;
+  }
+  
+  .category-image h3 {
+	margin-top: 10px;
+	font-size: 16px;
+  }
+  
+/* Estilos del aside (menú) */
+.sidebar {
+	width: 25%;
+	background-color: #fff;
+	padding: 20px;
+	text-align: center;
+	font-size: 18px;
+  }
+  
+  .sidebar h2 {
+	color: #800000;
+  }
+  
+  .categories {
+	list-style-type: none;
+	padding: 0;
+  }
+  
+  .category {
+	cursor: pointer;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #fff;
+	color: #800000;
+  }
+  
+  .category:hover {
+	background-color: #800000;
+	color: #fff;
+  }
+  
+  /* Estilos para la lista de productos */
+  .product-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+  }
+  
+  .product-item {
+	width: 33.33%;
+	padding: 20px;
+	text-align: left;
+	vertical-align: top;
+  }
+  
+  .product-item img {
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	max-height: 200px;
+	object-fit: cover;
+  }
+  
+  .product-item h3 {
+	margin-top: 10px;
+	font-size: 18px;
+	color: #800000;
+  }
+  
+  .product-item h2 {
+	margin-top: 5px;
+	font-size: 16px;
+	color: #000;
+  }
+  
+  .product-item .price {
+	color: #000;
+	font-weight: bold;
+  }
+  
+  /* Estilos adicionales */
+  .container {
+	max-width: 1200px;
+	margin: 0 auto;
+  }
+  
+  .clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+  
+  .grid-buttons {
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  
+  .grid-button {
+	padding: 10px 20px;
+	margin: 0 10px;
+	background-color: #800000;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .grid-button.active {
+	background-color: #fff;
+	color: #800000;
+  }
+  
+  @media screen and (max-width: 768px) {
+	.product-item {
+	  width: 50%;
+	}
+  }
+  
+  /* Estilo para resaltar categorías seleccionadas */
+.category.selected {
+	font-weight: bold;
+  }
+  
+  /* Estilo para ocultar subcategorías por defecto */
+  .subcategories {
+	display: none;
+  }
+
+  .sidebar {
+	background-color: #fff;
+	padding: 20px;
+	text-align: center;
+  }
+  
+  .sidebar h2 {
+	color: #800000;
+  }
+  
+  .categories li a {
+	color: #800000;
+	text-decoration: none;
+  }
+  
+  .categories li a:hover {
+	background-color: #800000;
+	color: #fff;
+  }
+
+  h2 {
+	font-family: "Cardana", sans-serif, Helvetica, cursive;
+	font-size: 14px;
+	color: #800000;
+  }
+  
+  
