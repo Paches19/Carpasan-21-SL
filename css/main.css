@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/11 16:24:11 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:21:29 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ body {
   
   /* Estilos de la barra superior */
   .top-bar {
-	background-color: #FF0000;
+	background-color: #F8F8F8;
 	color: #000000;
 	padding: 10px 0;
   }
@@ -39,19 +39,19 @@ body {
   }
   
   .logo img {
-	width: 60px;
+	width: 200px;
   }
   
   h1 {
-	font-family: "Vintage Font", cursive;
-	font-size: 24px;
+	font-family: "Candara", Arial, sans-serif;
+	font-size: 50px;
 	color: #800000;
 	margin-top: 10px;
   }
   
   .search-cart {
 	display: flex;
-	align-items: center;
+	align-items: right;
   }
   
   .search-cart input[type="text"] {
@@ -111,6 +111,22 @@ body {
   .nav-links a {
 	color: #FFFFFF;
 	text-decoration: none;
+	position: relative;
+  }
+  
+  .nav-links a::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -10px;
+	transform: translateY(-50%);
+	width: 2px;
+	height: 80%;
+	background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .nav-links a:hover {
+	opacity: 0.8;
   }
   
   /* Estilos de la sección hero */
