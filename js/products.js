@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 18:47:19 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:37:31 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ class Producto {
 }
 
 let productos = [
-    new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], ''),
-    new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], 'Chuleton de buey gallego madurado 60 días'),
-    new Producto('Lomo de cerdo', 11.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
-    new Producto('Chuletas de cerdo', 10.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
-    new Producto('Pechuga de pollo', 9.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
-    new Producto('Alitas de pollo', 1.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
-    new Producto('Chorizo dulce', 120.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
-    new Producto('Chorizo picante', 102.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
+    new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/vaca.jpg', ['vaca'], ''),
+    new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/chuleton.png', ['vaca'], 'Chuleton de buey gallego madurado 60 días'),
+    new Producto('Lomo de cerdo', 11.99, '/Carpasan-21-SL/images/cerdo.jpg', ['cerdo'], ''),
+    new Producto('Chuletas de cerdo', 10.99, '/Carpasan-21-SL/images/chuletacerdo.jpg', ['cerdo'], ''),
+    new Producto('Pechuga de pollo', 9.99, '/Carpasan-21-SL/images/pechugaPollo.jpg', ['pollo'], ''),
+    new Producto('Alitas de pollo', 1.99, '/Carpasan-21-SL/images/alitas.png', ['pollo'], ''),
+    new Producto('Chorizo dulce', 120.99, '/Carpasan-21-SL/images/chorizoDulce.png', ['embutido'], ''),
+    new Producto('Chorizo picante', 102.99, '/Carpasan-21-SL/images/chorizo.png', ['embutido'], ''),
 ];
 
 let filtros = ['Todo', 'Vaca', 'Pollo', 'Cerdo', 'Embutido', 'Especiales', 'Packs'];

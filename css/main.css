@@ -6,9 +6,13 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 18:24:24 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:15:30 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+* {
+    box-sizing: border-box;
+}
 
 /* Estilos generales */
 body {
@@ -169,7 +173,7 @@ header nav ul li {
   .hero {
 	background-color: #FFFFFF;
 	text-align: center;
-	padding: 100px 0;
+	padding: 50px 0;
 	color: #000000;
   }
   
@@ -213,7 +217,7 @@ header nav ul li {
 .foto_producto {
 	position: relative;
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	overflow: hidden;
   }
   
@@ -244,7 +248,7 @@ header nav ul li {
   }
   
   .carousel-item img {
-	width: 100%;
+	width: 70%;
 	height: 100%;
 	object-fit: cover;
   }
@@ -252,21 +256,23 @@ header nav ul li {
   .carousel-caption {
 	position: absolute;
 	bottom: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px;
-	background-color: rgba(0, 0, 0, 0.7);
-	color: #FFFFFF;
+	left: 50%;
+  	transform: translateX(-50%);
+	margin: 0;
+	width: 80%;
+	background-color:#f8f8f881;
+	color: #000000;
 	text-align: center;
   }
   
   .carousel-caption h3 {
 	font-size: 24px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
   }
   
   .carousel-caption p {
 	font-size: 16px;
+	font-weight: bolder;
   }
   
   .carousel-control {
@@ -275,36 +281,46 @@ header nav ul li {
 	transform: translateY(-50%);
 	background-color: transparent;
 	border: none;
-	color: #FFFFFF;
-	font-size: 24px;
+	color: #800000;
+	font-size: 50px;
 	font-weight: bold;
 	transition: color 0.3s ease;
 	cursor: pointer;
   }
   
   .carousel-control.prev {
-	left: 10px;
+	left: 10%;
   }
   
   .carousel-control.next {
-	right: 10px;
+	right: 10%;
   }
   
   .carousel-control:hover {
 	color: #FF0000;
   }
-
+  
+  .carousel-control.rotate {
+	transform: rotate(180deg);
+	transition: transform 0.3s ease;
+  }
+  
+  .carousel-control.active {
+	color: #FF0000;
+  }
+  
   /* Estilos de la sección de Productos Destacados */
 .featured-products {
 	background-color: #F8F8F8;
-	padding: 80px 0;
+	padding: 50px 0;
 	text-align: center;
-	color: #000000;
+	color: #800000;
   }
   
   .featured-products h2 {
 	font-size: 36px;
 	margin-bottom: 40px;
+	font-weight: bolder;
   }
   
   .product-list {
@@ -355,7 +371,7 @@ header nav ul li {
   /* Estilos de la sección de Suscripción */
 .subscription {
 	background-color: #F8F8F8;
-	padding: 80px 0;
+	padding: 50px 0;
 	text-align: center;
 	color: #000000;
   }
