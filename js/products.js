@@ -6,128 +6,79 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/11 20:05:08 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:33:07 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-document.addEventListener('DOMContentLoaded', function() {
-	const categories = document.querySelectorAll('.category');
+class Producto {
+    constructor(nombre, precio, imagen, tags, descripcion) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.tags = tags;
+        this.descripcion = descripcion;
+    }
+}
+
+let productos = [
+    new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], ''),
+    new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], 'Chuleton de buey gallego madurado 60 días'),
+    new Producto('Lomo de cerdo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
+    new Producto('Chuletas de cerdo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
+    new Producto('Pechuga de pollo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
+    new Producto('Alitas de pollo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
+    new Producto('Chorizo dulce', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
+    new Producto('Chorizo picante', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
+];
+
+let filtros = ['Todo', 'Vaca', 'Pollo', 'Cerdo', 'Embutido', 'Especiales', 'Packs'];
+
+window.onload = function() {
+    generarFiltros();
+    mostrarProductos(3);
+};
+
+function generarFiltros() {
+    let ul = document.querySelector('#filtroTags');
+    for(let filtro of filtros) {
+        let li = document.createElement('li');
+        li.innerHTML = `<button onclick="filtrarProductos('${filtro.toLowerCase()}')">${filtro}</button>`;
+        ul.appendChild(li);
+    }
+}
+
+function mostrarProductos(columnas) {
+    let div = document.querySelector('#gridProductos');
+    div.innerHTML = '';
+    div.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
+
+    for(let producto of productos) {
+        let divProducto = document.createElement('div');
+        divProducto.className = 'producto';
+        divProducto.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <h2>${producto.nombre}</h2>
+            <p class="descripcion">${producto.descripcion}</p>
+            <p class="precio">Precio: ${producto.precio} €/kg</p>
+        `;
+
+        div.appendChild(divProducto);
+    }
+}
+
+function filtrarProductos(tag) {
+    let productosFiltrados = productos.filter(p => p.tags.includes(tag) || tag === 'todo');
+    mostrarProductos(productosFiltrados, 3);
+}
+
+$(document).ready(function() {
+    var $ordenar = $('#ordenar');
+    var $ordenarWidth = $('#ordenarWidth');
   
-	// Agregar evento de clic a cada categoría
-	categories.forEach(category => {
-	  category.addEventListener('click', function() {
-		const filter = this.dataset.filter;
-		filterProductsByTag(filter);
-	  });
-	});
-  
-	const gridButtons = document.querySelectorAll('.grid-button');
-  
-	// Agregar evento de clic a los botones de la grilla
-	gridButtons.forEach(button => {
-	  button.addEventListener('click', function() {
-		const columns = this.dataset.columns;
-		switchGrid(columns);
-		toggleActiveButton(this);
-	  });
-	});
-  });
-  
-  function renderProducts(products) {
-	const productContainer = document.getElementById('product-container');
-	productContainer.innerHTML = '';
-  
-	products.forEach(product => {
-	  const productItem = document.createElement('div');
-	  productItem.classList.add('product-item');
-	  productItem.innerHTML = `
-		<img src="${product.image}" alt="${product.name}">
-		<h3>${product.name}</h3>
-		<h2>${product.description}</h2>
-		<span class="price">${product.price.toFixed(2)} €/kg</span>
-	  `;
-	  productContainer.appendChild(productItem);
-	});
-  }
-  
-  function filterProductsByTag(tag) {
-	const filteredProducts = tag === 'all' ? products : products.filter(product => product.tags.includes(tag));
-	renderProducts(filteredProducts);
-  }
-  
-  function switchGrid(columns) {
-	const productItems = document.querySelectorAll('.product-item');
-	productItems.forEach(item => {
-	  item.style.width = `${100 / columns}%`;
-	});
-  }
-  
-  function toggleActiveButton(button) {
-	const gridButtons = document.querySelectorAll('.grid-button');
-	gridButtons.forEach(btn => btn.classList.remove('active'));
-	button.classList.add('active');
-  }
-  
-  const products = [
-	{
-	  name: 'Lomo de vaca',
-	  price: 19.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['vaca'],
-	  description: ''
-	},
-	{
-	  name: 'Chuleton de buey',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['vaca'],
-	  description: 'Chuleton de buey gallego madurado 60 días'
-	},
-	{
-	  name: 'Lomo de cerdo',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['cerdo'],
-	  description: ''
-	},
-	{
-	  name: 'Chuletas de cerdo',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['cerdo'],
-	  description: ''
-	},
-	{
-	  name: 'Pechuga de pollo',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['pollo'],
-	  description: ''
-	},
-	{
-	  name: 'Alitas de pollo',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['pollo'],
-	  description: ''
-	},
-	{
-	  name: 'Chorizo dulce',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['embutido'],
-	  description: ''
-	},
-	{
-	  name: 'Chorizo picante',
-	  price: 12.99,
-	  image: '/Carpasan-21-SL/images/Carpasan.PNG',
-	  tags: ['embutido'],
-	  description: ''
-	}
-	// Agrega más productos aquí
-  ];
-  
-  // Mostrar todos los productos al cargar la página
-  renderProducts(products);
-  
+    $ordenar.on('change', function () {
+        $ordenarWidth.html($ordenar.find('option:selected').text());
+        $ordenar.width($ordenarWidth.width());
+    });
+
+    $ordenar.trigger('change');
+});

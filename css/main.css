@@ -6,13 +6,13 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/11 18:48:31 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:58:57 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Estilos generales */
 body {
-	font-family: Arial, sans-serif;
+	font-family: "Candara", Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #F8F8F8;
@@ -24,11 +24,24 @@ body {
 	padding: 0 20px;
   }
   
+  header {
+    background-color: #333;
+    padding: 10px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    color: #ffffff;
+}
+
   /* Estilos de la barra superior */
   .top-bar {
-	background-color: #F8F8F8;
+	background-color: #f8f8f8f8;
 	color: #000000;
 	padding: 10px 0;
+	align-items: left;
   }
   
   .top-bar .container {
@@ -43,7 +56,7 @@ body {
   
   .top-bar-right {
 	display: flex;
-	align-items: center;
+	align-items: left;
 	margin-left: 100px;
   }
   
@@ -60,6 +73,10 @@ body {
 	display: flex;
 	align-items: center;
 	margin-left: 20px;
+	border: 2px solid #800000;  /* añade la palabra 'solid' para mostrar el borde */
+    border-radius: 8px;
+	background-color: #f8f8f8;
+    transition: all 0.3s ease-in-out;
   }
   
   .search-cart input[type="text"] {
@@ -68,6 +85,15 @@ body {
 	border-radius: 8px;
 	width: 300px;
 	font-size: 14px;
+	font-family: "cardana";
+	font-weight: bolder;
+	color: #800000;
+  }
+
+  #search-input {
+	font-size: 14px;
+	font-family: "cardana", sans-serif;
+	font-weight: bolder;
   }
   
   .cart-icon {
@@ -97,7 +123,7 @@ body {
   /* Estilos de la barra de navegación */
   nav {
 	background-color: #800000;
-	color: #FFFFFF;
+	color: #F8f8f8;
 	padding: 10px 0;
   }
   
@@ -107,6 +133,7 @@ body {
 	padding: 0;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
   }
   
   .nav-links li {
@@ -150,7 +177,7 @@ body {
   }
   
   .hero h2 {
-	font-family: "Vintage Font", cursive;
+	font-family: "Candara", cursive;
 	font-size: 36px;
 	color: #800000;
 	margin-bottom: 20px;

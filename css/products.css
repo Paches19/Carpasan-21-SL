@@ -6,118 +6,286 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/11 20:04:13 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:46:32 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Estilos del aside (menú) */
-.sidebar {
-	width: 25%;
-	background-color: #fff;
-	padding: 20px;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "candara", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    color: #ffffff;
+}
+
+hs {
+	color: #800000;
+	font-size: 30px;
 	text-align: center;
-	font-size: 18px;
-  }
-  
-  .sidebar h2 {
-	color: #800000;
-  }
-  
-  .categories {
-	list-style-type: none;
-	padding: 0;
-  }
-  
-  .category {
-	cursor: pointer;
-	margin-bottom: 10px;
-	padding: 10px;
-	background-color: #fff;
-	color: #800000;
-  }
-  
-  .category:hover {
-	background-color: #800000;
-	color: #fff;
-  }
-  
-  /* Estilos para la lista de productos */
-  .product-list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-  }
-  
-  .product-item {
-	width: 33.33%;
-	padding: 20px;
-	text-align: left;
-	vertical-align: top;
-  }
-  
-  .product-item img {
-	display: block;
-	margin: 0 auto;
+	font-weight:  bolder;
+	font-family: "candara";
+}
+
+#sidebar {
+    float: left;
+    width: 21%;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebar ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebar ul li {
+    width: 90%; /* Hacer los botones más estrechos */
+    text-align: center;
+    padding: 0; /* Quitar el padding */
+    position: relative;
+    margin: 10px 0; /* Agregar margen alrededor para separar los botones */
+    cursor: pointer;
+}
+
+
+#sidebar ul li:hover {
+    color: #ffffff;
+}
+
+#sidebar button {
+    width: 100%; /* Hacer los botones de la misma anchura que las líneas */
+    padding: 20px 0; /* Ajustar el padding para cambiar la altura de los botones */
+    margin: 0; /* Quitar margen para que los botones estén más próximos */
+    background-color: #f8f8f8;
+    border: none;
+    color: #800000;
+    transition: all 0.3s ease-in-out;
+    font-family: "candara";
+    font-weight:  bolder;
+    font-size: 14px; /* Reducir el tamaño de la fuente para que el texto se ajuste mejor */
+    position: relative; /* Añadir posición relativa para los pseudo-elementos */
+}
+
+#sidebar button::before,
+#sidebar button::after {
+    content: '';
+    position: absolute;
+    width: calc(100% - 20px); /* Reducir el ancho de las líneas para que coincidan con el botón */
+    height: 2px;
+    background: linear-gradient(to right, transparent, #800000, transparent);
+    left: 10px; /* Centrar las líneas con respecto al botón */
+}
+
+#sidebar button::before {
+    top: 0;
+}
+
+#sidebar button::after {
+    bottom: 0;
+}
+
+#sidebar button:hover {
+    background-color: #800000;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#opcionesGrid {
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a lo largo de la barra */
+    align-items: center;
+    padding: 20px 0;
+	/* margin-left: 100px; */
+}
+
+#opcionesGrid button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px; /* ajusta al tamaño que desees */
+    height: 40px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+#opcionesGrid button:nth-child(1) {
+    background-image: url("/Carpasan-21-SL/images/grid-3-icon.png");
+}
+
+#opcionesGrid button:nth-child(2) {
+    background-image: url("/Carpasan-21-SL/images/grid-5-icon.png");
+}
+
+#opcionesGrid button:hover {
+    background-color: #f1f1f1;
+}
+
+#opcionesGrid .ordenar {
+    display: flex;
+    align-items: center;
+	margin-right: 20px;
+}
+
+#opcionesGrid .ordenar span {
+    font-family: 'Candara', sans-serif;
+	font-size: 20px;
+    color: #800000;
+	font-weight: bolder;
+}
+
+#ordenar {
+    font-family: 'Candara', sans-serif;
+    font-size: 18px;
+	font-weight: bolder;
+    text-align: center;
+    color: #800000;
+    padding: 5px;
+    padding-right: 20px;  /* padding adicional a la derecha */
+    border: 2px solid #800000;  /* añade la palabra 'solid' para mostrar el borde */
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease-in-out;
 	width: 100%;
-	max-height: 200px;
-	object-fit: cover;
-  }
-  
-  .product-item h3 {
-	margin-top: 10px;
-	font-size: 18px;
-	color: #800000;
-  }
-  
-  .product-item h2 {
+}
+#ordenar:hover {
+    background-color: #f8f8f8;
+}
+
+#ordenar:before { /* añade un pseudo-elemento para la animación */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #800000;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+#ordenar:hover:before {
+    transform: scaleY(1);
+}
+
+/* .contenedor {
+    width: 70%;
+} */
+
+#gridProductos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.producto {
+	border: none; /* Quitar el borde */
+    padding: 10px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.producto:not(:nth-child(3n))::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #ccc);
+}
+
+.producto:hover {
+    transform: scale(1.03);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto img {
+    max-width: 100%; /* Make sure the image is not wider than its container */
+    height: auto; /* Maintain the image's aspect ratio */
+    max-height: 200px; /* Limit the image's height */
+}
+
+.producto h2,
+.producto p {
+    margin: 0;
+    text-overflow: ellipsis; /* Recortar el texto y mostrar puntos suspensivos */
+    overflow: hidden;
+    white-space: nowrap; /* Evitar saltos de línea */
+    max-height: 2.4em; /* Altura máxima para mostrar */
+}
+
+.producto h2 {
 	margin-top: 5px;
-	font-size: 16px;
-	color: #000;
-  }
-  
-  .product-item .price {
-	color: #000;
-	font-weight: bold;
-  }
-  
-  /* Estilos adicionales */
-  .container {
-	max-width: 1200px;
-	margin: 0 auto;
-  }
-  
-  .clearfix::after {
-	content: "";
-	display: table;
-	clear: both;
-  }
-  
-  .grid-buttons {
-	text-align: center;
-	margin-bottom: 20px;
-  }
-  
-  .grid-button {
-	padding: 10px 20px;
-	margin: 0 10px;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-  }
-  
-  .grid-button img {
-	width: 100%;
-	height: auto;
-  }
-  
-  .grid-button.active {
-	opacity: 0.7;
-  }
-  
-  @media screen and (max-width: 768px) {
-	.product-item {
-	  width: 50%;
-	}
-  }
-  
+    font-size: 25px;
+	font-family: "Candara";
+    /* margin: 1px 0; */
+    color: #800000;
+}
+
+.producto .descripcion {
+    font-family: "Candara", cursive;
+    font-size: 15px;
+    color: #800000;
+	font-weight: bolder;
+    /* margin-bottom: 10px; */
+}
+
+.producto .precio {
+    font-family: "Candara", cursive;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #000000;
+}
+
+.producto span {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#selectorGrid {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+#selectorGrid button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+#selectorGrid button:hover {
+    background-color: #555;
+    cursor: pointer;
+}
