@@ -36,21 +36,21 @@
       </div>
       <nav>
         <div class="container">
-          <ul class="nav-links">
-            <li><a href="/Carpasan-21-SL/html/index.html">Inicio</a></li>
-            <li><a href="/Carpasan-21-SL/html/products.html">Productos</a></li>
-            <li><a href="#">Ofertas</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li>
-              <div class="search-cart">
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Buscar productos"
-                />
-              </div>
-            </li>
-            <li>
+          <div class="nav-container">
+            <ul class="nav-links">
+              <li><a href="/Carpasan-21-SL/html/index.html">Inicio</a></li>
+              <li>
+                <a href="/Carpasan-21-SL/html/products.html">Productos</a>
+              </li>
+              <li><a href="#">Ofertas</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="search-cart">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Buscar productos"
+              />
               <a href="carrito.html" class="cart-icon">
                 <img
                   src="/Carpasan-21-SL/images/CarritoCompra.png"
@@ -58,8 +58,8 @@
                 />
                 <span class="cart-count">0</span>
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -72,8 +72,8 @@
       <section>
         <div id="opcionesGrid">
           <div>
-            <button onclick="mostrarProductos(3)">3</button>
-            <button onclick="mostrarProductos(5)">5</button>
+            <button onclick="seleccionarColumnas(3)">3</button>
+            <button onclick="seleccionarColumnas(5)">5</button>
           </div>
           <div class="ordenar">
             <select id="ordenar">
@@ -84,54 +84,46 @@
               <option value="destacado">Productos Destacados</option>
               <option value="valorado">Mejor Valorados</option>
             </select>
-            <span
-              id="ordenarWidth"
-              style="visibility: hidden; padding: 0 10px"
-            ></span>
+            <span id="ordenarWidth"></span>
           </div>
         </div>
         <div id="gridProductos"></div>
       </section>
       <footer>
-        <div class="container">
-          <div class="footer-content">
-            <div class="footer-section">
-              <h3>Contáctanos</h3>
-              <p>123 Calle Principal, Villaconejos, Madrid</p>
-              <p>Teléfono: +34 123 456 789</p>
-              <p>Email: info@carniceriacarpasan21.com</p>
-            </div>
-            <div class="footer-section">
-              <h3>Horario de Atención</h3>
-              <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-              <p>Sábados: 9:00 AM - 1:00 PM</p>
-            </div>
-            <div class="footer-section">
-              <h3>Síguenos</h3>
-              <div class="social-links">
-                <a href="#" class="social-icon"
-                  ><img
-                    src="/Carpasan-21-SL/images/facebook.png"
-                    alt="Facebook"
-                /></a>
-                <a href="#" class="social-icon"
-                  ><img
-                    src="/Carpasan-21-SL/images/instagram.png"
-                    alt="Instagram"
-                /></a>
-                <a href="#" class="social-icon"
-                  ><img src="/Carpasan-21-SL/images/twitter.png" alt="Twitter"
-                /></a>
-              </div>
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>Contáctanos</h3>
+            <p>123 Calle Principal, Villaconejos, Madrid</p>
+            <p>Teléfono: +34 123 456 789</p>
+            <p>Email: info@carniceriacarpasan21.com</p>
+          </div>
+          <div class="footer-column">
+            <h3>Horario de Atención</h3>
+            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+            <p>Sábados: 9:00 AM - 1:00 PM</p>
+          </div>
+          <div class="footer-column">
+            <h3>Síguenos</h3>
+            <div class="social-links">
+              <a href="#" class="social-icon">
+                <img src="/Carpasan-21-SL/images/Carpasan.PNG" alt="Facebook" />
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="social-icon">
+                <img
+                  src="/Carpasan-21-SL/images/Carpasan.PNG"
+                  alt="Instagram"
+                />
+                <span>Instagram</span>
+              </a>
             </div>
           </div>
-          <p class="footer-copy">
-            &copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos
-            reservados.
-          </p>
         </div>
+        <p class="footer-copy">
+          &copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos reservados.
+        </p>
       </footer>
+      <script src="/Carpasan-21-SL/js/products.js"></script>
     </main>
-    <script src="/Carpasan-21-SL/js/products.js"></script>
   </body>
 </html>

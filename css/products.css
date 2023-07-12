@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 14:42:14 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:30:50 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ hs {
 
 #sidebar button {
     width: 100%; /* Hacer los botones de la misma anchura que las líneas */
-    padding: 20px 0; /* Ajustar el padding para cambiar la altura de los botones */
+    padding: 15px 0; /* Ajustar el padding para cambiar la altura de los botones */
     margin: 0; /* Quitar margen para que los botones estén más próximos */
     background-color: #FFFFFF;
     border: none;
@@ -92,7 +92,7 @@ hs {
     transition: all 0.3s ease-in-out;
     font-family: "candara";
     font-weight:  bolder;
-    font-size: 14px; /* Reducir el tamaño de la fuente para que el texto se ajuste mejor */
+    font-size: 20px; /* Reducir el tamaño de la fuente para que el texto se ajuste mejor */
     position: relative; /* Añadir posición relativa para los pseudo-elementos */
 }
 
@@ -169,8 +169,8 @@ hs {
     text-align: center;
     color: #800000;
     padding: 5px;
-    /* padding-right: 20px; */
-    border: 2px solid #800000;  /* añade la palabra 'solid' para mostrar el borde */
+    padding-right: 20px;
+    border: 2px solid #800000;
     border-radius: 8px;
     background-color: #f8f8f8;
     transition: all 0.3s ease-in-out;
@@ -194,10 +194,20 @@ hs {
     transform-origin: bottom;
 }
 
-#ordenar:hover:before {
-    transform: scaleY(1);
+#ordenar:hover,
+#ordenar option:hover {
+	  background-color: #F8f8f8;
 }
 
+#ordenar:hover::before {
+    background-color: #f8f8f8;
+}
+
+#ordenar option:checked {
+    background-color: #800000;
+    color: #ffffff;
+}
+  
 /* .contenedor {
     width: 70%;
 } */
@@ -206,6 +216,7 @@ hs {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
+	margin-bottom: 550px;
 }
 
 .producto {

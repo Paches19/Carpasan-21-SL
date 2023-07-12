@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 14:34:15 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:47:19 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ class Producto {
 let productos = [
     new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], ''),
     new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['vaca'], 'Chuleton de buey gallego madurado 60 días'),
-    new Producto('Lomo de cerdo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
-    new Producto('Chuletas de cerdo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
-    new Producto('Pechuga de pollo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
-    new Producto('Alitas de pollo', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
-    new Producto('Chorizo dulce', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
-    new Producto('Chorizo picante', 12.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
+    new Producto('Lomo de cerdo', 11.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
+    new Producto('Chuletas de cerdo', 10.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['cerdo'], ''),
+    new Producto('Pechuga de pollo', 9.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
+    new Producto('Alitas de pollo', 1.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['pollo'], ''),
+    new Producto('Chorizo dulce', 120.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
+    new Producto('Chorizo picante', 102.99, '/Carpasan-21-SL/images/Carpasan.PNG', ['embutido'], ''),
 ];
 
 let filtros = ['Todo', 'Vaca', 'Pollo', 'Cerdo', 'Embutido', 'Especiales', 'Packs'];
+let productosMostrados = [...productos]; // Array para almacenar los productos mostrados
+let columnasSeleccionadas = 3; // Columnas seleccionadas por defecto
 
 window.onload = function() {
     generarFiltros();
-    mostrarProductos(3);
+    mostrarProductos(productosMostrados);
 };
 
 function generarFiltros() {
@@ -47,12 +49,21 @@ function generarFiltros() {
     }
 }
 
-function mostrarProductos(columnas) {
+function filtrarProductos(tag) {
+    if (tag === 'todo') {
+        productosMostrados = [...productos];
+    } else {
+        productosMostrados = productos.filter(p => p.tags.includes(tag));
+    }
+    mostrarProductos(productosMostrados);
+}
+
+function mostrarProductos(productosMostrar) {
     let div = document.querySelector('#gridProductos');
     div.innerHTML = '';
-    div.style.gridTemplateColumns = `repeat(${columnas}, 1fr)`;
+    div.style.gridTemplateColumns = `repeat(${columnasSeleccionadas}, 1fr)`;
 
-    for(let producto of productos) {
+    for(let producto of productosMostrar) {
         let divProducto = document.createElement('div');
         divProducto.className = 'producto';
         divProducto.innerHTML = `
@@ -66,19 +77,46 @@ function mostrarProductos(columnas) {
     }
 }
 
-function filtrarProductos(tag) {
-    let productosFiltrados = productos.filter(p => p.tags.includes(tag) || tag === 'todo');
-    mostrarProductos(productosFiltrados, 3);
+function seleccionarColumnas(columnas) {
+    columnasSeleccionadas = columnas;
+    mostrarProductos(productosMostrados);
 }
 
-$(document).ready(function() {
-    var $ordenar = $('#ordenar');
-    var $ordenarWidth = $('#ordenarWidth');
-  
-    $ordenar.on('change', function () {
-        $ordenarWidth.html($ordenar.find('option:selected').text());
-        $ordenar.width($ordenarWidth.width());
-    });
+document.addEventListener('DOMContentLoaded', function () {
+	let ordenarSelect = document.getElementById('ordenar');
+	ordenarSelect.addEventListener('change', function () {
+	ordenarProductos(ordenarSelect.value);
+});
 
-    $ordenar.trigger('change');
+function ordenarProductos(criterio) {
+	switch (criterio) {
+		case 'menorPrecio':
+		productosMostrados.sort((a, b) => a.precio - b.precio);
+		break;
+		case 'mayorPrecio':
+		productosMostrados.sort((a, b) => b.precio - a.precio);
+		break;
+		case 'alfabetico':
+		productosMostrados.sort((a, b) =>
+			a.nombre.localeCompare(b.nombre)
+		);
+		break;
+		case 'destacado':
+		productosMostrados = productos.filter((p) =>
+			p.tags.includes('destacado')
+		);
+		break;
+		case 'valorado':
+		// Implementa tu lógica de ordenación por valoración aquí
+		productosMostrados = [...productos]; // Muestra todos los productos sin ordenar por ahora
+		break;
+		default:
+		productosMostrados = [...productos]; // Restablece el orden original
+		break;
+	}
+	mostrarProductos(productosMostrados);
+	}
+
+	// Mostrar los productos inicialmente
+	mostrarProductos(productosMostrados);
 });
