@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 13:46:32 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:42:14 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,16 @@ body {
     font-family: "candara", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #f8f8f8;
+	overflow-x: hidden;
 }
 
+.container {
+	max-width: 1200px; /* Ajusta el ancho máximo deseado */
+	margin: 0 auto; /* Centra el contenido horizontalmente */
+	padding: 0 20px; /* Agrega un espacio de relleno en los lados */
+  }
+  
 header {
     background-color: #333;
     padding: 10px 0;
@@ -43,7 +50,7 @@ hs {
 
 #sidebar {
     float: left;
-    width: 21%;
+    width: 19.3%;
     padding: 20px;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -78,8 +85,9 @@ hs {
     width: 100%; /* Hacer los botones de la misma anchura que las líneas */
     padding: 20px 0; /* Ajustar el padding para cambiar la altura de los botones */
     margin: 0; /* Quitar margen para que los botones estén más próximos */
-    background-color: #f8f8f8;
+    background-color: #FFFFFF;
     border: none;
+	border-radius: 12px;
     color: #800000;
     transition: all 0.3s ease-in-out;
     font-family: "candara";
@@ -92,7 +100,7 @@ hs {
 #sidebar button::after {
     content: '';
     position: absolute;
-    width: calc(100% - 20px); /* Reducir el ancho de las líneas para que coincidan con el botón */
+    width: 90%; /* Reducir el ancho de las líneas para que coincidan con el botón */
     height: 2px;
     background: linear-gradient(to right, transparent, #800000, transparent);
     left: 10px; /* Centrar las líneas con respecto al botón */
@@ -113,12 +121,11 @@ hs {
 }
 
 #opcionesGrid {
-    display: flex;
-    justify-content: space-between; /* Alinea los elementos a lo largo de la barra */
-    align-items: center;
-    padding: 20px 0;
-	/* margin-left: 100px; */
-}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+  }
 
 #opcionesGrid button {
     background-size: contain;
@@ -128,7 +135,7 @@ hs {
     height: 40px;
     border: none;
     transition: all 0.3s ease-in-out;
-}
+} 
 
 #opcionesGrid button:nth-child(1) {
     background-image: url("/Carpasan-21-SL/images/grid-3-icon.png");
@@ -145,7 +152,7 @@ hs {
 #opcionesGrid .ordenar {
     display: flex;
     align-items: center;
-	margin-right: 20px;
+	/* margin-right: 79px; */
 }
 
 #opcionesGrid .ordenar span {
@@ -162,7 +169,7 @@ hs {
     text-align: center;
     color: #800000;
     padding: 5px;
-    padding-right: 20px;  /* padding adicional a la derecha */
+    /* padding-right: 20px; */
     border: 2px solid #800000;  /* añade la palabra 'solid' para mostrar el borde */
     border-radius: 8px;
     background-color: #f8f8f8;
@@ -202,14 +209,20 @@ hs {
 }
 
 .producto {
-	border: none; /* Quitar el borde */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	min-height: 300px;
+	border: 2px solid #800000; 
+	border-radius: 12px;
     padding: 10px;
     height: 300px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
+	background-color: #FFFFFF;
 }
 
 .producto:not(:nth-child(3n))::after {
@@ -238,6 +251,8 @@ hs {
     margin: 0;
     text-overflow: ellipsis; /* Recortar el texto y mostrar puntos suspensivos */
     overflow: hidden;
+	align-self: center;
+	margin: 0;
     white-space: nowrap; /* Evitar saltos de línea */
     max-height: 2.4em; /* Altura máxima para mostrar */
 }
@@ -246,7 +261,6 @@ hs {
 	margin-top: 5px;
     font-size: 25px;
 	font-family: "Candara";
-    /* margin: 1px 0; */
     color: #800000;
 }
 
@@ -255,9 +269,8 @@ hs {
     font-size: 15px;
     color: #800000;
 	font-weight: bolder;
-    /* margin-bottom: 10px; */
 }
-
+  
 .producto .precio {
     font-family: "Candara", cursive;
     font-size: 20px;
