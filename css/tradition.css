@@ -1,0 +1,158 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tradition.css                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 12:30:25 by adpachec          #+#    #+#             */
+/*   Updated: 2023/07/13 14:02:10 by adpachec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin-bottom: 100px;
+  width: 100%;
+  display: flex;
+}
+
+.section-left {
+  flex-basis: 45%; /* Ajustado a 45% para dar más espacio a los lados */
+  text-align: justify;
+  padding: 10px 80px 10px 10px; /* Aumentado el padding en el lado derecho */
+  box-sizing: border-box;
+}
+
+.section-right {
+  flex-basis: 45%; /* Ajustado a 45% para dar más espacio a los lados */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 10px 10px 120px; /* Aumentado el padding en el lado izquierdo */
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .section-left,
+  .section-right {
+    flex-basis: 50%;
+  }
+}
+
+.section:first-of-type {
+  margin-top: 50px; /* Añade un margen superior a la primera sección */
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+.section-text {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.section-divider {
+  margin: 50px 0;
+  height: 10px;
+  background-color: #800000;
+}
+
+.section-slider {
+  width: 100%;
+  height: auto;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slider-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+}
+
+.slider-item.active {
+  opacity: 1;
+}
+
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.additional-section {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid #ccc;
+}
+
+.additional-section-title {
+  font-size: 24px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.additional-section-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.mission-vision-values {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mission,
+.vision,
+.values {
+  flex-basis: 30%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.mission h3,
+.vision h3,
+.values h3 {
+  margin-bottom: 10px;
+}
+
+.mission p,
+.vision p,
+.values ul {
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+.location {
+  text-align: center;
+}

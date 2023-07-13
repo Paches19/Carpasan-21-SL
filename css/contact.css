@@ -1,0 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.css                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 11:57:35 by adpachec          #+#    #+#             */
+/*   Updated: 2023/07/13 12:03:22 by adpachec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+.contact-info {
+	background-color: #f8f8f8;
+	padding: 40px 0;
+	text-align: center;
+	font-family: "Cardana", "Arial", sans-serif;
+  }
+
+  .contact-info .phone-number {
+	font-size: 24px;
+	margin-top: 10px;
+	color: #800000;
+	font-weight: bold;
+  }
+
+  .contact-form {
+	/* padding: 20px 0; */
+	font-family: "Cardana", "Arial", sans-serif;
+  }
+
+  .contact-form h2 {
+	margin-bottom: 20px;
+	text-align: center;
+  }
+
+  .contact-form form {
+	max-width: 600px;
+	margin: 0 auto;
+  }
+
+  .contact-form .form-group {
+	margin-bottom: 20px;
+  }
+
+  .contact-form .form-group label {
+	display: block;
+	margin-bottom: 5px;
+  }
+
+  .contact-form .form-group input,
+  .contact-form .form-group textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+  }
+
+  .contact-form .form-group textarea {
+	height: 150px;
+  }
+
+  .contact-form button[type="submit"] {
+	background-color: #800000;
+	color: #ffffff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+
+  .contact-form button[type="submit"]:hover {
+	background-color: #600000;
+  }
+
+  .location {
+	padding: 40px 0;
+	font-family: "Cardana", "Arial", sans-serif;
+  }
+
+  .location h2 {
+	margin-bottom: 20px;
+	text-align: center;
+  }
+
+  .location iframe {
+	width: 100%;
+	height: 400px;
+	border: 0;
+  }

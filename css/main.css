@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 21:15:30 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:56:42 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ body {
 	background-color: #F8F8F8;
 	color: #000000;
 	padding: 10px 0;
+	/* margin-top: 0; */
   }
   
   .top-bar .container {
@@ -67,18 +68,20 @@ body {
 
   header {
     background-color: #333;
-    padding: 10px 0;
-    color: #ffffff;
+    padding: 0 0 10px 0;
+    color: #F8F8F8;
     text-align: center;
+	
 }
 
 header nav ul li {
     display: inline;
-    color: #ffffff;
+    color: #F8F8F8;
 }
   
   /* Estilos de la barra de navegación */
   nav {
+	display: flex;
 	background-color: #800000;
 	color: #F8F8F8;
 	padding: 10px 0;
@@ -96,11 +99,14 @@ header nav ul li {
 	margin: 0;
 	padding: 0;
 	display: flex;
+	flex-grow: 1;
 	justify-content: space-between;
   }
   
   .nav-links li {
 	margin-right: 80px;
+	flex-grow: 1;
+	min-width: 0;
   }
   
   .nav-links li:last-child {
@@ -108,12 +114,15 @@ header nav ul li {
   }
   
   .nav-links a {
-	color: #FFFFFF;
+	color: #ecc43d;
 	text-decoration: none;
 	position: relative;
 	font-family: "candara", Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 22px;
+	white-space: nowrap;
+	overflow: hidden; 
+  	text-overflow: ellipsis; 
   }
   
   .nav-links a::before {
@@ -133,7 +142,7 @@ header nav ul li {
   .search-cart {
 	display: flex;
 	align-items: center;
-	padding-left: 43%;
+	padding-left: 25%;
   }
   
   .search-cart input[type="text"] {

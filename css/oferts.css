@@ -1,0 +1,101 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   oferts.css                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 10:55:23 by adpachec          #+#    #+#             */
+/*   Updated: 2023/07/13 12:22:40 by adpachec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+.offers-header {
+	background-color: #800000;
+	color: #ffd240;
+	margin-top: 50px;
+	width: 80%;
+	padding: 20px 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-family: "Cardana", "Arial", sans-serif;
+  }
+  
+  .offers-header h1 {
+	font-size: 48px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	font-weight: bolder;
+	letter-spacing: 2px;
+	color: #ecc43d;
+	text-align: center;
+  }
+  
+  .offers-header p {
+	font-size: 20px;
+  }
+  
+  .offer-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	padding: 40px 0;
+	align-items: start;
+  }
+  
+  .offer-item {
+	background: #FFFFFF;
+	padding: 20px;
+	text-align: center;
+	border-radius: 10px;
+  }
+  
+  .offer-item img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-bottom: 20px;
+  }
+  
+  .offer-item h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+  }
+  
+  .offer-price {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+  }
+  
+  .old-price {
+	text-decoration: line-through;
+	margin-right: 10px;
+  }
+  
+  .new-price {
+	color: #800000;
+	font-weight: bold;
+  }
+  
+  .offer-item p {
+	font-size: 16px;
+	margin-bottom: 20px;
+  }
+  
+  .btn {
+	background: #800000;
+	color: #FFFFFF;
+	text-decoration: none;
+	padding: 10px 20px;
+	display: inline-block;
+	margin-top: 10px;
+	transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+	background: #800000;
+  }

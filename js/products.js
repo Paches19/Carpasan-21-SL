@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 20:37:31 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/13 10:44:20 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class Producto {
 }
 
 let productos = [
-    new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/vaca.jpg', ['vaca'], ''),
-    new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/chuleton.png', ['vaca'], 'Chuleton de buey gallego madurado 60 días'),
+    new Producto('Lomo de vaca', 19.99, '/Carpasan-21-SL/images/vaca.jpg', ['vacuno'], ''),
+    new Producto('Chuleton de buey', 12.99, '/Carpasan-21-SL/images/chuleton.png', ['vacuno'], 'Chuleton de buey gallego madurado 60 días'),
     new Producto('Lomo de cerdo', 11.99, '/Carpasan-21-SL/images/cerdo.jpg', ['cerdo'], ''),
     new Producto('Chuletas de cerdo', 10.99, '/Carpasan-21-SL/images/chuletacerdo.jpg', ['cerdo'], ''),
     new Producto('Pechuga de pollo', 9.99, '/Carpasan-21-SL/images/pechugaPollo.jpg', ['pollo'], ''),
@@ -31,7 +31,7 @@ let productos = [
     new Producto('Chorizo picante', 102.99, '/Carpasan-21-SL/images/chorizo.png', ['embutido'], ''),
 ];
 
-let filtros = ['Todo', 'Vaca', 'Pollo', 'Cerdo', 'Embutido', 'Especiales', 'Packs'];
+let filtros = ['Todo', 'Vacuno', 'Pollo', 'Cerdo', 'Embutido', 'Especiales', 'Packs'];
 let productosMostrados = [...productos]; // Array para almacenar los productos mostrados
 let columnasSeleccionadas = 3; // Columnas seleccionadas por defecto
 
