@@ -43,28 +43,40 @@
                 <a href="/Carpasan-21-SL/html/products.html">Productos</a>
               </li>
               <li><a href="/Carpasan-21-SL/html/oferts.html">Ofertas</a></li>
-              <li><a href="/Carpasan-21-SL/html/tradition.html">¿Quiénes somos?</a></li>
+              <li>
+                <a href="/Carpasan-21-SL/html/tradition.html"
+                  >¿Quiénes somos?</a>
+              </li>
               <li><a href="/Carpasan-21-SL/html/contact.html">Contacto</a></li>
             </ul>
             <div class="search-cart">
-              <input
-                type="text"
-                id="search-input"
-                placeholder="Buscar productos"
-              />
-              <a href="carrito.html" class="cart-icon">
-                <img
-                  src="/Carpasan-21-SL/images/CarritoCompra.png"
-                  alt="Carrito de compra"
-                />
-                <span class="cart-count">0</span>
+              <input type="text" id="search-input" placeholder="Buscar productos" />
+              <a class="cart-icon" id="cart-icon-button">
+                <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Carrito de compra" />
+                <span class="cart-count" id="cart-count">0</span>
+              </a>
               </a>
             </div>
           </div>
         </div>
       </nav>
     </header>
-
+    <div id="order-summary-modal" class="modal">
+      <div class="modal-content">
+        <div class="top-bar">
+          <h1>Resumen del Pedido</h1>
+          <span class="close">&times;</span>
+        </div>
+        <div id="order-summary-content">
+          <div class="order-item-header">
+            <span>Producto</span>
+            <span>Cantidad</span>
+            <span>Subtotal</span>
+          </div>
+        </div>
+        <div class="total"><span id="total-price"></span></div>
+      </div>
+    </div>
     <main>
       <aside id="sidebar">
         <hs>Variedad</hs>
@@ -86,6 +98,20 @@
               <option value="valorado">Mejor Valorados</option>
             </select>
             <span id="ordenarWidth"></span>
+          </div>
+        </div>
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <div class="top-bar">
+              <h1 class="product-name"></h1>
+              <span class="close">&times;</span>
+            </div>
+            <div class="quantity-section">
+              <input type="number" class="quantity" step="0.01" min="0.01" />
+              <span>kg</span>
+            </div>
+            <p class="subtotal">Subtotal: 0 €</p>
+            <button id="addToCartFromModal">Añadir al carrito</button>
           </div>
         </div>
         <div id="gridProductos"></div>
