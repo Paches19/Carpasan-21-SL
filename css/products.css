@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/14 14:01:33 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:20:23 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -477,7 +477,7 @@ hs {
 }
 
 #order-summary-modal .top-bar h1 {
-    font-size: 16px;
+    font-size: 30px;
     margin: 0;
 }
 
@@ -496,6 +496,8 @@ hs {
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    text-align: center;
 }
 
 #order-summary-modal .order-item .remove-item {
@@ -512,6 +514,8 @@ hs {
     justify-content: flex-end;
     margin-top: 10px;
     font-weight: bold;
+    font-size: 20px;
+    color: #800000
 }
 
 #order-summary-modal .total span {
@@ -520,6 +524,41 @@ hs {
 }
 
 #order-summary-modal .subtotal {
-    font-size: 16px;
+    font-size: 18px;
     margin-right: 10px;
+    color: black;
+    font-weight: normal;
+}
+
+#order-summary-modal .order-item .order-quantity {
+    font-size: 18px;
+    margin-right: 10px;
+    color: black;
+    font-weight: normal;
+}
+
+#order-summary-modal .quantity-section {
+    font-size: 20px;
+    margin-right: 10px;
+    color: black;
+    font-weight: normal;
+    border: none;
+}
+
+#order-summary-modal .order-summary-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0;
+    text-align: left;
+  }
+
+  #order-summary-modal .order-summary-header,
+#order-summary-modal .order-item {
+    box-sizing: border-box;
+}
+
+#order-summary-modal .order-item .product-name {
+    text-align: left;
 }

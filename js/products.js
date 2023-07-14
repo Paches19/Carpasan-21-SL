@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/14 13:58:51 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:12:25 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function() {
             divProducto.className = "order-item";
             divProducto.innerHTML = `
                 <span class="product-name">${producto}</span>
-                <span class="quantity">${carrito[producto]} kg</span>
+                <span class="order-quantity">${carrito[producto]} kg</span>
                 <span class="subtotal">${subtotal.toFixed(2)} €</span>
             `;
             modalContent.appendChild(divProducto);
