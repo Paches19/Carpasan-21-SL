@@ -71,9 +71,62 @@
           <span class="header-item">Producto</span>
           <span class="header-item">Cantidad</span>
           <span class="header-item">Subtotal</span>
+          <span>Eliminar</span>
         </div>
         <div id="order-summary-content"></div>
-        <div class="total"><span id="total-price"></span></div>
+        <div id="clear-cart-button-container">
+          <button id="clear-cart">Eliminar Todo</button>
+        </div>
+        <div class="total-row">
+          <div class="left-section">
+            <span id="total-price"></span>
+          </div>
+          <div class="right-section">
+            <button id="checkout">Tramitar Pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal de Tramitar Pedido -->
+    <div id="checkout-modal" class="modal checkout-modal-container">
+      
+      <div class="modal-content">
+        <div class="top-bar">
+          <h1>Tramitar Pedido</h1>
+          <span class="close">&times;</span>
+        </div>
+        <form id="checkout-form">
+          <label for="first-name">Nombre:</label>
+          <input type="text" id="first-name" name="first-name" required>
+          
+          <label for="last-name">Apellidos:</label>
+          <input type="text" id="last-name" name="last-name" required>
+          
+          <label for="address">Dirección:</label>
+          <input type="text" id="address" name="address" required>
+          
+          <label for="phone">Teléfono de Contacto:</label>
+          <input type="text" id="phone" name="phone" required>
+          
+          <label for="delivery-option">Opción de Envío:</label>
+          <select id="delivery-option" name="delivery-option" required>
+            <option value="recoger">Recoger</option>
+            <option value="domicilio">A Domicilio</option>
+          </select>
+          
+          <label for="extra-info">Información Extra a Añadir:</label>
+          <textarea id="extra-info" name="extra-info" placeholder="Añade aquí alguna instrucción especial para el pedido"></textarea>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+            <label for="privacy-policy">Acepto la política de privacidad y los términos y condiciones.</label>
+          </div>
+          
+          <div class="button-container">
+            <button id="confirm-order">Confirmar Pedido</button>
+          </div>
+        </form>
       </div>
     </div>
     <main>

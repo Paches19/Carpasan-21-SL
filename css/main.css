@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/14 12:51:30 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/15 10:34:05 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,17 +153,26 @@ header nav ul li {
 	font-size: 14px;
 	margin-right: 25px;
   }
-  
   .cart-icon {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
 	color: #ffffff;
+	transition: transform 0.3s ease;
+  }
+  
+  .cart-icon:hover {
+	transform: scale(1.1);
   }
   
   .cart-icon img {
 	width: 30px;
 	margin-right: 5px;
+	transition: transform 0.3s ease;
+  }
+  
+  .cart-icon img:hover {
+	transform: rotate(20deg);
   }
   
   .cart-count {
@@ -177,6 +186,11 @@ header nav ul li {
 	justify-content: center;
 	font-size: 15px;
 	font-weight: bolder;
+	transition: background-color 0.3s ease;
+  }
+  
+  .cart-count:hover {
+	background-color: #FF4500;
   }
   
   /* Estilos de la sección hero */

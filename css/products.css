@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/14 14:20:23 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:31:17 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -454,7 +454,7 @@ hs {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 #order-summary-modal .modal-content {
@@ -486,13 +486,12 @@ hs {
 }
 
 #order-summary-modal #order-summary-content {
-    max-height: 400px;
     overflow-y: auto;
 }
 
 #order-summary-modal .order-item {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
@@ -501,26 +500,18 @@ hs {
 }
 
 #order-summary-modal .order-item .remove-item {
-    color: #800000;
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-size: 16px;
-    padding: 0;
+  color: #800000;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
 }
 
-#order-summary-modal .total {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #800000
-}
-
-#order-summary-modal .total span {
-    margin-left: 10px;
-    font-size: 16px;
+#order-summary-modal .order-item .remove-item:hover {
+  color: darkred;
 }
 
 #order-summary-modal .subtotal {
@@ -537,17 +528,31 @@ hs {
     font-weight: normal;
 }
 
-#order-summary-modal .quantity-section {
-    font-size: 20px;
-    margin-right: 10px;
-    color: black;
-    font-weight: normal;
-    border: none;
+.order-quantity {
+  width: 70px;
+  text-align: right;
+  /* margin-left: auto; */
+  border: none;
+}
+
+.order-quantity::-webkit-inner-spin-button,
+.order-quantity::-webkit-outer-spin-button {
+  /* -webkit-appearance: none; */
+  margin: 0;
+}
+
+.order-quantity[type="number"] {
+  appearance: inherit;
+  -moz-appearance: textfield;
+}
+
+.order-quantity:after {
+  content: " kg";
 }
 
 #order-summary-modal .order-summary-header {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     font-size: 20px;
     font-weight: bold;
     padding: 0;
@@ -561,4 +566,176 @@ hs {
 
 #order-summary-modal .order-item .product-name {
     text-align: left;
+}
+
+#order-summary-modal #clear-cart-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+#order-summary-modal #clear-cart {
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 130px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#order-summary-modal #clear-cart:hover {
+  background-color: darkred;
+}
+
+#order-summary-modal .total {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #800000
+}
+
+#order-summary-modal .total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#order-summary-modal .total-row .left-section {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+#order-summary-modal .total-row .left-section span {
+  margin-left: 230px;
+}
+
+#order-summary-modal .total-row .right-section {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+#order-summary-modal #checkout {
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease-in-out;
+  width: 130px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#order-summary-modal #checkout:hover {
+  background-color: darkgreen;
+}
+
+.checkout-modal-container {
+  width: auto;
+  max-width: 90%;
+  margin: 0 auto;
+  height: auto;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-modal-container .modal-content {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "candara";
+  font-size: 18px;
+}
+
+.checkout-modal-container .top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.checkout-modal-container .top-bar h1 {
+  font-size: 34px;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.checkout-modal-container .top-bar .close {
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.checkout-modal-container form {
+  margin-bottom: 20px;
+}
+
+.checkout-modal-container label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: "Candara", sans-serif;
+}
+
+.checkout-modal-container input[type="text"],
+.checkout-modal-container input[type="tel"],
+.checkout-modal-container select,
+.checkout-modal-container textarea {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: "Candara", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.checkout-modal-container textarea {
+  height: 120px; /* Ajusta la altura según tus necesidades */
+}
+
+.checkout-modal-container .checkbox-container {
+  margin-top: 10px;
+}
+
+.checkout-modal-container .checkbox-container label {
+  font-family: "Candara", sans-serif;
+  font-size: 16px;
+  color: #555;
+}
+
+.checkout-modal-container .button-container {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.checkout-modal-container #confirm-order {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Candara, sans-serif;
+}
+
+#error-container {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  margin: 5px 0;
 }
