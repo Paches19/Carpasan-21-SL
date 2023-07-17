@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/15 14:32:17 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:08:27 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,230 +166,6 @@ window.onclick = function (event) {
   }
 };
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   let addToCartFromModal = document.getElementById("addToCartFromModal");
-//   let cartIconButton = document.getElementById("cart-icon-button");
-//   let cartCount = document.getElementById("cart-count");
-//   let orderSummaryModal = document.getElementById("order-summary-modal");
-//   let orderSummaryContent = document.getElementById("order-summary-content");
-//   let ordenarSelect = document.getElementById("ordenar");
-//   let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
-
-//   ordenarSelect.addEventListener("change", function () {
-//     ordenarProductos(ordenarSelect.value);
-//   });
-
-//   function ordenarProductos(criterio) {
-//     switch (criterio) {
-//       case "menorPrecio":
-//         productosMostrados.sort((a, b) => a.precio - b.precio);
-//         break;
-//       case "mayorPrecio":
-//         productosMostrados.sort((a, b) => b.precio - a.precio);
-//         break;
-//       case "alfabetico":
-//         productosMostrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
-//         break;
-//       case "destacado":
-//         productosMostrados = productos.filter((p) =>
-//           p.tags.includes("destacado")
-//         );
-//         break;
-//       case "valorado":
-//         // Implementa tu lógica de ordenación por valoración aquí
-//         productosMostrados = [...productos]; // Muestra todos los productos sin ordenar por ahora
-//         break;
-//       default:
-//         productosMostrados = [...productos]; // Restablece el orden original
-//         break;
-//     }
-//     mostrarProductos(productosMostrados);
-//   }
-
-//   // Mostrar los productos inicialmente
-//   mostrarProductos(productosMostrados);
-
-//   let updateCartCount = function () {
-//     let count = Object.keys(carrito).length;
-//     cartCount.textContent = count;
-//   };
-
-//   function showOrderSummary() {
-//     // Limpiar el contenido anterior
-//     orderSummaryContent.innerHTML = "";
-
-//     // Crear elementos para mostrar el resumen del pedido
-//     let total = 0;
-//     for (let producto in carrito) {
-//       let productoInfo = productos.find((p) => p.nombre === producto);
-//       let subtotal = carrito[producto] * productoInfo.precio;
-
-//       let divProducto = document.createElement("div");
-//       divProducto.className = "order-item";
-//       divProducto.innerHTML = `
-//               <span class="product-name">${producto}</span>
-//               <input type="number" class="order-quantity" min="0.0" value="${
-//                 carrito[producto]
-//               }">
-//               <span class="subtotal">${subtotal.toFixed(2)} €</span>
-//               <button class="remove-item" data-product="${producto}">Eliminar</button>
-//           `;
-//       orderSummaryContent.appendChild(divProducto);
-
-//       total += subtotal;
-//     }
-
-//     let clearCartButton = document.getElementById("clear-cart");
-//     clearCartButton.addEventListener("click", function () {
-//       carrito = {}; // Vaciamos el objeto carrito
-//       localStorage.setItem("carrito", JSON.stringify(carrito));
-//       updateCartCount();
-//       showOrderSummary();
-//     });
-
-//     function updateCartItem(productName, quantity) {
-//       carrito[productName] = quantity;
-//       localStorage.setItem("carrito", JSON.stringify(carrito));
-//       showOrderSummary();
-//       updateCartCount();
-//     }
-
-//     let totalContainer = document.querySelector(".left-section");
-
-//     // Mostrar el total del pedido
-//     let totalElement = document.createElement("span");
-//     totalElement.className = "total";
-//     totalElement.textContent = `Total: ${total.toFixed(2)} €`;
-
-//     // Asegurémonos de que el contenedor esté vacío
-//     totalContainer.innerHTML = "";
-
-//     // Agrega el totalElement al contenedor correcto
-//     totalContainer.appendChild(totalElement);
-
-//     // Mostrar el modal del resumen del pedido
-//     orderSummaryModal.style.display = "block";
-
-//     // Añadir escuchadores de eventos a los botones "Eliminar"
-//     let removeItemButtons = document.querySelectorAll(".remove-item");
-//     removeItemButtons.forEach((button) => {
-//       button.addEventListener("click", function (e) {
-//         let product = e.target.getAttribute("data-product");
-//         delete carrito[product];
-//         localStorage.setItem("carrito", JSON.stringify(carrito));
-//         showOrderSummary(); // Actualizar el resumen del pedido
-//         updateCartCount();
-//       });
-//     });
-
-//     // Añadir escuchador de eventos a los inputs de cantidad
-//     let quantityInputs = document.querySelectorAll(
-//       ".order-item .order-quantity"
-//     );
-//     quantityInputs.forEach((input) => {
-//       input.addEventListener("change", function (e) {
-//         let product =
-//           e.target.parentNode.querySelector(".product-name").textContent;
-//         let newQuantity = parseFloat(e.target.value);
-//         updateCartItem(product, newQuantity);
-//       });
-//     });
-
-//     // Añadir escuchador de eventos al botón "Eliminar Todo"
-//     clearCartButton.addEventListener("click", function () {
-//       carrito = {};
-//       localStorage.setItem("carrito", JSON.stringify(carrito));
-//       showOrderSummary(); // Actualizar el resumen del pedido
-//       updateCartCount();
-//     });
-//   }
-
-//   function addToCart(productName, quantity) {
-//     if (carrito[productName]) {
-//       carrito[productName] += quantity;
-//     } else {
-//       carrito[productName] = quantity;
-//     }
-//     localStorage.setItem("carrito", JSON.stringify(carrito));
-//     // updateCartCount();
-//   }
-
-//   addToCartFromModal.addEventListener("click", function () {
-//     let modal = document.querySelector("#modal"); // Obtén el modal donde el evento de clic sucedió
-//     let nombreProducto = modal.querySelector(".product-name").textContent; // En lugar de seleccionar el producto de la página entera, seleccionamos el producto desde el modal
-//     let cantidad = parseFloat(modal.querySelector(".quantity").value); // La cantidad se selecciona de la misma manera
-//     if (isNaN(cantidad) || cantidad <= 0) {
-//       alert("Por favor, introduce una cantidad válida.");
-//       return;
-//     }
-//     addToCart(nombreProducto, cantidad);
-//     modal.style.display = "none";
-//     updateCartCount();
-//   });
-
-//   cartIconButton.addEventListener("click", showOrderSummary);
-
-//   // Cierra el modal del resumen del pedido al hacer clic en el botón de cierre
-//   let closeButton = document.querySelector(".close");
-//   closeButton.addEventListener("click", function () {
-//     orderSummaryModal.style.display = "none";
-//   });
-
-//   // Cierra el modal del resumen del pedido al hacer clic fuera de él
-//   window.addEventListener("click", function (event) {
-//     if (event.target == orderSummaryModal) {
-//       orderSummaryModal.style.display = "none";
-//     }
-//   });
-
-//   let checkoutButton = document.getElementById("checkout");
-//   let checkoutModal = document.getElementById("checkout-modal");
-//   let checkoutCloseButton = document.querySelector("#checkout-modal .close");
-
-//   checkoutButton.addEventListener("click", function () {
-//     // Redirecciona a la página de productos
-//     checkoutModal.style.display = "block";
-//     orderSummaryModal.style.display = "none";
-//   });
-
-//   checkoutCloseButton.addEventListener("click", function () {
-//     checkoutModal.style.display = "none";
-//   });
-
-//   let confirmOrderButton = document.getElementById("confirm-order");
-//   confirmOrderButton.addEventListener("click", function () {
-//     checkoutModal.style.display = "block";
-//     confirmOrder();
-//   });
-
-//   function confirmOrder() {
-//     let firstName = document.getElementById("first-name").value;
-//     let lastName = document.getElementById("last-name").value;
-//     let address = document.getElementById("address").value;
-//     let phone = document.getElementById("phone").value;
-//     let deliveryOption = document.getElementById("delivery-option").value;
-//     let extraInfo = document.getElementById("extra-info").value;
-    
-//     let order = {
-//       firstName: firstName,
-//       lastName: lastName,
-//       address: address,
-//       phone: phone,
-//       deliveryOption: deliveryOption,
-//       extraInfo: extraInfo,
-//       cart: carrito,
-//     };
-
-//     // Envía la información del pedido a la empresa o realiza las acciones necesarias para procesar el pedido
-
-//     checkoutModal.style.display = "none";
-//     document.getElementById("checkout-form").reset();
-
-//     // Mostrar un mensaje de confirmación al usuario
-//     alert("¡Pedido confirmado! Gracias por tu compra.");
-//   }
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   let addToCartFromModal = document.getElementById("addToCartFromModal");
   let cartIconButton = document.getElementById("cart-icon-button");
@@ -453,8 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
       divProducto.innerHTML = `
               <span class="product-name">${producto}</span>
               <input type="number" class="order-quantity" min="0.0" value="${
-        carrito[producto]
-      }">
+                carrito[producto]
+              }">
               <span class="subtotal">${subtotal.toFixed(2)} €</span>
               <button class="remove-item" data-product="${producto}">Eliminar</button>
           `;
@@ -539,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   addToCartFromModal.addEventListener("click", function () {
-    let modal = document.querySelector("#modal"); // Obtén el modal donde el evento de clic sucedió
+    let modal = document.getElementById("modal"); // Obtén el modal donde el evento de clic sucedió
     let nombreProducto = modal.querySelector(".product-name").textContent; // En lugar de seleccionar el producto de la página entera, seleccionamos el producto desde el modal
     let cantidad = parseFloat(modal.querySelector(".quantity").value); // La cantidad se selecciona de la misma manera
     if (isNaN(cantidad) || cantidad <= 0) {
@@ -572,8 +348,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   checkoutButton.addEventListener("click", function () {
     // Redirecciona a la página de productos
-    checkoutModal.style.display = "block";
     orderSummaryModal.style.display = "none";
+    checkoutModal.style.display = "block";
   });
 
   checkoutCloseButton.addEventListener("click", function () {
@@ -581,163 +357,172 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   let confirmOrderButton = document.getElementById("confirm-order");
-  confirmOrderButton.addEventListener("click", function (event) {
+  confirmOrderButton.addEventListener("click", function () {
     event.preventDefault(); // Evitar que el formulario se envíe automáticamente
-
-    // Obtener los campos del formulario
-    let firstName = document.getElementById("first-name").value;
-    let lastName = document.getElementById("last-name").value;
-    let address = document.getElementById("address").value;
-    let phone = document.getElementById("phone").value;
-    let deliveryOption = document.getElementById("delivery-option").value;
-    let extraInfo = document.getElementById("extra-info").value;
-
-    // Si se llega hasta este punto, todos los campos están completos y el checkbox está seleccionado
+    orderSummaryModal.style.display = "none";
     confirmOrder();
   });
-  
+
   let errorContainer = document.getElementById("error-container");
 
-function showGeneralError(message) {
-  errorContainer.textContent = message;
-  errorContainer.style.color = "red";
-}
-
-function hideGeneralError() {
-  errorContainer.textContent = "";
-}
-
-function showErrorField(element, message) {
-  // Crear el div de error específico del campo
-  let errorDiv = document.createElement("div");
-  errorDiv.className = "error-message";
-  errorDiv.textContent = message;
-
-  // Insertar el div de error después del elemento de campo
-  element.parentNode.insertBefore(errorDiv, element.nextSibling);
-
-  // Establecer estilos de error específicos del campo
-  element.style.borderColor = "red";
-}
-
-function hideErrorField(element) {
-  // Eliminar el div de error específico del campo, si existe
-  let errorDiv = element.nextElementSibling;
-  if (errorDiv && errorDiv.className === "error-message") {
-    errorDiv.parentNode.removeChild(errorDiv);
+  function showGeneralError(message) {
+    errorContainer.textContent = message;
+    errorContainer.style.color = "red";
   }
 
-  // Restablecer estilos del campo
-  element.style.borderColor = "#ccc";
+  function hideGeneralError() {
+    errorContainer.textContent = "";
+  }
+
+  function showErrorField(element, message) {
+    // Crear el div de error específico del campo
+    let errorDiv = document.createElement("div");
+    errorDiv.className = "error-message";
+    errorDiv.textContent = message;
+
+    // Insertar el div de error después del elemento de campo
+    element.parentNode.insertBefore(errorDiv, element.nextSibling);
+
+    // Establecer estilos de error específicos del campo
+    element.style.borderColor = "red";
+  }
+
+  function hideErrorField(element) {
+    // Eliminar el div de error específico del campo, si existe
+    let errorDiv = element.nextElementSibling;
+    if (errorDiv && errorDiv.className === "error-message") {
+      errorDiv.parentNode.removeChild(errorDiv);
+    }
+
+    // Restablecer estilos del campo
+    element.style.borderColor = "#ccc";
+  }
+
+  function showConfirmationMessage() {
+    // Crear el elemento del mensaje de confirmación
+    let confirmationMessage = document.createElement("div");
+    confirmationMessage.style.display = "block"; 
+    confirmationMessage.id = "confirmation-message";
+    confirmationMessage.className = "confirmation-message";
+    confirmationMessage.innerHTML = `
+    <h2>¡Pedido confirmado!</h2>
+    <p>Gracias por tu compra. Pronto recibirás un correo electrónico con los detalles de tu pedido.</p>
+    <span id="close-confirmation-message">X</span>
+  `;
+
+    // Primero, añadir el mensaje de confirmación al DOM
+    document.body.appendChild(confirmationMessage);
+
+    // Luego, una vez que el botón está en el DOM, añadirle el evento "click"
+    document.getElementById("close-confirmation-message").addEventListener("click", function() {
+      confirmationMessage.style.display = "none";
+    });
+
+    setTimeout(function () {
+      confirmationMessage.style.display = "none";
+    }, 10000);
 }
-  
-function confirmOrder() {
-  let firstName = document.getElementById("first-name");
-  let lastName = document.getElementById("last-name");
-  let address = document.getElementById("address");
-  let phone = document.getElementById("phone");
-  let privacyCheckbox = document.getElementById("privacy-policy");
 
-  // Verificar si algún campo está vacío
-  let isEmptyField = false;
-  hideErrorField(firstName);
-  hideErrorField(lastName);
-  hideErrorField(address);
-  hideErrorField(phone);
-  hideErrorField(privacyCheckbox);
-  hideErrorField(firstName);
+  function confirmOrder() {
+    let firstName = document.getElementById("first-name");
+    let lastName = document.getElementById("last-name");
+    let address = document.getElementById("address");
+    let phone = document.getElementById("phone");
+    let deliveryOption = document.getElementById("delivery-option");
+    let extraInfo = document.getElementById("extra-info");
+    let privacyCheckbox = document.getElementById("privacy-policy");
+    let tramModal = document.getElementById("checkout-modal");
+    let carritoEnd = JSON.parse(localStorage.getItem("carrito")) || {};
 
-  if (firstName.value === "") {
-    showErrorField(firstName, "Por favor, introduce tu nombre.");
-    isEmptyField = true;
-  } else {
+    // Verificar si algún campo está vacío
+    let isEmptyField = false;
     hideErrorField(firstName);
-  }
-
-  if (lastName.value === "") {
-    showErrorField(lastName, "Por favor, introduce tus apellidos.");
-    isEmptyField = true;
-  } else {
     hideErrorField(lastName);
-  }
-
-  if (address.value === "") {
-    showErrorField(address, "Por favor, introduce tu dirección.");
-    isEmptyField = true;
-  } else {
     hideErrorField(address);
-  }
-
-  if (phone.value === "") {
-    showErrorField(phone, "Por favor, introduce tu teléfono de contacto.");
-    isEmptyField = true;
-  } else {
     hideErrorField(phone);
-  }
+    hideErrorField(privacyCheckbox);
+    hideErrorField(firstName);
 
-  if (!privacyCheckbox.checked) {
-    let privacyLabel = document.querySelector('label[for="privacy-policy"]');
-    privacyLabel.style.color = "red";
-    isEmptyField = true;
-  } else {
-    let privacyLabel = document.querySelector('label[for="privacy-policy"]');
-    privacyLabel.style.color = "#000";
-  }
+    if (firstName.value === "") {
+      showErrorField(firstName, "Por favor, introduce tu nombre.");
+      isEmptyField = true;
+    }
 
-  if (isEmptyField) {
-    showGeneralError("Debes completar todos los campos antes de confirmar el pedido.");
-    return; // Salir de la función sin confirmar el pedido
-  }
+    if (lastName.value === "") {
+      showErrorField(lastName, "Por favor, introduce tus apellidos.");
+      isEmptyField = true;
+    }
+
+    if (address.value === "") {
+      showErrorField(address, "Por favor, introduce tu dirección.");
+      isEmptyField = true;
+    }
+
+    let phoneRegex = /^\d{9}$|^\d{3} \d{3} \d{3}$/;
+
+    if (phone.value === "") {
+      showErrorField(phone, "Por favor, introduce tu teléfono de contacto.");
+      isEmptyField = true;
+    } else if (!phone.value.match(phoneRegex)) {
+      showErrorField(
+        phone,
+        "Por favor, introduce un número de teléfono válido. Formato: 123456789 o 123 456 789"
+      );
+      isEmptyField = true;
+    }
+
+    if (!privacyCheckbox.checked) {
+      let privacyLabel = document.querySelector('label[for="privacy-policy"]');
+      privacyLabel.style.color = "red";
+      isEmptyField = true;
+    } else {
+      let privacyLabel = document.querySelector('label[for="privacy-policy"]');
+      privacyLabel.style.color = "#000";
+    }
+
+    if (isEmptyField) {
+      showGeneralError(
+        "Debes completar todos los campos antes de confirmar el pedido."
+      );
+      return;
+    }
   
-  phone = phone.replace(/\s/g, "");
-  let phoneRegex = /^(9|7|6)\d{8}$/;
-  if (!phoneRegex.test(phone)) {
-    alert("El número de teléfono no tiene el formato correcto. Por favor, introduce un número válido (ejemplo: 666666666 o 666 666 666).");
-    return; // Salir de la función sin confirmar el pedido
-  }
-  hideGeneralError();
-  
-  let order = {
-    customer: {
+    // hideGeneralError();
+    let order = {
       firstName: firstName,
       lastName: lastName,
       address: address,
-      phone: phone
-    },
-    deliveryOption: deliveryOption,
-    extraInfo: extraInfo,
-    cart: carrito
-  };
-  checkoutModal.style.display = "none";
-  document.getElementById("checkout-form").reset();
+      phone: phone,
+      deliveryOption: deliveryOption,
+      extraInfo: extraInfo,
+      cart: carritoEnd,
+    };
 
-  // Mostrar un mensaje de confirmación al usuario
-  showConfirmationMessage();
-}
+    // Mostrar un mensaje de confirmación al usuario
+    showConfirmationMessage();
+    
+    carrito = {};
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    showOrderSummary();
+    updateCartCount();
+    document.getElementById("checkout-form").reset();
+    tramModal.style.display = "none";
+    orderSummaryModal.style.display = "none";
+  }
+  
+  document.getElementById("show-policy").addEventListener("click", function(event) {
+    event.preventDefault();  // Evitar que el enlace realice la acción por defecto
+    document.getElementById("privacy-modal").style.display = "block";
+});
+  document.getElementsByClassName("close-privacy")[0].addEventListener("click", function() {
+    document.getElementById("privacy-modal").style.display = "none";
+  });
 });
 
-function showConfirmationMessage() {
-  // Crear el elemento del mensaje de confirmación
-  let confirmationMessage = document.createElement("div");
-  confirmationMessage.id = "confirmation-message";
-  confirmationMessage.className = "confirmation-message";
-  confirmationMessage.innerHTML = `
-    <h2>¡Pedido confirmado!</h2>
-    <p>Gracias por tu compra.</p>
-  `;
-
-  // Agregar el mensaje al DOM
-  document.body.appendChild(confirmationMessage);
-
-  // Ocultar el mensaje después de unos segundos
-  setTimeout(function() {
-    confirmationMessage.style.display = "none";
-  }, 3000); // Ocultar después de 3 segundos (ajusta el tiempo según tus preferencias)
-}
-
 function showModal(nombreProducto, precioProducto) {
-  let checkoutModal = document.getElementById("checkout-modal");
-  checkoutModal.style.display = "block";
+  let modal = document.getElementById("modal");
+  modal.style.display = "block";
   modal.querySelector(".product-name").textContent = nombreProducto;
   modal.querySelector(".quantity").value = "";
   modal.querySelector(".subtotal").textContent = "Subtotal: 0 €";

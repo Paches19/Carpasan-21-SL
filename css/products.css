@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/15 14:31:17 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:05:55 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -703,16 +703,18 @@ hs {
 }
 
 .checkout-modal-container textarea {
-  height: 120px; /* Ajusta la altura según tus necesidades */
+  height: 150px; /* Ajusta la altura según tus necesidades */
 }
 
 .checkout-modal-container .checkbox-container {
-  margin-top: 10px;
+  margin-top: 15px;
+  width: auto;
+  
 }
 
 .checkout-modal-container .checkbox-container label {
   font-family: "Candara", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   color: #555;
 }
 
@@ -738,4 +740,87 @@ hs {
 
 .error-message {
   margin: 5px 0;
+}
+
+#confirmation-message {
+  position: fixed; /* Para posicionarlo en el centro de la página */
+  top: 40%; /* Posiciona el elemento en el centro vertical */
+  left: 50%; /* Posiciona el elemento en el centro horizontal */
+  transform: translate(-50%, -50%); /* Ajusta el posicionamiento para que esté perfectamente centrado */
+  display: none; /* Comienza oculto hasta que se muestre a través de JavaScript */
+  padding: 20px; /* Espacio alrededor del contenido */
+  background-color: white; /* Fondo blanco para que se destaque contra el fondo de la página */
+  border-radius: 12px; /* Bordes redondeados */
+  border: 2px solid #800000; /* Borde sólido verde */
+  z-index: 1000; /* Asegura que el mensaje aparezca encima de otros elementos */
+  text-align: center; /* Centra el texto */
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1); /* Sombra alrededor del mensaje */
+  width: 80%; /* Anchura */
+  max-width: 500px; /* Anchura máxima */
+  font-family: "cardana", sans-serif, Arial, Helvetica, sans-serif;
+}
+
+#confirmation-message h2 {
+  color: #800000; /* Color de título verde */
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px; /* Espacio debajo del título */
+}
+
+#confirmation-message p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Color de texto gris oscuro */
+}
+
+#close-confirmation-message {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: #800000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: 25px;
+  height: 25px;
+  text-align: right;
+  border-radius: 50%;
+  line-height: 25px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#privacy-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+} 
+
+#privacy-modal .modal-content {
+  background-color: #f8f8f8;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #800000;
+  width: 80%; /* Could be more or less, depending on screen size */
+  font-size: 20px;
+  font-weight: bold;
+  color: #800000;
+}
+
+#privacy-modal .close-privacy {
+  color: #aaa;
+  margin-left: 95%;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+#privacy-modal .close-privacy:hover,
+.close-privacy:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
