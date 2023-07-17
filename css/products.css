@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/17 18:05:55 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/17 21:33:15 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,34 +120,36 @@ hs {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  margin-top: 0;
+}
+
+#opcionesGrid div {
+  margin: 0 10px;
 }
 
 #opcionesGrid button {
-  background-size: contain;
-  background-repeat: no-repeat;
   background-position: center;
-  width: 40px; /* ajusta al tamaño que desees */
-  height: 40px;
+  padding: 10px 10px;
   border: none;
-  transition: all 0.3s ease-in-out;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
-#opcionesGrid button:nth-child(1) {
-  background-image: url("/Carpasan-21-SL/images/grid-3-icon.png");
-}
-
-#opcionesGrid button:nth-child(2) {
-  background-image: url("/Carpasan-21-SL/images/grid-5-icon.png");
+.grid-option {
+  background-color: #f8f8f8;
+  border: 1px solid #f8f8f8;
+  border-radius: 12px;
 }
 
 #opcionesGrid button:hover {
-  background-color: #f1f1f1;
+  background-color: #80000067;
+  border: 1px solid #80000067;
+  border-radius: 12px;
 }
 
-#opcionesGrid .ordenar {
-  display: flex;
-  align-items: center;
-  /* margin-right: 79px; */
+#opcionesGrid img {
+  width: 25px;
+  height: 25px;
 }
 
 #opcionesGrid .ordenar span {
@@ -304,12 +306,20 @@ hs {
   cursor: pointer;
 }
 
-.price-cart {
+.price-cart3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   width: 45%;
+}
+
+.price-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 75%;
 }
 
 .add-to-cart {
