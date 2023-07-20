@@ -6,9 +6,78 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/12 21:07:35 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:42:47 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+class Producto {
+  constructor(nombre, precio, imagen, tags, descripcion) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.imagen = imagen;
+    this.tags = tags;
+    this.descripcion = descripcion;
+  }
+}
+
+let productos = [
+  new Producto(
+    "Lomo de vaca",
+    19.99,
+    "/Carpasan-21-SL/images/vaca.jpg",
+    ["vacuno"],
+    ""
+  ),
+  new Producto(
+    "Chuleton de buey",
+    12.99,
+    "/Carpasan-21-SL/images/chuleton.png",
+    ["vacuno"],
+    "Chuleton de buey gallego madurado 60 días"
+  ),
+  new Producto(
+    "Lomo de cerdo",
+    11.99,
+    "/Carpasan-21-SL/images/cerdo.jpg",
+    ["cerdo"],
+    ""
+  ),
+  new Producto(
+    "Chuletas de cerdo",
+    10.99,
+    "/Carpasan-21-SL/images/chuletacerdo.jpg",
+    ["cerdo"],
+    ""
+  ),
+  new Producto(
+    "Pechuga de pollo",
+    9.99,
+    "/Carpasan-21-SL/images/pechugaPollo.jpg",
+    ["pollo"],
+    ""
+  ),
+  new Producto(
+    "Alitas de pollo",
+    1.99,
+    "/Carpasan-21-SL/images/alitas.png",
+    ["pollo"],
+    ""
+  ),
+  new Producto(
+    "Chorizo dulce",
+    120.99,
+    "/Carpasan-21-SL/images/chorizoDulce.png",
+    ["embutido"],
+    ""
+  ),
+  new Producto(
+    "Chorizo picante",
+    102.99,
+    "/Carpasan-21-SL/images/chorizo.png",
+    ["embutido"],
+    ""
+  ),
+];
 
 // Script para el contador del carrito de compra
 const cartCount = document.querySelector('.cart-count');
@@ -21,23 +90,67 @@ function addToCart() {
   cartCount.textContent = cartItemsCount;
 }
 
-// Script para el buscador de productos en tiempo real
 const searchInput = document.getElementById('search-input');
+const searchResultsList = document.getElementById('search-results-list');
+const searchCart = document.querySelector('.search-cart');
 
-searchInput.addEventListener('input', searchProducts);
+searchInput.addEventListener('input', updateSearchResults);
+document.addEventListener('click', closeSearchResults);
 
-function searchProducts() {
-  const searchTerm = searchInput.value.toLowerCase();
-  const productos = document.querySelectorAll('.producto');
+function updateSearchResults() {
+  const searchTerm = escapeInput(searchInput.value).toLowerCase();
+  const matchingProducts = productos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(searchTerm)
+  );
 
-  productos.forEach((producto) => {
-    const productName = producto.querySelector('h3').textContent.toLowerCase();
-    if (productName.includes(searchTerm)) {
-      producto.style.display = 'block';
-    } else {
-      producto.style.display = 'none';
-    }
+  showSearchResults(matchingProducts);
+}
+
+function showSearchResults(results) {
+  let resultsHTML = '';
+
+  results.forEach((producto) => {
+    resultsHTML += `
+      <li>
+        <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
+        <div class="product-info">
+          <span>${producto.nombre}</span>
+          <span class="product-price">${producto.precio} €/kg</span>
+        </div>
+      </li>
+    `;
   });
+
+  searchResultsList.innerHTML = resultsHTML;
+  searchResultsList.style.display = results.length ? 'block' : 'none'; // Mostrar resultados si hay coincidencias, ocultar si no las hay
+  
+  const searchResultItems = document.querySelectorAll('li');
+  searchResultItems.forEach((item) => {
+    item.addEventListener('click', redirectToProductPage);
+  });
+}
+
+function redirectToProductPage(event) {
+  const searchTerm = searchInput.value;
+  const encodedSearchTerm = encodeURIComponent(searchTerm);
+  window.location.href = `/Carpasan-21-SL/html/products.html?search=${encodedSearchTerm}`;
+}
+
+function closeSearchResults(event) {
+  if (!searchCart.contains(event.target) && event.target !== searchInput) {
+    searchResultsList.style.display = 'none'; // Ocultar resultados al hacer clic fuera del área de búsqueda
+  }
+}
+
+function escapeInput(input) {
+  // Función para escapar caracteres peligrosos en la entrada del usuario.
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
 }
 
 const carousel = document.querySelector('.carousel');

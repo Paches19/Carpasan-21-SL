@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/17 21:37:05 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:37:00 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,26 +138,94 @@ header nav ul li {
 	opacity: 0.8;
   }
 
-  .search-cart {
-	display: flex;
-	align-items: center;
-	padding-left: 25%;
-  }
-  
   .search-cart input[type="text"] {
 	padding: 8px;
 	border: none;
 	border-radius: 8px;
 	width: 300px;
 	font-size: 14px;
-	margin-right: 25px;
   }
+  
+  .search-cart {
+	display: flex;
+	align-items: center;
+	position: relative; /* Añadimos posición relativa */
+	/* padding-left: 25%; */
+  }
+  
+  .search-results {
+	position: absolute; /* Añadimos posición absoluta */
+	top: 100%; /* Colocamos los resultados debajo del campo de entrada */
+	/* left: 0;  */
+	width: 300px; 
+	background-color: #f8f8f8;
+	border: 2px solid #ccc;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	max-height: 200px;
+	overflow-y: auto;
+	position: absolute;
+	/* padding-left: 25%; */
+	z-index: 999;
+  }
+  
+  .search-results ul {
+	/* list-style: none; */
+	padding: 0;
+	margin: 0;
+  }
+  
+  .search-results li {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	align-items: center; 
+	color:  #800000;
+	cursor: pointer;
+  }
+
+  .search-results li {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	align-items: center;
+}
+  
+  .product-image {
+	width: 50px;
+	height: 50px; 
+  }
+  
+  /* Estilos para el contenedor de información del producto (nombre y precio) */
+  .product-info {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  /* Estilos para el nombre del producto */
+  .product-info span:first-child {
+	font-weight: bold; /* Texto en negrita */
+  }
+  
+  /* Estilos para el precio */
+  .product-price {
+	color: #000; /* Color negro para el precio */
+	font-weight: BOLD;
+  }
+  
+  .highlight {
+	background-color: #f9f9f9;
+	font-weight: bold;
+  }
+  
   .cart-icon {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
 	color: #ffffff;
 	transition: transform 0.3s ease;
+	padding-left: 20px;
   }
   
   .cart-icon:hover {

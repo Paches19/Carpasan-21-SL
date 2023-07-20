@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/17 21:33:04 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:03:21 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,13 @@ function mostrarProductos(productosMostrar) {
   let div = document.querySelector("#gridProductos");
   div.innerHTML = "";
   div.style.gridTemplateColumns = `repeat(${columnasSeleccionadas}, 1fr)`;
+
+  const searchTerm = document.getElementById("search-input").value.toLowerCase();
+  if (searchTerm != ""){
+    productosMostrar = productosMostrar.filter(
+      (producto) => producto.nombre.toLowerCase().includes(searchTerm)
+    );
+  }
 
   if (columnasSeleccionadas > 3)
   {
@@ -536,10 +543,16 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("show-policy").addEventListener("click", function(event) {
     event.preventDefault();  // Evitar que el enlace realice la acción por defecto
     document.getElementById("privacy-modal").style.display = "block";
-});
+  });
   document.getElementsByClassName("close-privacy")[0].addEventListener("click", function() {
     document.getElementById("privacy-modal").style.display = "none";
   });
+  
+  const searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", () => {
+    mostrarProductos(productosMostrados);
+  });
+  
 });
 
 function showModal(nombreProducto, precioProducto) {
