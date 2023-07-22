@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/20 17:03:21 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:47:41 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ function mostrarProductos(productosMostrar) {
               <h2>${producto.nombre}</h2>
               <p class="descripcion">${producto.descripcion}</p>
               <div class="price-cart">
-                <p class="precio">Precio: ${producto.precio} €/kg</p>
+                <p2 class="precio">Precio: ${producto.precio} €/kg</p2>
                 <button class="add-to-cart" data-product="${producto.nombre}" data-price="${producto.precio}">
                   <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Añadir al carrito">
                 </button>

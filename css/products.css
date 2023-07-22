@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/20 16:32:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/22 10:50:35 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ hs {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  min-height: 350px; /* aumente el min-height aquí */
+  min-height: 350px;
   border: 2px solid #800000;
   border-radius: 12px;
   padding: 10px;
@@ -244,20 +244,30 @@ hs {
 }
 
 .producto img {
-  max-width: 100%; /* Make sure the image is not wider than its container */
+  max-width: 100%; 
   height: auto; /* Maintain the image's aspect ratio */
-  max-height: 200px; /* Limit the image's height */
+  max-height: 200px; 
 }
 
 .producto h2,
 .producto p {
   margin: 0;
-  text-overflow: ellipsis; /* Recortar el texto y mostrar puntos suspensivos */
-  overflow: hidden;
+  text-overflow: ellipsis; 
+  /* overflow: hidden; */
   align-self: center;
   margin: 0;
-  white-space: nowrap; /* Evitar saltos de línea */
-  max-height: 2.4em; /* Altura máxima para mostrar */
+  /* white-space: nowrap; */
+  max-height: 2.4em;
+}
+
+.producto p2 {
+  margin: 0;
+  text-overflow: ellipsis; 
+  /* overflow: hidden; */
+  align-self: center;
+  margin: 0;
+  white-space: nowrap;
+  max-height: 2.4em;
 }
 
 .producto h2 {
@@ -269,7 +279,7 @@ hs {
 
 .producto .descripcion {
   font-family: "Candara", cursive;
-  font-size: 20px;
+  font-size: 17px;
   color: #800000;
   font-weight: bolder;
 }
@@ -493,6 +503,7 @@ hs {
 
 #order-summary-modal .close {
     cursor: pointer;
+    margin-top: 0;
 }
 
 #order-summary-modal #order-summary-content {
@@ -683,9 +694,9 @@ hs {
 }
 
 .checkout-modal-container .top-bar .close {
-  font-size: 24px;
+  font-size: 40px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .checkout-modal-container form {
