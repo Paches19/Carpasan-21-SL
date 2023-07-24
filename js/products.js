@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/22 10:47:41 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:45:32 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,17 @@ let CartCountOnLoad = function () {
 
 window.onload = function () {
   generarFiltros();
-  mostrarProductos(productosMostrados);
+  let searchParam = new URLSearchParams(window.location.search).get('search');
+
+  if (searchParam) {
+    let searchTerm = decodeURIComponent(searchParam).toLowerCase();
+    let matchingProducts = productos.filter((producto) =>
+      producto.nombre.toLowerCase().includes(searchTerm)
+    );
+    mostrarProductos(matchingProducts);
+  } else {
+    mostrarProductos(productos);
+  }
   CartCountOnLoad();
 };
 

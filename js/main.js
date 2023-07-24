@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/20 16:42:47 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:05:56 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,24 @@ function showSearchResults(results) {
   results.forEach((producto) => {
     resultsHTML += `
       <li>
-        <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
-        <div class="product-info">
-          <span>${producto.nombre}</span>
-          <span class="product-price">${producto.precio} €/kg</span>
-        </div>
+      <a href="/Carpasan-21-SL/html/products.html?search=${encodeURIComponent(producto.nombre)}">
+          <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
+          <div class="product-info">
+            <span>${producto.nombre}</span>
+            <span class="product-price">${producto.precio} €/kg</span>
+          </div>
+        </a>
       </li>
     `;
   });
+
+//   <li>
+//   <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
+//   <div class="product-info">
+//     <span>${producto.nombre}</span>
+//     <span class="product-price">${producto.precio} €/kg</span>
+//   </div>
+// </li>
 
   searchResultsList.innerHTML = resultsHTML;
   searchResultsList.style.display = results.length ? 'block' : 'none'; // Mostrar resultados si hay coincidencias, ocultar si no las hay
@@ -128,12 +138,6 @@ function showSearchResults(results) {
   searchResultItems.forEach((item) => {
     item.addEventListener('click', redirectToProductPage);
   });
-}
-
-function redirectToProductPage(event) {
-  const searchTerm = searchInput.value;
-  const encodedSearchTerm = encodeURIComponent(searchTerm);
-  window.location.href = `/Carpasan-21-SL/html/products.html?search=${encodedSearchTerm}`;
 }
 
 function closeSearchResults(event) {
