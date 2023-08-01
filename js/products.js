@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/01 11:14:13 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:37:39 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -552,6 +552,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastName = document.getElementById("last-name");
     let address = document.getElementById("address");
     let phone = document.getElementById("phone");
+    let email = document.getElementById("email");
     let deliveryOption = document.getElementById("delivery-option");
     let extraInfo = document.getElementById("extra-info");
     let privacyCheckbox = document.getElementById("privacy-policy");
@@ -595,6 +596,11 @@ document.addEventListener("DOMContentLoaded", function () {
       isEmptyField = true;
     }
 
+    if (email.value === ""){
+      showErrorField(email, "Por favor, introduce tu email.");
+      isEmptyField = true;
+    }
+
     if (!privacyCheckbox.checked) {
       let privacyLabel = document.querySelector('label[for="privacy-policy"]');
       privacyLabel.style.color = "red";
@@ -617,6 +623,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lastName: lastName,
       address: address,
       phone: phone,
+      email: email,
       deliveryOption: deliveryOption,
       extraInfo: extraInfo,
       cart: carritoEnd,
