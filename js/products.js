@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/24 11:45:32 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:14:13 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ class Producto {
 let productos = [
   new Producto(
     "Lomo de vaca",
-    19.99,
+    11.99,
     "/Carpasan-21-SL/images/vaca.jpg",
     ["vacuno"],
     ""
   ),
   new Producto(
     "Chuleton de buey",
-    12.99,
+    10.99,
     "/Carpasan-21-SL/images/chuleton.png",
     ["vacuno"],
     "Chuleton de buey gallego madurado 60 días"
@@ -78,6 +78,91 @@ let productos = [
     ""
   ),
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let filtros = [
   "Todo",
@@ -162,7 +247,7 @@ function mostrarProductos(productosMostrar) {
               <div class="price-cart">
                 <p2 class="precio">Precio: ${producto.precio} €/kg</p2>
                 <button class="add-to-cart" data-product="${producto.nombre}" data-price="${producto.precio}">
-                  <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Añadir al carrito">
+                  <img src="/Carpasan-21-SL/images/CarritoCompra-min.png" alt="Añadir al carrito">
                 </button>
               </div>
           `;
@@ -181,7 +266,7 @@ function mostrarProductos(productosMostrar) {
               <div class="price-cart3">
                 <p class="precio">Precio: ${producto.precio} €/kg</p>
                 <button class="add-to-cart" data-product="${producto.nombre}" data-price="${producto.precio}">
-                  <img src="/Carpasan-21-SL/images/CarritoCompra.png" alt="Añadir al carrito">
+                  <img src="/Carpasan-21-SL/images/CarritoCompra-min.png" alt="Añadir al carrito">
                 </button>
               </div>
           `;

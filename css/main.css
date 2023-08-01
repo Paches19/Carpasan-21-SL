@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/20 16:37:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:56:03 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,7 @@ header nav ul li {
 	/* left: 0;  */
 	width: 300px; 
 	background-color: #f8f8f8;
-	border: 2px solid #ccc;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	max-height: 200px;
 	overflow-y: auto;
@@ -183,13 +182,6 @@ header nav ul li {
 	color:  #800000;
 	cursor: pointer;
   }
-
-  .search-results li {
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
-	display: flex;
-	align-items: center;
-}
   
   .product-image {
 	width: 50px;
@@ -212,6 +204,16 @@ header nav ul li {
   .product-price {
 	color: #000; /* Color negro para el precio */
 	font-weight: BOLD;
+  }
+
+  .search-results a {
+	color: inherit;
+	text-decoration: none;
+  }
+  
+  .search-results a:hover {
+	color: inherit;
+	text-decoration: none;
   }
   
   .highlight {
@@ -624,5 +626,5 @@ h3 {
   }
 
   .social-icon img{
-	width: 40px;
+	width: 30px;
   }

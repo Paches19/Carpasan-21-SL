@@ -6,17 +6,24 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:30:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/13 14:02:10 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:23:21 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-.container {
+@media screen and (min-width: 768px) {
+  .section-left,
+  .section-right {
+    flex-basis: 50%;
+  }
+}
+
+/* .container {
   max-width: 100%;
   margin: 0 auto;
   padding: 40px;
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 .section {
   margin-bottom: 100px;
@@ -38,13 +45,6 @@
   align-items: center;
   padding: 10px 10px 10px 120px; /* Aumentado el padding en el lado izquierdo */
   box-sizing: border-box;
-}
-
-@media screen and (min-width: 768px) {
-  .section-left,
-  .section-right {
-    flex-basis: 50%;
-  }
 }
 
 .section:first-of-type {

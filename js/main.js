@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/24 11:05:56 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:03:05 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,29 +111,22 @@ function showSearchResults(results) {
 
   results.forEach((producto) => {
     resultsHTML += `
-      <li>
-      <a href="/Carpasan-21-SL/html/products.html?search=${encodeURIComponent(producto.nombre)}">
-          <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
-          <div class="product-info">
-            <span>${producto.nombre}</span>
-            <span class="product-price">${producto.precio} €/kg</span>
-          </div>
-        </a>
-      </li>
+    <a href="/Carpasan-21-SL/html/products.html?search=${encodeURIComponent(producto.nombre)}">
+    <li>
+      <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
+      <div class="product-info">
+        <span>${producto.nombre}</span>
+        <span class="product-price">${producto.precio} €/kg</span>
+      </div>
+    </li>
+  </a>
     `;
   });
 
-//   <li>
-//   <img class="product-image" src="${producto.imagen}" alt="${producto.nombre}" />
-//   <div class="product-info">
-//     <span>${producto.nombre}</span>
-//     <span class="product-price">${producto.precio} €/kg</span>
-//   </div>
-// </li>
-
   searchResultsList.innerHTML = resultsHTML;
   searchResultsList.style.display = results.length ? 'block' : 'none'; // Mostrar resultados si hay coincidencias, ocultar si no las hay
-  
+  searchResultsList.style.border = results.length ? "4px solid #ccc" : "none"; 
+   
   const searchResultItems = document.querySelectorAll('li');
   searchResultItems.forEach((item) => {
     item.addEventListener('click', redirectToProductPage);
