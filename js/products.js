@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/01 12:37:39 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:09:34 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,91 +79,6 @@ let productos = [
   ),
 ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let filtros = [
   "Todo",
   "Vacuno",
@@ -186,7 +101,7 @@ let CartCountOnLoad = function () {
 
 window.onload = function () {
   generarFiltros();
-  let searchParam = new URLSearchParams(window.location.search).get('search');
+  let searchParam = new URLSearchParams(window.location.search).get("search");
 
   if (searchParam) {
     let searchTerm = decodeURIComponent(searchParam).toLowerCase();
@@ -228,15 +143,16 @@ function mostrarProductos(productosMostrar) {
   div.innerHTML = "";
   div.style.gridTemplateColumns = `repeat(${columnasSeleccionadas}, 1fr)`;
 
-  const searchTerm = document.getElementById("search-input").value.toLowerCase();
-  if (searchTerm != ""){
-    productosMostrar = productosMostrar.filter(
-      (producto) => producto.nombre.toLowerCase().includes(searchTerm)
+  const searchTerm = document
+    .getElementById("search-input")
+    .value.toLowerCase();
+  if (searchTerm != "") {
+    productosMostrar = productosMostrar.filter((producto) =>
+      producto.nombre.toLowerCase().includes(searchTerm)
     );
   }
 
-  if (columnasSeleccionadas > 3)
-  {
+  if (columnasSeleccionadas > 3) {
     for (let producto of productosMostrar) {
       let divProducto = document.createElement("div");
       divProducto.className = "producto";
@@ -253,9 +169,7 @@ function mostrarProductos(productosMostrar) {
           `;
       div.appendChild(divProducto);
     }
-  }
-  else
-  {
+  } else {
     for (let producto of productosMostrar) {
       let divProducto = document.createElement("div");
       divProducto.className = "producto";
@@ -273,7 +187,7 @@ function mostrarProductos(productosMostrar) {
       div.appendChild(divProducto);
     }
   }
-  
+
   document.querySelectorAll(".add-to-cart").forEach(function (button) {
     button.addEventListener("click", function () {
       let nombreProducto = button.dataset.product;
@@ -525,7 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showConfirmationMessage() {
     // Crear el elemento del mensaje de confirmación
     let confirmationMessage = document.createElement("div");
-    confirmationMessage.style.display = "block"; 
+    confirmationMessage.style.display = "block";
     confirmationMessage.id = "confirmation-message";
     confirmationMessage.className = "confirmation-message";
     confirmationMessage.innerHTML = `
@@ -538,14 +452,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(confirmationMessage);
 
     // Luego, una vez que el botón está en el DOM, añadirle el evento "click"
-    document.getElementById("close-confirmation-message").addEventListener("click", function() {
-      confirmationMessage.style.display = "none";
-    });
+    document
+      .getElementById("close-confirmation-message")
+      .addEventListener("click", function () {
+        confirmationMessage.style.display = "none";
+      });
 
     setTimeout(function () {
       confirmationMessage.style.display = "none";
     }, 10000);
-}
+  }
 
   function confirmOrder() {
     let firstName = document.getElementById("first-name");
@@ -596,7 +512,7 @@ document.addEventListener("DOMContentLoaded", function () {
       isEmptyField = true;
     }
 
-    if (email.value === ""){
+    if (email.value === "") {
       showErrorField(email, "Por favor, introduce tu email.");
       isEmptyField = true;
     }
@@ -616,22 +532,45 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       return;
     }
-  
+
     // hideGeneralError();
     let order = {
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      phone: phone,
-      email: email,
-      deliveryOption: deliveryOption,
-      extraInfo: extraInfo,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      address: address.value,
+      phone: phone.value,
+      email: email.value,
+      deliveryOption: deliveryOption.value,
+      extraInfo: extraInfo.value,
       cart: carritoEnd,
     };
 
+    fetch("http://localhost:3000/submit-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(
+          "Pedido enviado correctamente. Respuesta del servidor:",
+          data
+        );
+      })
+      .catch((error) => {
+        console.error("Error al enviar el pedido:", error);
+      });
+
     // Mostrar un mensaje de confirmación al usuario
     showConfirmationMessage();
-    
+
     carrito = {};
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -641,20 +580,23 @@ document.addEventListener("DOMContentLoaded", function () {
     tramModal.style.display = "none";
     orderSummaryModal.style.display = "none";
   }
-  
-  document.getElementById("show-policy").addEventListener("click", function(event) {
-    event.preventDefault();  // Evitar que el enlace realice la acción por defecto
-    document.getElementById("privacy-modal").style.display = "block";
-  });
-  document.getElementsByClassName("close-privacy")[0].addEventListener("click", function() {
-    document.getElementById("privacy-modal").style.display = "none";
-  });
-  
+
+  document
+    .getElementById("show-policy")
+    .addEventListener("click", function (event) {
+      event.preventDefault(); // Evitar que el enlace realice la acción por defecto
+      document.getElementById("privacy-modal").style.display = "block";
+    });
+  document
+    .getElementsByClassName("close-privacy")[0]
+    .addEventListener("click", function () {
+      document.getElementById("privacy-modal").style.display = "none";
+    });
+
   const searchInput = document.getElementById("search-input");
   searchInput.addEventListener("input", () => {
     mostrarProductos(productosMostrados);
   });
-  
 });
 
 function showModal(nombreProducto, precioProducto) {
