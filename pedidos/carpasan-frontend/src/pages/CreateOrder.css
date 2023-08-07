@@ -56,14 +56,18 @@ label {
     margin-bottom: 0.5rem;
 }
 
-input[type="text"],
-input[type="number"] {
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+input, textarea, select {
     width: 100%;
-    padding: 0.5rem;
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 button {
