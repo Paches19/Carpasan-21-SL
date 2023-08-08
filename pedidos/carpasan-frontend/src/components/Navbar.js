@@ -5,31 +5,42 @@ import AuthContext from "../utils/authContext";
 
 const Navbar = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  // const navigate = useNavigate();
 
-  // const redirectToDashboard = () => {
-  //   navigate("/dashboard");
-  // };
-
+  if (!isAuthenticated) {
+    return null;
+  }
+  
   return (
-    <nav>
-      <div>Estado de autenticación: {String(isAuthenticated)}</div>
-      <ul>
-        {!isAuthenticated && (
-          <li>
-            <Link to="/">Iniciar Sesión</Link>
-          </li>
-        )}
-        {isAuthenticated && (
-          <div className="navbar">
-            <img src="../../images/Carpasan-min.png" alt="" /> {}
-            <h1>Carpasan 21 SL</h1>
+      <header>
+          <div className="top-bar">
+              <div className="container">
+                  {isAuthenticated && (
+                      <>
+                          <div className="logo">
+                              <img src="/images/Carpasan-min.png" alt="Carpasan Logo" />
+                          </div>
+                          <div className="top-bar-right">
+                              <h1>Carpasan 21 SL</h1>
+                          </div>
+                      </>
+                  )}
+              </div>
           </div>
-        )}
-      </ul>
-      {/* <Link to="/">Inicio</Link> */}
-      <Link to="/Dashboard">Dashboard</Link>
-    </nav>
+          <nav>
+              <div className="nav-container">
+                  <ul className="nav-links">
+                      {!isAuthenticated && (
+                          <li>
+                              <Link to="/">Iniciar Sesión</Link>
+                          </li>
+                      )}
+                      <li>
+                          <Link to="/Dashboard">Dashboard</Link>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+      </header>
   );
 };
 

@@ -1,56 +1,160 @@
-.App {
-  text-align: center;
+
+/* Estilos de la barra superior */
+.top-bar {
+	background-color: #F8F8F8;
+	color: #000000;
+}
+  
+.top-bar .container {
+	display: flex;
+  justify-content: center; 
+	/* padding-right: 9.2%; */
+  width: 90%;
+}
+  
+.logo img {
+	width: 200px;
+	margin-right: 20px;
+}
+  
+.top-bar-right {
+	display: flex;
+	align-items: center;
+	margin-left: 100px;
+}
+  
+h1 {
+	font-family: "Candara", cursive;
+	font-size: 54px;
+	text-align: left;
+	color: #800000;
+	margin-top: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Estilos de la barra de navegación */
+nav {
+	display: flex;
+	background-color: #800000;
+	color: #F8F8F8;
+	padding: 10px 0;
+	padding-left: 9.2%;
+}
+  
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+  
+.nav-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+}
+  
+.nav-links li {
+	margin-right: 80px;
+	flex-grow: 1;
+	min-width: 0;
+}
+  
+.nav-links a {
+	color: #ecc43d;
+	text-decoration: none;
+	position: relative;
+	font-family: "candara", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 22px;
+	white-space: nowrap;
+	overflow: hidden; 
+  	text-overflow: ellipsis; 
+}
+  
+.nav-links a:hover {
+	opacity: 0.8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* Login */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background-color: #fde699;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.navbar {
+.branding {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  cursor: pointer; /* Para indicar que el navbar es clickable */
+  justify-content: center;
+  margin-right: 2.5%;
 }
 
-.navbar img {
-  max-height: 50px;
-  margin-right: 20px;
+.brand-logo {
+  max-width:  200px; /* Ajusta según el tamaño que desees */
+  height: auto;
+  margin-bottom: 10px; /* Espaciado entre el logo y el nombre */
+  margin-right: 15px;
 }
+
+.brand-name {
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  color: #800000;  /* Color del nombre de la empresa */
+	font-size: 54px;
+  font-weight: bold;
+	text-align: left;
+}
+
+.login-box {
+  background-color: #800000e5; /* Fondo blanco para el formulario de inicio de sesión */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2); /* Sombra sutil */
+  width: 30%; /* Ajusta según lo desees */
+  height: 30%;
+  text-align: center;
+  color: #ecc43d;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  justify-content: center; /* Centra los elementos vertical y horizontalmente */
+  align-items: center;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #ecc43d;
+  border: none;
+  border-radius: 5px;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #ecc43daf;
+}
+
+/* Dashboard */
 
 .dashboard .panel-seleccion {
   display: flex;
