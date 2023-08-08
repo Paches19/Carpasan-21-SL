@@ -1,20 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import ManageOrders from './pages/ManageOrders';
+import Dashboard from './pages/DashBoard';
+import ManageOrders from './pages/ManageOrder';
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Switch>
-        <Route path="/" exact component={Login} />
-        <Route path="/Dashboard" component={Dashboard} />
-        <Route path="/gestion-pedidos" component={ManageOrders} />
-        {/* Puedes agregar más rutas según sea necesario */}
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Login />} exact />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/gestion-pedidos" element={<ManageOrders />} />
+        {/* Puedes agregar más rutas según sea necesario  */}
+      </Routes>
     </Router>
   );
 }

@@ -6,19 +6,27 @@ const session = require('express-session');
 const { check, validationResult } = require('express-validator');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 require('dotenv').config();
-app.use(helmet());
+console.log(process.env.DB_HOST);
+// app.use(helmet());
+
+
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
+
+app.use(cors());
 
 passport.use(new LocalStrategy(
     (username, password, done) => {
+        console.log(`Intento de inicio de sesión para usuario: ${username}`);
         db.query('SELECT * FROM Usuarios WHERE Usuario = ?', [username], (err, results) => {
             if (err) return done(err);
             
             const user = results[0];
             
             if (!user) {
+                console.log(`Usuario ${username} no encontrado.`);
                 return done(null, false, { message: 'Usuario no encontrado.' });
             }
             
@@ -26,8 +34,10 @@ passport.use(new LocalStrategy(
                 if (err) return done(err);
                 
                 if (isMatch) {
+                    console.log(`inicio exitoso.`);
                     return done(null, user);
                 } else {
+                    console.log(`Contraseña incorrecta`);
                     return done(null, false, { message: 'Contraseña incorrecta.' });
                 }
             });
@@ -215,4 +225,4 @@ app.get("/pedido/:id", asegurarAutenticacion, asegurarAdmin, (req, res) => {
     });
 });
 
-// Similarmente para otras rutas...
+

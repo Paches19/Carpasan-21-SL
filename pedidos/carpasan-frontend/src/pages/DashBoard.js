@@ -2,16 +2,16 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <Navbar />
       <div className="panel-seleccion">
-        <Link to="/historial">Historial de Pedidos</Link>
-        <Link to="/manageorders">Modificar Pedidos</Link>
-        <Link to="/createorder">Añadir Pedido</Link>
+        <Link to="/HistorialPedidos">Historial de Pedidos</Link>
+        <Link to="/ManageOrder">Gestionar Pedidos</Link>
+        <Link to="/EditOrder">Modificar Pedidos</Link>
+        <Link to="/CreateOrder">Añadir Pedido</Link>
         <Link to="/deleteorder">Eliminar un Pedido</Link>
         {/* Aquí puedes agregar más links a otras funcionalidades, por ejemplo: */}
         <Link to="/estadisticas">Estadísticas de Pedidos</Link>

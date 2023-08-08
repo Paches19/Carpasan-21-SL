@@ -36,12 +36,12 @@ function CreateOrder() {
     loadProductos();
   }, []);
 
-  const handleProductChange = (productId, quantity) => {
-    setSelectedProducts((prev) => ({
-      ...prev,
-      [productId]: quantity,
-    }));
-  };
+  // const handleProductChange = (productId, quantity) => {
+  //   setSelectedProducts((prev) => ({
+  //     ...prev,
+  //     [productId]: quantity,
+  //   }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
