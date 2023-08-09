@@ -1,6 +1,6 @@
 
 body{
-  background-color: #d4c6995e;
+  background-color: #ffefba5e;
 }
 
 /* Estilos de la barra superior */
@@ -30,7 +30,7 @@ body{
   
 h1 {
 	font-family: "Candara", cursive;
-	font-size: 54px;
+	font-size: 80px;
 	text-align: left;
 	color: #800000;
 	margin-top: 30px;
@@ -51,7 +51,7 @@ h5{
   color: #ecc43d;
 	font-family: "candara", Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 35px;
 	white-space: nowrap;
   justify-content: center;
   margin: 0.5%;
@@ -120,20 +120,18 @@ input {
 
 button {
   padding: 10px 15px;
-  background-color: #800000;
+  background-color:#ecc43d ;
   border: none;
   border-radius: 8px;
-  color: #ecc43d;
+  color: #800000;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  width: 100%;
-  height: 100%;
   transition: background-color 0.2s;
 }
 
 button:hover {
-  background-color: #520000;
+  background-color: #b89112;
 }
 
 /* Dashboard */
@@ -144,7 +142,6 @@ button:hover {
   align-items: center;
   margin-top: 5%;
   height: 100%;
-
 }
 
 .panel-seleccion {
@@ -173,64 +170,144 @@ button:hover {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+button2 {
+  padding: 10px 15px;
+  background-color:#800000 ;
+  border: none;
+  border-radius: 8px;
+  color: #ecc43d;
+  font-family: "candara", Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
 .panel-seleccion a:hover {
   transform: translateY(-10px);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Historial Pedidos */
-
 .orders-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 30px;
+  background-color: #f4f4f4;
 }
 
 .order-card {
   display: flex;
   flex-direction: column;
-  background-color: #F8F8F8;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .order-card:hover {
-  background-color: #E5E5E5;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
 .order-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.order-header:hover {
+  background-color: #f0f0f0;
+}
+
+.order-header h2 {
+  margin: 0;
+  color: #2C3E50;
+}
+
+.order-client {
   margin-bottom: 10px;
+  color: #7F8C8D;
+  font-weight: bold;
 }
 
 .order-details {
-  display: none; /* inicialmente escondido */
+  display: none; 
 }
 
 .order-card.expanded .order-details {
   display: block;
 }
 
-.product-item {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
 .order-status {
-  color: #800000;
+  color: #27AE60;
   font-weight: bold;
+  border: 1px solid #27AE60;
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
 .product-name {
-  color: #333;
+  color: #34495E;
 }
 
 .product-price {
+  color: #E74C3C;
+}
+
+h6{
   color: #800000;
+	font-family: "candara", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 35px;
+	white-space: nowrap;
+  justify-content: center;
+  margin: 0.5%;
+  text-align: center;
+}
+
+/* Detalles Pedidos */
+
+.pedido-detalle-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.cliente-info {
+  background-color: #F8F8F8;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.cliente-info div {
+  margin-bottom: 8px;
+}
+
+.productos-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.producto-item {
+  padding: 10px;
+  background-color: #E5E5E5;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.producto-item input[type="checkbox"] {
+  cursor: pointer;
 }

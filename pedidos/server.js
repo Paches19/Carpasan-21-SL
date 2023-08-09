@@ -17,6 +17,11 @@ const PORT = 3001;
 
 app.use(cors());
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+  };
+
 passport.use(new LocalStrategy(
     (username, password, done) => {
         console.log(`Intento de inicio de sesión para usuario: ${username}`);
@@ -145,84 +150,76 @@ app.get('/dashboard', asegurarAutenticacion, (req, res) => {
     res.send('Bienvenido al Dashboard');
 });
 
-// Crear nuevo pedido
-app.post('/pedidos', asegurarAutenticacion, asegurarAdmin, [
-    check('Estado').notEmpty().withMessage('El estado es obligatorio')
-    // ... Otras validaciones
-], (req, res) => {
-    const errores = validationResult(req);
-    if (!errores.isEmpty()) {
-        return res.status(400).json({ errores: errores.array() });
-    }
-
-    const nuevoPedido = req.body;
-    db.query('INSERT INTO Pedidos SET ?', nuevoPedido, (err, result) => {
-        if(err) {
-            return res.send(err);
-        }
-        res.send('Pedido creado con éxito.');
-    });
-});
-
-// Modificar estado del pedido
-app.put('/pedido/:id/estado', asegurarAutenticacion, asegurarAdmin, [
-    check('Estado').notEmpty().withMessage('El estado es obligatorio')
-], (req, res) => {
-    const nuevoEstado = req.body.estado;
-    db.query('UPDATE Pedidos SET Estado = ? WHERE ID_Pedido = ?', [nuevoEstado, req.params.id], (err, result) => {
-        if(err) {
-            return res.send(err);
-        }
-        res.send('Estado del pedido actualizado con éxito.');
-    });
-});
-
-// Modificar productos del pedido
-app.put('/pedido/:id/productos', asegurarAutenticacion, asegurarAdmin, (req, res) => {
-    const nuevosProductos = req.body.productos;
-    // Aquí deberías tener un proceso más complejo para actualizar los productos asociados al pedido
-    // ... código de implementación ...
-    res.send('Productos del pedido actualizados con éxito.');
-});
-
-// Ver todos los pedidos
-app.get("/pedidos", asegurarAutenticacion, asegurarAdmin, (req, res) => {
-    db.query("SELECT * FROM Pedidos", (err, results) => {
-        if (err) {
-            return res.send(err);
-        }
-        res.json(results);
-    });
-});
-
 // Ver historial de pedidos ordenados por fecha
-app.get('/historial', asegurarAutenticacion, asegurarAdmin, (req, res) => {
-    db.query('SELECT * FROM Pedidos ORDER BY Fecha DESC', (err, results) => {
+app.get('/HistorialPedidos', (req, res) => {
+    db.query('SELECT * FROM Pedidos ORDER BY FechaPedido DESC;', (err, results) => {
         if(err) {
-            return res.send(err);
+            return res.status(500).send("Error en la base de datos");
         }
         res.json(results);
     });
-});
+  });
 
-// Filtrar historial por cliente
-app.get('/historial/cliente/:clienteId', asegurarAutenticacion, asegurarAdmin, (req, res) => {
-    db.query('SELECT * FROM Pedidos WHERE ID_Cliente = ? ORDER BY Fecha DESC', [req.params.clienteId], (err, results) => {
-        if(err) {
-            return res.send(err);
-        }
-        res.json(results);
+  app.get('/api/pedido/:id', (req, res) => {
+    const pedidoId = req.params.id;
+  
+    // Consulta SQL para obtener detalles del pedido junto con los productos
+    const query = `
+      SELECT 
+        p.ID_Pedido, 
+        p.Nombre,
+        p.Apellido,
+        p.Direccion,
+        p.Email,
+        p.Telefono,
+        p.OpcionEnvio,
+        p.InfoExtra,
+        p.FechaPedido,
+        p.EstadoPedido,
+        dp.ID_Producto,
+        dp.Cantidad,
+        dp.procesado,
+        prod.NombreProducto,
+        prod.Precio
+      FROM Pedidos p
+      JOIN DetallesPedidos dp ON p.ID_Pedido = dp.ID_Pedido
+      JOIN Productos prod ON dp.ID_Producto = prod.ID_Producto
+      WHERE p.ID_Pedido = ?
+    `;
+  
+    db.query(query, [pedidoId], (error, results) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ error });
+      }
+  
+      // Transforma los resultados para que se ajusten al formato deseado
+      if (results.length > 0) {
+        const pedidoData = {
+          ID_Pedido: results[0].ID_Pedido,
+          Nombre: results[0].Nombre,
+          Apellido: results[0].Apellido,
+          Direccion: results[0].Direccion,
+          Email: results[0].Email,
+          Telefono: results[0].Telefono,
+          OpcionEnvio: results[0].OpcionEnvio,
+          InfoExtra: results[0].InfoExtra,
+          FechaPedido: results[0].FechaPedido,
+          EstadoPedido: results[0].EstadoPedido,
+          productos: results.map(row => ({
+            ID_Producto: row.ID_Producto,
+            Cantidad: row.Cantidad,
+            procesado: row.procesado,
+            NombreProducto: row.NombreProducto,
+            Precio: row.Precio
+          }))
+        };
+        
+        res.json(pedidoData);
+      } else {
+        res.status(404).json({ message: 'Pedido no encontrado' });
+      }
     });
-});
-
-// Ver un pedido específico
-app.get("/pedido/:id", asegurarAutenticacion, asegurarAdmin, (req, res) => {
-    db.query("SELECT * FROM Pedidos WHERE ID_Pedido = ?", [req.params.id], (err, results) => {
-        if (err) {
-            return res.send(err);
-        }
-        res.json(results);
-    });
-});
-
+  });
+  
 

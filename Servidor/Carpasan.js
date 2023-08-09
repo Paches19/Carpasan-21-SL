@@ -15,6 +15,8 @@ const connection = mysql.createConnection({
   connectionLimit: 5
 });
 
+const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
 app.post('/submit-order', (req, res) => {
 console.log('Pedido recibido:', req.body);
   const order = req.body;
@@ -28,7 +30,8 @@ console.log('Pedido recibido:', req.body);
     Email: order.email,
     OpcionEnvio: order.deliveryOption,
     InfoExtra: order.extraInfo,
-    EstadoPedido: 'Recibido'
+    EstadoPedido: 'Recibido',
+    FechaPedido: currentDate
   }, (error, results) => {
     if (error) {
 	console.error(error);
@@ -89,4 +92,4 @@ app.use(function(err, req, res, next) {
 	res.status(500).send('¡Algo salió mal!')
   })
   
-app.listen(3000, () => console.log('Servidor ejecutándose en el puerto 3000.'));
+app.listen(3019, () => console.log('Servidor ejecutándose en el puerto 3019.'));

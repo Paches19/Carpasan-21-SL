@@ -12,11 +12,18 @@ const Navbar = () => {
   }
 
   const getPageName = (path) => {
+    if (/^\/pedido\/\d+$/.test(path)) {
+      const id = path.split("/")[2];  // Separar la URL por "/" y obtener el tercer fragmento.
+      return `Detalles Pedido ${id}`;
+    }
+  
     switch (path) {
       case "/":
         return "Inicio de Sesión";
       case "/dashboard":
         return "Dashboard";
+      case "/pedido/" + Number:
+        return "Detalles Pedido";
       case "/HistorialPedidos":
         return "Historial de Pedidos";
       case "/ManageOrder":

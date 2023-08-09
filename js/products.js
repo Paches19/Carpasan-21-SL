@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/02 13:09:34 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:26:24 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -545,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cart: carritoEnd,
     };
 
-    fetch("http://localhost:3000/submit-order", {
+    fetch("http://localhost:3019/submit-order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

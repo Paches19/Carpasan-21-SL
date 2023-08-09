@@ -9,28 +9,28 @@ const Dashboard = () => {
     <div className="dashboard">
   <div className="panel-seleccion">
     <Link to="/HistorialPedidos">
-      <button>Historial de Pedidos</button>
+      <button2>Historial de Pedidos</button2>
     </Link>
     <Link to="/ManageOrder">
-      <button>Gestionar Pedidos</button>
+      <button2>Gestionar Pedidos</button2>
     </Link>
     <Link to="/EditOrder">
-      <button>Modificar Pedidos</button>
+      <button2>Modificar Pedidos</button2>
     </Link>
     <Link to="/CreateOrder">
-      <button>Añadir Pedido</button>
+      <button2>Añadir Pedido</button2>
     </Link>
     <Link to="/deleteorder">
-      <button>Eliminar un Pedido</button>
+      <button2>Eliminar un Pedido</button2>
     </Link>
     <Link to="/estadisticas">
-      <button>Estadísticas de Pedidos</button>
+      <button2>Estadísticas de Pedidos</button2>
     </Link>
     <Link to="/alertas">
-      <button>Alertas y Notificaciones</button>
+      <button2>Alertas y Notificaciones</button2>
     </Link>
     <Link to="/gestion-usuarios">
-      <button>Gestión de Usuarios</button>
+      <button2>Gestión de Usuarios</button2>
     </Link>
   </div>
 </div>

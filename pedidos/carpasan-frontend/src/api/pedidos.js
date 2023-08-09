@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+export const API_URL = 'http://localhost:3001';
 
 export const fetchPedidos = async () => {
   try {
-    const response = await axios.get(`${API_URL}/pedidos`);
+    const response = await axios.get(`${API_URL}/HistorialPedidos`);
     return response.data;
   } catch (error) {
+    console.log("Error fetching orders:", error); // Imprime el error completo
     throw new Error('Error al obtener los pedidos.');
   }
 };
