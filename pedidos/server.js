@@ -16,6 +16,7 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors());
+app.use(express.static('public'));
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -160,9 +161,8 @@ app.get('/HistorialPedidos', (req, res) => {
     });
   });
 
-  app.get('/api/pedido/:id', (req, res) => {
+  app.get('/pedido/:id', (req, res) => {
     const pedidoId = req.params.id;
-  
     // Consulta SQL para obtener detalles del pedido junto con los productos
     const query = `
       SELECT 

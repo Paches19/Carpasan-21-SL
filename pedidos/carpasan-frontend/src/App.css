@@ -274,40 +274,95 @@ h6{
 /* Detalles Pedidos */
 
 .pedido-detalle-container {
+  background-color: #FFFFFF;
   max-width: 800px;
-  margin: 20px auto;
+  margin: 50px auto;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .cliente-info {
-  background-color: #F8F8F8;
+  background-color: #fffef2;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
 }
 
 .cliente-info div {
-  margin-bottom: 8px;
+  margin-bottom: 15px;
+  color: #2C3E50;
 }
 
 .productos-lista {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .producto-item {
-  padding: 10px;
-  background-color: #E5E5E5;
-  margin-bottom: 8px;
-  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #34495E;
+  transition: background 0.3s ease;
+  font-size: 20px;
+  font-family: "candara", sans-serif;
+  color: #800000;
+  font-weight: 600;
 }
 
-.producto-item input[type="checkbox"] {
-  cursor: pointer;
+.producto-item:last-child {
+  border-bottom: none;
+}
+
+.producto-item-name {
+  flex: 3;
+  margin-right: 10px;
+}
+
+.producto-item-quantity {
+  flex: 1;
+  text-align: center;
+}
+
+.producto-item-check {
+  flex: 0.5;
+  text-align: right;
+}
+
+.producto-item:hover {
+  background-color: #f9f9f9;
+}
+
+h4, h3 {
+  color: #800000;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-top: 0;
+  font-family: "candara", sans-serif, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+h7 {
+  color: black;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5px 0;
+  display: inline-block; 
+}
+
+h8 {
+  color: #800000; 
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: regular;
+  font-size: 20px;
+  margin: 5px 10px;
+  display: inline-block;
+  font-weight: 600;
 }
