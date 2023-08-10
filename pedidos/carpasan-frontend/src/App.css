@@ -61,7 +61,7 @@ h5{
 
 .login-container {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   flex-direction: column;
   align-items: center;
   height: 100vh;
@@ -69,16 +69,16 @@ h5{
 }
 
 .branding {
+  padding: 5%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   margin-right: 2.5%;
 }
 
 .brand-logo {
   max-width:  200px; /* Ajusta según el tamaño que desees */
   height: auto;
-  margin-bottom: 10px; /* Espaciado entre el logo y el nombre */
   margin-right: 15px;
 }
 
@@ -91,6 +91,7 @@ h5{
 }
 
 .login-box {
+  margin-top: -2%;
   background-color: #800000e5; /* Fondo blanco para el formulario de inicio de sesión */
   padding: 30px;
   border-radius: 10px;
@@ -107,18 +108,18 @@ h5{
   align-items: center;
 }
 
-input {
+.login-box input {
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-  font-size: 15px;
-
+  font-size: 20px;
+  font-family: "candara", Arial, Helvetica, sans-serif;
 }
 
-button {
+.login-box button {
   padding: 10px 15px;
   background-color:#ecc43d ;
   border: none;
@@ -130,7 +131,7 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover {
+.login-box button:hover {
   background-color: #b89112;
 }
 
@@ -194,13 +195,58 @@ button2 {
   flex-direction: column;
   gap: 30px;
   padding: 30px;
-  background-color: #f4f4f4;
+}
+
+.filter-section {
+  display: flex;
+  gap: 10px; /* Espacio entre elementos */
+  margin-bottom: 20px; /* Espacio debajo de la sección de filtros */
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-section input[type="text"],
+.filter-section input[type="month"],
+.filter-section input[type="date"] {
+  padding: 10px 15px;
+  color: #5c0000;
+  border: 1px solid #800000;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 550;
+  width: 15%; /* Puedes ajustar según tus necesidades */
+  transition: border-color 0.3s;
+  font-family: "candara", Helvetica, sans-serif;
+}
+
+.filter-section input[type="text"]:focus,
+.filter-section input[type="month"]:focus,
+.filter-section input[type="date"]:focus {
+  border-color: #e0b700; /* Cambia el color cuando el input tiene focus */
+  outline: none;
+}
+
+.filter-section button {
+  padding: 10px 15px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #800000;
+  color: #ecc43d;
+  font-family: "candara", Helvetica, sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-section button:hover {
+  background-color: #800000b6; /* Un tono más oscuro cuando se pasa el mouse */
 }
 
 .order-card {
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;
+  background-color: #f8f8f8;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -221,23 +267,55 @@ button2 {
   transition: background-color 0.3s;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre el estado y el enlace */
+}
+
+Link {
+  text-decoration: none;
+  color: #800000; /* Color para el enlace */
+  font-weight: bold;
+  font-size: 18px;
+  font-family: "candara", Helvetica, sans-serif;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #380f0f; /* Cambia el color al pasar el cursor */
+  }
+}
+
 .order-header:hover {
   background-color: #f0f0f0;
 }
 
 .order-header h2 {
   margin: 0;
-  color: #2C3E50;
+  color: #800000;
+  font-family:  "candara", Helvetica, sans-serif;
 }
 
 .order-client {
   margin-bottom: 10px;
-  color: #7F8C8D;
+  color: rgba(0, 0, 0, 0.801);
   font-weight: bold;
+  font-size: 18px;
 }
 
 .order-details {
-  display: none; 
+  display: none;
+  color: #800000;
+  font-size: 18px;
+  font-weight: 600;
+  font-family:  "candara", Helvetica, sans-serif;
+}
+
+det{
+  font-size: 18px;
+  color: black;
+  font-family:  "candara", Helvetica, sans-serif;
+  font-weight: 500;
 }
 
 .order-card.expanded .order-details {
@@ -247,9 +325,12 @@ button2 {
 .order-status {
   color: #27AE60;
   font-weight: bold;
-  border: 1px solid #27AE60;
+  border: 2px solid #27AE60;
   padding: 5px 10px;
   border-radius: 20px;
+  font-family: "candara", Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .product-name {
@@ -271,9 +352,61 @@ h6{
   text-align: center;
 }
 
+.button3 {
+    color: #800000; 
+    background-color: #f8f8f8; 
+    padding: 5px 10px;
+    border: 2px solid #800000;
+    border-radius: 20px; 
+    font-family: "candara", Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Para remover el subrayado si lo usas como un Link */
+    display: inline-block;
+}
+
+.button3:hover{
+  background-color: #6a000010;
+  transform: translateY(-2px);
+}
+
+.button3:active{
+  transform: translateY(0);
+}
+
 /* Detalles Pedidos */
 
+.detalles-wrapper {
+  position: relative;
+  width: 100%;
+  /* display: inline-block;  */
+}
+
+.back-button {
+  position: fixed;
+  top: 301px;
+  left: 20vw;
+  background-color: #f8f8f8;
+  border: 2px solid #800000;
+  border-radius: 8px;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-family: "candara", Helvetica, sans-serif;
+  z-index: 10; 
+}
+
+.back-button:hover {
+  background-color: #a0555541;
+  color: red;
+}
 .pedido-detalle-container {
+  border: 2px solid #800000; 
   background-color: #FFFFFF;
   max-width: 800px;
   margin: 50px auto;

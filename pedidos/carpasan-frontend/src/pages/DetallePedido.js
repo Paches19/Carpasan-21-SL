@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function toggleProcesado(pedidoId, productId, producto, setPedido) {
   fetch(`/api/pedido/${pedidoId}/producto/${productId}`, {
@@ -27,6 +28,7 @@ function PedidoDetalle() {
   const { id: pedidoId } = useParams();
   const [pedido, setPedido] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(`Fetching pedido with ID: ${pedidoId}`);
@@ -51,6 +53,10 @@ function PedidoDetalle() {
   if (!pedido) return <div>Cargando...</div>;
 
   return (
+    <div className="detalles-wrapper">
+      <button className="back-button" onClick={() => navigate("/HistorialPedidos")}>
+      ← Volver
+    </button>
     <div className="pedido-detalle-container">
       <h4>Detalles del Pedido #{pedido.ID_Pedido}</h4>
       <div className="cliente-info">
@@ -100,6 +106,7 @@ function PedidoDetalle() {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

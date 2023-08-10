@@ -153,7 +153,7 @@ app.get('/dashboard', asegurarAutenticacion, (req, res) => {
 
 // Ver historial de pedidos ordenados por fecha
 app.get('/HistorialPedidos', (req, res) => {
-    db.query('SELECT * FROM Pedidos ORDER BY FechaPedido DESC;', (err, results) => {
+    db.query('SELECT * FROM Pedidos ORDER BY FechaPedido DESC, ID_Pedido DESC;', (err, results) => {
         if(err) {
             return res.status(500).send("Error en la base de datos");
         }
