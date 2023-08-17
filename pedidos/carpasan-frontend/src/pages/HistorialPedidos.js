@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-function applyFilters(orders, searchTerm, startMonth, endMonth, specificDate) {
+function applyFilters(
+  orders,
+  searchTerm,
+  startMonth,
+  endMonth,
+  specificDate,
+  selectedStates
+) {
   return orders
     .filter((order) => {
       if (searchTerm) {
@@ -28,15 +35,20 @@ function applyFilters(orders, searchTerm, startMonth, endMonth, specificDate) {
       return true;
     })
     .filter((order) => {
-    if (specificDate) {
-      const orderDate = new Date(order.FechaPedido);
-      const filterDate = new Date(specificDate);
-      return orderDate >= filterDate;
-       
-    }
-    return true;
+      if (specificDate) {
+        const orderDate = new Date(order.FechaPedido);
+        const filterDate = new Date(specificDate);
+        return orderDate >= filterDate;
+      }
+      return true;
+    })
+    .filter((order) => {
+      if (selectedStates.length > 0) {
+        return selectedStates.includes(order.EstadoPedido);
+      }
+      return true;
     });
-  }
+}
 
 function OrderHistory() {
   const [orders, setOrders] = useState([]);
@@ -46,11 +58,29 @@ function OrderHistory() {
   const [startMonth, setStartMonth] = useState(null);
   const [endMonth, setEndMonth] = useState(null);
   const [specificDate, setSpecificDate] = useState(null);
+  const [selectedStates, setSelectedStates] = useState([]);
 
   const filteredOrders = useMemo(
-    () => applyFilters(orders, searchTerm, startMonth, endMonth, specificDate),
-    [orders, searchTerm, startMonth, endMonth, specificDate]
+    () =>
+      applyFilters(
+        orders,
+        searchTerm,
+        startMonth,
+        endMonth,
+        specificDate,
+        selectedStates
+      ),
+    [orders, searchTerm, startMonth, endMonth, specificDate, selectedStates]
   );
+
+  const handleStateSelection = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedStates((prev) => [...prev, value]);
+    } else {
+      setSelectedStates((prev) => prev.filter((state) => state !== value));
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:3001/HistorialPedidos")
@@ -117,13 +147,52 @@ function OrderHistory() {
           value={specificDate || ""}
           onChange={(e) => setSpecificDate(e.target.value)}
         />
-
+        <div className="state-filter-section">
+          <h5>Filtrar por estado</h5>
+          <label className="state-checkbox">
+            <input
+              type="checkbox"
+              value="Recibido"
+              checked={selectedStates.includes("Recibido")}
+              onChange={(e) => handleStateSelection(e)}
+            />{" "}
+            Recibido
+          </label>
+          <label className="state-checkbox">
+            <input
+              type="checkbox"
+              value="Procesado"
+              checked={selectedStates.includes("Procesado")}
+              onChange={(e) => handleStateSelection(e)}
+            />{" "}
+            Procesado
+          </label>
+          <label className="state-checkbox">
+            <input
+              type="checkbox"
+              value="Enviado"
+              checked={selectedStates.includes("Enviado")}
+              onChange={(e) => handleStateSelection(e)}
+            />{" "}
+            Enviado
+          </label>
+          <label className="state-checkbox">
+            <input
+              type="checkbox"
+              value="Entregado"
+              checked={selectedStates.includes("Entregado")}
+              onChange={(e) => handleStateSelection(e)}
+            />{" "}
+            Entregado
+          </label>
+        </div>
         <button
           onClick={() => {
             setSearchTerm("");
             setStartMonth("");
             setEndMonth("");
-            setSpecificDate(""); // Añade esto para restablecer el filtro de fecha concreta
+            setSpecificDate("");
+            setSelectedStates([]);
           }}
         >
           Limpiar Filtros
@@ -141,6 +210,19 @@ function OrderCard({ order }) {
   const formattedDate = new Date(order.FechaPedido).toLocaleString();
   const navigate = useNavigate();
 
+  const getOrderStatusClass = (estado) => {
+    switch (estado) {
+      case "Procesado":
+        return "order-status-procesado";
+      case "Enviado":
+        return "order-status-enviado";
+      case "Entregado":
+        return "order-status-entregado";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className={`order-card ${expanded ? "expanded" : ""}`}>
       <div className="order-header" onClick={() => setExpanded(!expanded)}>
@@ -152,7 +234,13 @@ function OrderCard({ order }) {
           >
             Abrir Pedido
           </button>
-          <span className="order-status">{order.EstadoPedido}</span>
+          <span
+            className={`order-status ${getOrderStatusClass(
+              order.EstadoPedido
+            )}`}
+          >
+            {order.EstadoPedido}
+          </span>
         </div>
       </div>
       <div className="order-client">

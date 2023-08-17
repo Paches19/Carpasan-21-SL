@@ -199,7 +199,7 @@ button2 {
 
 .filter-section {
   display: flex;
-  gap: 10px; /* Espacio entre elementos */
+  gap: 30px; /* Espacio entre elementos */
   margin-bottom: 20px; /* Espacio debajo de la sección de filtros */
   align-items: center;
   justify-content: center;
@@ -241,6 +241,44 @@ button2 {
 
 .filter-section button:hover {
   background-color: #800000b6; /* Un tono más oscuro cuando se pasa el mouse */
+}
+
+.state-filter-section {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;     
+  width: 14%;
+  justify-content: space-between;
+}
+
+.state-filter-section h5 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "candara", Helvetica, sans-serif;
+  color: #800000;
+  width: 100%;
+  text-align: center;
+}
+
+.state-checkbox {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-family: "candara", Helvetica, sans-serif;
+  color: #800000;
+  width: 40%;
+  box-sizing: border-box;
+}
+
+.state-checkbox input[type="checkbox"] {
+  margin-right: 8px;
 }
 
 .order-card {
@@ -331,6 +369,23 @@ det{
   font-family: "candara", Helvetica, sans-serif;
   font-weight: bold;
   font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.order-status-procesado {
+  color: #17A2B8; 
+  border: 2px solid #17A2B8;
+}
+
+.order-status-enviado {
+  color: #FFC107; 
+  border: 2px solid #FFC107;
+}
+
+.order-status-entregado {
+  color: #800000; 
+  border: 2px solid #800000;
 }
 
 .product-name {
@@ -365,6 +420,7 @@ h6{
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-decoration: none; /* Para remover el subrayado si lo usas como un Link */
     display: inline-block;
+    flex-wrap: nowrap;
 }
 
 .button3:hover{
@@ -470,15 +526,33 @@ h6{
   background-color: #f9f9f9;
 }
 
-h4, h3 {
+h3 {
   color: #800000;
-  border-bottom: 2px solid #e0e0e0;
+  /* border-bottom: 2px solid #e0e0e0; */
   padding-bottom: 10px;
   margin-top: 0;
   font-family: "candara", sans-serif, Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 28px;
   margin-bottom: 15px;
+  border-bottom: 2px solid #e0e0e0; /* Añade una línea debajo del header */
+  padding-bottom: 10px; /* Espacio debajo del texto */
+  width: 95%; /* Asegura que la línea ocupe casi todo el ancho del container */
+}
+
+
+h4{
+  color: #800000;
+  /* border-bottom: 2px solid #e0e0e0; */
+  padding-bottom: 10px;
+  /* margin-top: 0; */
+  font-family: "candara", sans-serif, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 15px;
+  justify-content: center;
+  margin: 0;  /* Ajustar los márgenes para que no haya un espacio extra */
+  padding: 0;
 }
 
 h7 {
@@ -498,4 +572,89 @@ h8 {
   margin: 5px 10px;
   display: inline-block;
   font-weight: 600;
+}
+
+.estado-pedido-container {
+  display: flex;
+  align-items: center;  /* Centra los elementos verticalmente */
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0; 
+  padding-bottom: 18px;
+  width: 95%;
+}
+
+.estado-pedido {
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.estado-pedido.Recibido {
+    background-color: #27AE60; /* Amarillo para indicar que está en espera */
+    color: #272727;
+}
+
+.estado-pedido.Procesado {
+    background-color: #17A2B8; /* Azul para indicar que está siendo procesado */
+    color: #333;
+}
+
+.estado-pedido.Enviado {
+    background-color: #FFC107; /* Verde para indicar que está en camino */
+    color: #333;
+}
+
+.estado-pedido.Entregado {
+    background-color: #800000 ; /* Rojo para indicar que ha sido entregado */
+    color: #ecc43d;
+}
+
+.estado-pedido h2 {
+  color: #333;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 5px 0;
+  display: inline-block;
+  /* text-align: left; */
+  margin-right: 5%;
+}
+
+.estado-pedido.Recibido h2 {
+  color: #272727;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 5px 0;
+  display: inline-block;
+  /* text-align: left; */
+  margin-right: 5%;
+}
+
+.estado-pedido.Entregado h2 {
+  color: #ecc43d;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 5px 0;
+  display: inline-block; 
+  /* text-align: left; */
+  margin-right: 5%;
+}
+
+.hiddenSelect {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  /* margin-left: 5%; */
 }
