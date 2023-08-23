@@ -26,8 +26,8 @@ const Navbar = () => {
         return "Detalles Pedido";
       case "/HistorialPedidos":
         return "Historial de Pedidos";
-      case "/ManageOrder":
-        return "Gestionar Pedidos";
+      case "/ManageProducts":
+        return "Gestionar Productos";
       case "/EditOrder":
         return "Modificar Pedidos";
       case "/CreateOrder":
@@ -40,8 +40,10 @@ const Navbar = () => {
         return "Alertas y Notificaciones";
       case "/gestion-usuarios":
         return "Gestión de Usuarios";
+      case "/edit-product":
+        return "Editar Producto";
       default:
-        return "Página desconocida";
+        return "Pagina desconocida";
     }
   };
 

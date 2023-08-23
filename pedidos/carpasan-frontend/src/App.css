@@ -246,7 +246,7 @@ button2 {
 .state-filter-section {
   margin-top: 15px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #800000;
   border-radius: 16px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   background-color: #ffffff;
@@ -657,4 +657,168 @@ h8 {
   font-size: 22px;
   text-align: center;
   /* margin-left: 5%; */
+}
+
+/* Pagina productos */
+
+.filter-section {
+  margin-top: 20px; /* Ajusta según tus necesidades */
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  height: 30px; /* Altura cuando no está expandida */
+  overflow: hidden;
+}
+
+.product-card.expanded {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  height: auto;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.product-header:hover {
+  background-color: #f0f0f0;
+}
+
+.product-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #800000;
+  font-family: "candara", Helvetica, sans-serif;
+}
+
+.product-details {
+  display: none;
+  color: #800000;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "candara", Helvetica, sans-serif;
+  margin-top: 10px;
+}
+
+.product-card.expanded .product-details {
+  display: block;
+}
+
+.product-price,
+.product-description,
+.product-tags {
+  color: black;
+  font-size: 20px; /* Tamaño más pequeño cuando no está expandido */
+  margin-top: 5px;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-mod {
+  color: #27AE60;
+  font-weight: bold;
+  border: 2px solid #27AE60;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-family: "candara", Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.product-mod:hover{
+  background-color: #6a000010;
+  transform: translateY(-2px);
+}
+
+.product-mod:active{
+  transform: translateY(0);
+}
+
+/* Modificar Pedido */
+
+.edit-product-page {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #800000;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-product-page h2 {
+  color: #800000;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.edit-product-page label {
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-product-page input[type="text"],
+.edit-product-page textarea,
+.edit-product-page input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.edit-product-page button {
+  background-color: #800000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.edit-product-page button:hover {
+  background-color: #a05555;
+}
+
+.edit-product-page button:focus {
+  outline: none;
 }

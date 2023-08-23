@@ -249,3 +249,42 @@ app.get("/pedido/:id", (req, res) => {
   });
 });
 
+//Listado productos
+app.get('/Productos', (req, res) => {
+  const query = 'SELECT ID_Producto, NombreProducto, Precio, Descripcion, Tags, Imagen FROM Productos ORDER BY NombreProducto'
+  
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error al obtener los productos');
+      return;
+    }
+    res.json(results);
+  });
+});
+
+//Modificar productos
+app.put("/Productos/:id", (req, res) => {
+  const productId = req.params.id;
+  const { nombre, precio, descripcion, tags } = req.body;
+
+  const updateQuery = `
+    UPDATE Productos
+    SET NombreProducto = ?, Precio = ?, Descripcion = ?, Tags = ?
+    WHERE ID_Producto = ?
+  `;
+
+  db.query(
+    updateQuery,
+    [nombre, precio, descripcion, tags, productId],
+    (err, result) => {
+      if (err) {
+        console.error("Error al actualizar el producto:", err);
+        res.status(500).send("Error al actualizar el producto");
+      } else {
+        console.log("Producto actualizado exitosamente");
+        res.status(200).send("Producto actualizado exitosamente");
+      }
+    }
+  );
+});

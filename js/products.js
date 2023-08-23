@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/09 11:26:24 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:36:48 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,40 @@ let filtros = [
   "Especiales",
   "Packs",
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let productosMostrados = [...productos]; // Array para almacenar los productos mostrados
 let columnasSeleccionadas = 3; // Columnas seleccionadas por defecto

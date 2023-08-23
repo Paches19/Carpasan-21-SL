@@ -11,8 +11,8 @@ const Dashboard = () => {
     <Link to="/HistorialPedidos">
       <button2>Historial de Pedidos</button2>
     </Link>
-    <Link to="/ManageOrder">
-      <button2>Gestionar Pedidos</button2>
+    <Link to="/ManageProducts">
+      <button2>Gestionar Productos</button2>
     </Link>
     <Link to="/EditOrder">
       <button2>Modificar Pedidos</button2>

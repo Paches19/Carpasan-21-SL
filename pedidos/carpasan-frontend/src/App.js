@@ -5,7 +5,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/DashBoard";
 import HistorialPedidos from "./pages/HistorialPedidos";
 import DetallePedido from "./pages/DetallePedido";
-import ManageOrders from "./pages/ManageOrder";
+import ManageProducts from "./pages/ManageProducts";
+import EditProductPage from "./pages/EditProductPage";
 import { AuthProvider } from "./utils/authContext";
 import './App.css';
 
@@ -19,7 +20,8 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/HistorialPedidos" element={<HistorialPedidos />} />
           <Route path="/pedido/:id" element={<DetallePedido />} />
-          <Route path="/gestion-pedidos" element={<ManageOrders />} />
+          <Route path="/ManageProducts" element={<ManageProducts />} />
+          <Route path="/edit-product/:id" element={<EditProductPage />} />
           {/* Puedes agregar más rutas según sea necesario  */}
         </Routes>
       </Router>
