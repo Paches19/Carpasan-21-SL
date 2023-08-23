@@ -461,6 +461,7 @@ h6{
   background-color: #a0555541;
   color: red;
 }
+
 .pedido-detalle-container {
   border: 2px solid #800000; 
   background-color: #FFFFFF;
@@ -771,6 +772,7 @@ h8 {
   border-radius: 10px;
   background-color: #FFFFFF;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; 
 }
 
 .edit-product-page h2 {
@@ -800,6 +802,7 @@ h8 {
   border: 2px solid #ccc;
   border-radius: 5px;
   margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
 .edit-product-page button {
@@ -813,12 +816,68 @@ h8 {
   transition: background-color 0.3s;
   font-family: "candara", Arial, Helvetica, sans-serif;
   font-weight: bold;
+  transform: scale(1);
+  transition: transform 0.3s, background-color 0.3s;
 }
 
 .edit-product-page button:hover {
   background-color: #a05555;
+  transform: scale(1.05);
+}
+
+.edit-product-page button:active {
+  background-color: #6a4a4a;  /* color más oscuro al hacer click */
+  transform: scale(0.95); /* animación de reducción al hacer click */
 }
 
 .edit-product-page button:focus {
   outline: none;
+}
+
+.edit-product-page .back-button {
+  position: fixed;
+  top: 301px;
+  left: 20vw;
+  background-color: #f8f8f8;
+  border: 2px solid #800000;
+  border-radius: 8px;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-family: "candara", Helvetica, sans-serif;
+  z-index: 10; 
+}
+
+.edit-product-page .back-button:hover {
+  background-color: #a0555541;
+  color: red;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50; /* verde para indicar éxito */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 11; /* para asegurarse de que esté por encima de otros elementos */
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }

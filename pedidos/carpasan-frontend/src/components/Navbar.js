@@ -16,6 +16,10 @@ const Navbar = () => {
       const id = path.split("/")[2];  // Separar la URL por "/" y obtener el tercer fragmento.
       return `Detalles Pedido ${id}`;
     }
+
+    if (/^\/edit-product\/\d+$/.test(path)) {
+      return "Modificar Producto";
+    }
   
     switch (path) {
       case "/":

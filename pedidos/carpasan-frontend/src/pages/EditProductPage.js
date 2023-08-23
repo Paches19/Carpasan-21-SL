@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function EditProductPage() {
   const location = useLocation();
@@ -8,14 +8,16 @@ function EditProductPage() {
   const [productDescription, setProductDescription] = useState(product.Descripcion);
   const [productPrice, setProductPrice] = useState(product.Precio);
   const [productTags, setProductTags] = useState(product.Tags);
+  const navigate = useNavigate();
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const handleUpdateProduct = () => {
     const updatedProduct = {
       ...product,
-      NombreProducto: productName,
-      Descripcion: productDescription,
-      Precio: productPrice,
-      Tags: productTags,
+      nombre: productName,
+      descripcion: productDescription,
+      precio: productPrice,
+      tags: productTags,
     };
     fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
       method: "PUT",
@@ -32,10 +34,19 @@ function EditProductPage() {
       .catch((error) => {
         console.error("Error al actualizar el producto:", error);
       });
+	  setShowSnackbar(true); // mostrar el snackbar
+	  setTimeout(() => setShowSnackbar(false), 3000);
   };
 
   return (
     <div className="edit-product-page">
+      <button
+        className="back-button"
+        onClick={() => navigate("/ManageProducts")}  // navegación a ManageProducts
+      >
+        ← Volver
+      </button>
+      
       <h2>Editar Producto</h2>
       <div>
         <label>Nombre:</label>
@@ -70,6 +81,11 @@ function EditProductPage() {
         />
       </div>
       <button onClick={handleUpdateProduct}>Guardar Cambios</button>
+	  {showSnackbar && (
+        <div className="snackbar">
+          Producto actualizado con éxito.
+        </div>
+      )}
     </div>
   );
 }
