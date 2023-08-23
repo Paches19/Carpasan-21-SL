@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-function EditProductPage({ product }) {
+function EditProductPage() {
+  const location = useLocation();
+  const product = location.state;
   const [productName, setProductName] = useState(product.NombreProducto);
-  const [productDescription, setProductDescription] = useState(
-    product.Descripcion
-  );
+  const [productDescription, setProductDescription] = useState(product.Descripcion);
   const [productPrice, setProductPrice] = useState(product.Precio);
   const [productTags, setProductTags] = useState(product.Tags);
 
