@@ -7,21 +7,30 @@ const { check, validationResult } = require("express-validator");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 require("dotenv").config();
-console.log(process.env.DB_HOST);
-// app.use(helmet());
 
 const app = express();
 const PORT = 3001;
 
+// Primero importa las dependencias de seguridad
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+
+// Luego configura los middlewares de seguridad
+app.use(helmet());
+app.use(cookieParser());
 app.use(cors());
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const corsOptions = {
   origin: "http://localhost:3000",
+  credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
 };
+
+app.use(cors(corsOptions));
 
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -72,6 +81,10 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      secure: false, // Cambia a true si estás utilizando HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // Tiempo de vida de la cookie en milisegundos (aquí, 1 día)
+    },
   })
 );
 
@@ -142,7 +155,14 @@ app.post("/iniciar-sesion", (req, res, next) => {
       if (err) {
         return res.status(500).json({ error: err });
       }
-      return res.json({ message: "Inicio de sesión exitoso.", user });
+
+      // Genera el token aquí después de que el usuario se haya autenticado
+      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+        expiresIn: '1d', // Duración del token (1 día en este caso)
+      });
+
+      res.cookie("user_id", user.id); // Establece una cookie con el ID de usuario
+      return res.json({ message: "Inicio de sesión exitoso.", token });
     });
   })(req, res, next);
 });
@@ -150,6 +170,7 @@ app.post("/iniciar-sesion", (req, res, next) => {
 // Ruta de cierre de sesión
 app.get("/cerrar-sesion", (req, res) => {
   req.logout();
+  res.clearCookie("user_id");  // Borra la cookie al cerrar sesión
   res.redirect("/");
 });
 
@@ -266,17 +287,17 @@ app.get('/Productos', (req, res) => {
 //Modificar productos
 app.put("/Productos/:id", (req, res) => {
   const productId = req.params.id;
-  const { nombre, precio, descripcion, tags } = req.body;
+  const { nombre, precio, descripcion, tags, imagen } = req.body;
 
   const updateQuery = `
     UPDATE Productos
-    SET NombreProducto = ?, Precio = ?, Descripcion = ?, Tags = ?
+    SET NombreProducto = ?, Precio = ?, Descripcion = ?, Tags = ?, Imagen = ?
     WHERE ID_Producto = ?
   `;
 
   db.query(
     updateQuery,
-    [nombre, precio, descripcion, tags, productId],
+    [nombre, precio, descripcion, tags, imagen, productId],
     (err, result) => {
       if (err) {
         console.error("Error al actualizar el producto:", err);
@@ -287,4 +308,44 @@ app.put("/Productos/:id", (req, res) => {
       }
     }
   );
+});
+
+// Añadir un nuevo producto
+app.post("/add-product", (req, res) => {
+  const { nombre, precio, descripcion, tags, imagen } = req.body;
+  const insertQuery = `
+    INSERT INTO Productos (NombreProducto, Precio, Descripcion, Tags, Imagen)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    insertQuery,
+    [nombre, precio, descripcion, tags, imagen],
+    (err, result) => {
+      if (err) {
+        console.error("Error al añadir el producto:", err);
+        res.status(500).send("Error al añadir el producto");
+      } else {
+        console.log("Producto añadido exitosamente");
+        res.status(200).send("Producto añadido exitosamente");
+      }
+    }
+  );
+});
+
+// Eliminar un producto
+app.delete("/Productos/:id", (req, res) => {
+  const productId = req.params.id;
+  console.log("Producto a eliminar: ", productId);
+  const deleteQuery = "DELETE FROM Productos WHERE ID_Producto = ?";
+
+  db.query(deleteQuery, [productId], (err, result) => {
+    if (err) {
+      console.error("Error al eliminar el producto:", err);
+      res.status(500).send("Error al eliminar el producto");
+    } else {
+      console.log("Producto eliminado exitosamente");
+      res.status(200).send("Producto eliminado exitosamente");
+    }
+  });
 });

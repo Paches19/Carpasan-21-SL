@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import AuthContext from "../utils/authContext";
+import React from "react";
+import { useAuth } from "../utils/authContext";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { authToken, logoutUser } = useAuth();
   const location = useLocation();
 
-  if (!isAuthenticated) {
+  if (!authToken) {
     return null;
   }
 
@@ -46,6 +46,8 @@ const Navbar = () => {
         return "Gestión de Usuarios";
       case "/edit-product":
         return "Editar Producto";
+        case "/add-product":
+          return "Añadir Producto";
       default:
         return "Pagina desconocida";
     }
@@ -55,7 +57,7 @@ const Navbar = () => {
     <header>
       <div className="top-bar">
         <div className="container">
-          {isAuthenticated && (
+          {authToken && (
             <>
               <div className="logo">
                 <Link to="/dashboard">
@@ -64,6 +66,11 @@ const Navbar = () => {
               </div>
               <div className="top-bar-right">
                 <h1>Carpasan 21 SL</h1>
+              </div>
+              <div className="logout-wrapper">
+                <div className="logout-container">
+                  <button onClick={logoutUser}>Cerrar sesión</button>
+                </div>
               </div>
             </>
           )}

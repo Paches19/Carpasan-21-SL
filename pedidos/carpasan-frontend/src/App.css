@@ -4,17 +4,18 @@ body{
 }
 
 /* Estilos de la barra superior */
-
+/* Estilos de la barra superior */
   
 .top-bar .container {
-	display: flex;
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   width: 90%;
+  position: relative; /* Para posicionar absolutamente el logout-container */
 }
   
 .logo img {
-	width: 200px;
-	margin-right: 20px;
+  width: 200px;
+  margin-right: 20px;
   transition: transform 0.3s;
 }
 
@@ -23,18 +24,68 @@ body{
 }
 
 .top-bar-right {
-	display: flex;
-	align-items: center;
-	margin-left: 100px;
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
 }
   
 h1 {
-	font-family: "Candara", cursive;
-	font-size: 80px;
-	text-align: left;
-	color: #800000;
-	margin-top: 30px;
+  font-family: "Candara", cursive;
+  font-size: 80px;
+  text-align: left;
+  color: #800000;
+  margin-top: 30px;
 }
+
+.logout-wrapper {
+  position: absolute;
+  right: 0; /* Alineado completamente a la derecha */
+  top: 50%;
+  transform: translateY(-50%); /* Centrado verticalmente */
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+}
+
+.logout-container span {
+  margin-right: 15px;
+  font-weight: bold;
+  color: #ecc43d;
+}
+
+.logout-container button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #800000;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  flex-wrap: nowrap;
+  margin-left: 5%;
+  font-size: 15px;
+  transition: all 0.3s ease; /* Transición para todos los cambios de estilo */
+}
+
+.logout-container button:hover {
+  background-color: #ecc43d;
+  color: #800000;
+  transform: translateY(-2px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logout-container h1{
+  color: #800000;
+	font-family: "candara", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	white-space: nowrap;
+  justify-content: center;
+  margin: 0.5%;
+}
+
 
 /* Estilos de la barra de navegación */
 nav {
@@ -798,11 +849,14 @@ h8 {
 .edit-product-page input[type="number"] {
   width: 100%;
   padding: 10px;
-  font-size: 18px;
+  font-size: 22px;
   border: 2px solid #ccc;
   border-radius: 5px;
   margin-bottom: 15px;
   box-sizing: border-box;
+  font-family: "candara", Arial, Helvetica, sans-serif;
+  color: #800000;
+  font-weight: 600;
 }
 
 .edit-product-page button {

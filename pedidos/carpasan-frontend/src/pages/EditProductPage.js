@@ -8,6 +8,7 @@ function EditProductPage() {
   const [productDescription, setProductDescription] = useState(product.Descripcion);
   const [productPrice, setProductPrice] = useState(product.Precio);
   const [productTags, setProductTags] = useState(product.Tags);
+  const [productImage, setProductImage] = useState(product.Imagen);
   const navigate = useNavigate();
   const [showSnackbar, setShowSnackbar] = useState(false);
 
@@ -18,6 +19,7 @@ function EditProductPage() {
       descripcion: productDescription,
       precio: productPrice,
       tags: productTags,
+      imagen: productImage,
     };
     fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
       method: "PUT",
@@ -78,6 +80,14 @@ function EditProductPage() {
           type="text"
           value={productTags}
           onChange={(e) => setProductTags(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Imagen:</label>
+        <input
+          type="text"
+          value={productImage}
+          onChange={(e) => setProductImage(e.target.value)}
         />
       </div>
       <button onClick={handleUpdateProduct}>Guardar Cambios</button>

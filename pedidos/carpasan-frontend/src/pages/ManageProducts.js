@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+const fetchProducts = async (setProducts, setLoading, setError) => {
+  setLoading(true);
+  try {
+    const response = await fetch("http://localhost:3001/Productos");
+    if (!response.ok) {
+      throw new Error("Error al obtener los productos");
+    }
+    const data = await response.json();
+    setProducts(data);
+    setLoading(false);
+  } catch (err) {
+    setError(err.message);
+    setLoading(false);
+  }
+};
+
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    fetch("http://localhost:3001/Productos")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error al obtener los productos");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    fetchProducts(setProducts, setLoading, setError);
   }, []);
 
   const filteredProducts = products
@@ -56,6 +59,9 @@ function ProductList() {
       <div className="products-container">No hay productos disponibles</div>
     );
   }
+  function removeProduct(id) {
+    setProducts(prevProducts => prevProducts.filter(product => product.ID_Producto !== id));
+  }
 
   return (
     <div className="products-container">
@@ -77,19 +83,49 @@ function ProductList() {
         >
           Limpiar Filtros
         </button>
+        <button
+          onClick={() => {
+            navigate("/add-product");  // navegar a la página de añadir producto
+          }}
+        >
+          Añadir Producto
+        </button>
       </div>
       {filteredProducts.map((product) => (
-        <ProductCard key={product.ID_Producto} product={product} />
+        <ProductCard key={product.ID_Producto} product={product} removeProduct={removeProduct}/>
       ))}
     </div>
   );
 }
 
-function ProductCard({ product }) {
+function ProductCard({ product, removeProduct }) {
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const handleEditClick = () => {
     navigate(`/edit-product/${product.ID_Producto}`, { state: product });
+  };
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
+  const handleDeleteClick = () => {
+    fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
+      method: 'DELETE'
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Error al eliminar el producto');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Producto eliminado exitosamente");
+      // Aquí puedes actualizar la lista de productos si es necesario.
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+    setShowSnackbar(true); // mostrar el snackbar
+	  setTimeout(() => setShowSnackbar(false), 3000);
+    removeProduct(product.ID_Producto); // Aquí está el cambio
   };
 
   return (
@@ -100,7 +136,10 @@ function ProductCard({ product }) {
         <button className="product-mod" onClick={handleEditClick}>
             Modificar Producto
           </button>
-          <button className="button3">Eliminar Producto</button>
+          <button className="button3" onClick={handleDeleteClick}>Eliminar Producto</button>
+          {showSnackbar && (
+          <div className="snackbar">Producto eliminado con éxito.</div>
+        )}
         </div>
       </div>
       <div className="product-details">
