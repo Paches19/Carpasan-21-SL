@@ -56,16 +56,15 @@ h1 {
 }
 
 .logout-container button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   cursor: pointer;
   background-color: #800000;
   border: none;
-  color: white;
+  color: #ecc43d;
   font-weight: bold;
-  border-radius: 4px;
-  flex-wrap: nowrap;
+  border-radius: 12px;
   margin-left: 5%;
-  font-size: 15px;
+  font-size: 20px;
   transition: all 0.3s ease; /* Transición para todos los cambios de estilo */
 }
 
