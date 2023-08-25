@@ -105,27 +105,34 @@ function ProductCard({ product, removeProduct }) {
     navigate(`/edit-product/${product.ID_Producto}`, { state: product });
   };
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false); // Nuevo estado para el diálogo de confirmación
+
 
   const handleDeleteClick = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const confirmDelete = () => {
     fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
-      method: 'DELETE'
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Error al eliminar el producto');
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Producto eliminado exitosamente");
-      // Aquí puedes actualizar la lista de productos si es necesario.
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-    setShowSnackbar(true); // mostrar el snackbar
-	  setTimeout(() => setShowSnackbar(false), 3000);
-    removeProduct(product.ID_Producto); // Aquí está el cambio
+        method: 'DELETE'
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al eliminar el producto');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Producto eliminado exitosamente");
+        // Aquí puedes actualizar la lista de productos si es necesario.
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+      setShowSnackbar(true); // mostrar el snackbar
+      setTimeout(() => setShowSnackbar(false), 3000);
+      removeProduct(product.ID_Producto); // Aquí está el cambio
+      setShowConfirmDialog(false);
   };
 
   return (
@@ -137,6 +144,15 @@ function ProductCard({ product, removeProduct }) {
             Modificar Producto
           </button>
           <button className="button3" onClick={handleDeleteClick}>Eliminar Producto</button>
+          {showConfirmDialog && (
+        <div className="confirm-dialog-overlay">
+          <div className="confirm-dialog">
+            <h2>¿Estás seguro de que quieres eliminar el producto {product.NombreProducto}?</h2>
+            <button className="button3" onClick={confirmDelete}>Sí, eliminar</button>
+            <button className="button3" onClick={() => setShowConfirmDialog(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
           {showSnackbar && (
           <div className="snackbar">Producto eliminado con éxito.</div>
         )}
