@@ -968,3 +968,44 @@ h8 {
 .confirm-dialog h2{
   color: #800000;
 }
+
+/* Contenedor para los tags */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Individual tag label and checkbox */
+.tag-item {
+  flex-basis: calc(20% - 10px); /* Reducir para tener el recuadro más pequeño */
+  margin: 5px;
+  padding: 5px; /* Reducir padding */
+  border-radius: 4px;
+  font-family: "Candara", sans-serif;
+  font-size: 18px;  /* Tamaño de la fuente más grande */
+  text-align: center;
+}
+
+/* Efecto al pasar el ratón */
+.tag-item:hover {
+  background-color: #f3f3f3;
+}
+
+/* Checkbox */
+.tag-item input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(2); /* Hacer el checkbox más grande */
+}
+
+/* Cambiar color al marcar checkbox */
+.tag-item input[type="checkbox"]:checked {
+  background-color: #800000;
+}
+
+/* Texto del tag */
+.tag-item label {
+  color: #800000; /* Color de texto */
+}

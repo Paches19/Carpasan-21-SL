@@ -313,6 +313,7 @@ app.put("/Productos/:id", (req, res) => {
 // Añadir un nuevo producto
 app.post("/add-product", (req, res) => {
   const { nombre, precio, descripcion, tags, imagen } = req.body;
+  const tagsString = tags.join(",");
   const insertQuery = `
     INSERT INTO Productos (NombreProducto, Precio, Descripcion, Tags, Imagen)
     VALUES (?, ?, ?, ?, ?)
@@ -320,7 +321,7 @@ app.post("/add-product", (req, res) => {
 
   db.query(
     insertQuery,
-    [nombre, precio, descripcion, tags, imagen],
+    [nombre, precio, descripcion, tagsString, imagen],  
     (err, result) => {
       if (err) {
         console.error("Error al añadir el producto:", err);

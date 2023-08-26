@@ -11,7 +11,7 @@ const Dashboard = () => {
     <Link to="/ManageProducts">
       <button2>Gestionar Productos</button2>
     </Link>
-    <Link to="/EditOrder">
+    {/* <Link to="/EditOrder">
       <button2>Modificar Pedidos</button2>
     </Link>
     <Link to="/CreateOrder">
@@ -19,16 +19,16 @@ const Dashboard = () => {
     </Link>
     <Link to="/deleteorder">
       <button2>Eliminar un Pedido</button2>
-    </Link>
+    </Link> */}
     <Link to="/estadisticas">
       <button2>Estadísticas de Pedidos</button2>
     </Link>
     <Link to="/alertas">
       <button2>Alertas y Notificaciones</button2>
     </Link>
-    <Link to="/gestion-usuarios">
+    {/* <Link to="/gestion-usuarios">
       <button2>Gestión de Usuarios</button2>
-    </Link>
+    </Link> */}
   </div>
 </div>
   );

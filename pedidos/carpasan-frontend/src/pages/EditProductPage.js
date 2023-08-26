@@ -5,12 +5,22 @@ function EditProductPage() {
   const location = useLocation();
   const product = location.state;
   const [productName, setProductName] = useState(product.NombreProducto);
-  const [productDescription, setProductDescription] = useState(product.Descripcion);
+  const [productDescription, setProductDescription] = useState(
+    product.Descripcion
+  );
   const [productPrice, setProductPrice] = useState(product.Precio);
-  const [productTags, setProductTags] = useState(product.Tags);
+  const [productTags, setProductTags] = useState(product.Tags.split(","));
   const [productImage, setProductImage] = useState(product.Imagen);
   const navigate = useNavigate();
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const possibleTags = [
+    "Vacuno",
+    "Pollo",
+    "Cerdo",
+    "Embutido",
+    "Especiales",
+    "Packs",
+  ];
 
   const handleUpdateProduct = () => {
     const updatedProduct = {
@@ -18,7 +28,7 @@ function EditProductPage() {
       nombre: productName,
       descripcion: productDescription,
       precio: productPrice,
-      tags: productTags,
+      tags: productTags.join(","),
       imagen: productImage,
     };
     fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
@@ -36,19 +46,19 @@ function EditProductPage() {
       .catch((error) => {
         console.error("Error al actualizar el producto:", error);
       });
-	  setShowSnackbar(true); // mostrar el snackbar
-	  setTimeout(() => setShowSnackbar(false), 3000);
+    setShowSnackbar(true); // mostrar el snackbar
+    setTimeout(() => setShowSnackbar(false), 3000);
   };
 
   return (
     <div className="edit-product-page">
       <button
         className="back-button"
-        onClick={() => navigate("/ManageProducts")}  // navegación a ManageProducts
+        onClick={() => navigate("/ManageProducts")} // navegación a ManageProducts
       >
         ← Volver
       </button>
-      
+
       <h2>Editar Producto</h2>
       <div>
         <label>Nombre:</label>
@@ -75,12 +85,27 @@ function EditProductPage() {
         />
       </div>
       <div>
-        <label>Tags:</label>
-        <input
-          type="text"
-          value={productTags}
-          onChange={(e) => setProductTags(e.target.value)}
-        />
+      <label>Tags:</label>
+        <div className="tags-container">
+          {possibleTags.map((tag) => (
+            <div className="tag-item" key={tag}>
+              <input
+                type="checkbox"
+                id={tag}
+                value={tag}
+                checked={productTags.includes(tag)}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setProductTags([...productTags, tag]);
+                  } else {
+                    setProductTags(productTags.filter((t) => t !== tag));
+                  }
+                }}
+              />
+              <label htmlFor={tag}>{tag}</label>
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         <label>Imagen:</label>
@@ -91,10 +116,8 @@ function EditProductPage() {
         />
       </div>
       <button onClick={handleUpdateProduct}>Guardar Cambios</button>
-	  {showSnackbar && (
-        <div className="snackbar">
-          Producto actualizado con éxito.
-        </div>
+      {showSnackbar && (
+        <div className="snackbar">Producto actualizado con éxito.</div>
       )}
     </div>
   );

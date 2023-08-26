@@ -9,13 +9,29 @@ function AddProduct() {
   const [productImage, setProductImage] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
   const navigate = useNavigate();
+  const tagsList = [
+    "Vacuno",
+    "Pollo",
+    "Cerdo",
+    "Embutido",
+    "Especiales",
+    "Packs",
+  ];
+
+  const toggleTag = (tag) => {
+    setProductTags((prevTags) =>
+      prevTags.includes(tag)
+        ? prevTags.filter((t) => t !== tag)
+        : [...prevTags, tag]
+    );
+  };
 
   const handleAddProduct = () => {
-	if (productName === "" || productPrice === "") {
-		alert("El nombre del producto y el precio son obligatorios.");
-		return;
-	  }
-	  
+    if (productName === "" || productPrice === "") {
+      alert("El nombre del producto y el precio son obligatorios.");
+      return;
+    }
+
     fetch("http://localhost:3001/add-product", {
       method: "POST",
       headers: {
@@ -26,7 +42,7 @@ function AddProduct() {
         precio: productPrice,
         descripcion: productDescription,
         tags: productTags,
-		imagen: productImage
+        imagen: productImage,
       }),
     })
       .then((response) => response.json())
@@ -36,15 +52,18 @@ function AddProduct() {
       .catch((error) => {
         console.error("Error al añadir el producto:", error);
       });
-	  setShowSnackbar(true); // mostrar el snackbar
-	  setTimeout(() => {setShowSnackbar(false); navigate("/ManageProducts")}, 1000);
+    setShowSnackbar(true); // mostrar el snackbar
+    setTimeout(() => {
+      setShowSnackbar(false);
+      navigate("/ManageProducts");
+    }, 1000);
   };
 
   return (
     <div className="edit-product-page">
-		<button
+      <button
         className="back-button"
-        onClick={() => navigate("/ManageProducts")}  // navegación a ManageProducts
+        onClick={() => navigate("/ManageProducts")} // navegación a ManageProducts
       >
         ← Volver
       </button>
@@ -75,11 +94,18 @@ function AddProduct() {
         </div>
         <div>
           <label>Tags:</label>
-          <input
-            type="text"
-            value={productTags}
-            onChange={(e) => setProductTags(e.target.value)}
-          />
+          <div className="tags-container">
+            {tagsList.map((tag, index) => (
+              <div className="tag-item" key={index}>
+                <input
+                  type="checkbox"
+                  checked={productTags.includes(tag)}
+                  onChange={() => toggleTag(tag)}
+                />
+                <label>{tag}</label>
+              </div>
+            ))}
+          </div>
         </div>
         <div>
           <label>Imagen:</label>

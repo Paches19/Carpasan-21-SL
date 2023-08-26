@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/23 11:36:48 by adpachec         ###   ########.fr       */
+/*   Updated: 2023/08/26 12:55:12 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,66 +19,6 @@ class Producto {
     this.descripcion = descripcion;
   }
 }
-
-let productos = [
-  new Producto(
-    "Lomo de vaca",
-    11.99,
-    "/Carpasan-21-SL/images/vaca.jpg",
-    ["vacuno"],
-    ""
-  ),
-  new Producto(
-    "Chuleton de buey",
-    10.99,
-    "/Carpasan-21-SL/images/chuleton.png",
-    ["vacuno"],
-    "Chuleton de buey gallego madurado 60 días"
-  ),
-  new Producto(
-    "Lomo de cerdo",
-    11.99,
-    "/Carpasan-21-SL/images/cerdo.jpg",
-    ["cerdo"],
-    ""
-  ),
-  new Producto(
-    "Chuletas de cerdo",
-    10.99,
-    "/Carpasan-21-SL/images/chuletacerdo.jpg",
-    ["cerdo"],
-    ""
-  ),
-  new Producto(
-    "Pechuga de pollo",
-    9.99,
-    "/Carpasan-21-SL/images/pechugaPollo.jpg",
-    ["pollo"],
-    ""
-  ),
-  new Producto(
-    "Alitas de pollo",
-    1.99,
-    "/Carpasan-21-SL/images/alitas.png",
-    ["pollo"],
-    ""
-  ),
-  new Producto(
-    "Chorizo dulce",
-    120.99,
-    "/Carpasan-21-SL/images/chorizoDulce.png",
-    ["embutido"],
-    ""
-  ),
-  new Producto(
-    "Chorizo picante",
-    102.99,
-    "/Carpasan-21-SL/images/chorizo.png",
-    ["embutido"],
-    ""
-  ),
-];
-
 let filtros = [
   "Todo",
   "Vacuno",
@@ -89,41 +29,8 @@ let filtros = [
   "Packs",
 ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let productosMostrados = [...productos]; // Array para almacenar los productos mostrados
+let productos; // Declaramos la variable globalmente
+let productosMostrados; // Array para almacenar los productos mostrados
 let columnasSeleccionadas = 3; // Columnas seleccionadas por defecto
 
 let CartCountOnLoad = function () {
@@ -133,7 +40,23 @@ let CartCountOnLoad = function () {
   cartCount.textContent = count;
 };
 
-window.onload = function () {
+window.onload = async function () {
+  let response = await fetch("http://localhost:3019/get-products");
+  let data = await response.json();
+
+  productos = data.map((producto) => {
+    return new Producto(
+      producto.nombre,
+      producto.precio,
+      producto.imagen,
+      producto.tags,
+      producto.descripcion
+    );
+  });
+  productos.forEach((producto) => {
+    producto.tags = producto.tags.filter((tag) => tag && tag.trim() !== "");
+  });
+  productosMostrados = [...productos];
   generarFiltros();
   let searchParam = new URLSearchParams(window.location.search).get("search");
 
@@ -162,7 +85,11 @@ function filtrarProductos(tag) {
   if (tag === "todo") {
     productosMostrados = [...productos];
   } else {
-    productosMostrados = productos.filter((p) => p.tags.includes(tag));
+    productosMostrados = productos.filter((producto) =>
+      producto.tags.some(
+        (t) => t.trim().toLowerCase() === tag.trim().toLowerCase()
+      )
+    );
   }
   mostrarProductos(productosMostrados);
 }
@@ -250,6 +177,14 @@ document.addEventListener("DOMContentLoaded", function () {
   ordenarSelect.addEventListener("change", function () {
     ordenarProductos(ordenarSelect.value);
   });
+
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    // Verificar que searchInput no sea null
+    searchInput.addEventListener("input", () => {
+      mostrarProductos(productosMostrados);
+    });
+  }
 
   function ordenarProductos(criterio) {
     switch (criterio) {
@@ -626,11 +561,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function () {
       document.getElementById("privacy-modal").style.display = "none";
     });
-
-  const searchInput = document.getElementById("search-input");
-  searchInput.addEventListener("input", () => {
-    mostrarProductos(productosMostrados);
-  });
 });
 
 function showModal(nombreProducto, precioProducto) {
