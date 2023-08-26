@@ -14,6 +14,7 @@ import ManageProducts from "./pages/ManageProducts";
 import EditProductPage from "./pages/EditProductPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import AddProduct from "./pages/AddProduct";
+import Estadisticas from "./pages/Estadisticas";
 import "./App.css"
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/ManageProducts" element={<ProtectedRoute component={ManageProducts} />} />
           <Route path="/edit-product/:id" element={<ProtectedRoute component={EditProductPage} />} />
           <Route path="/add-product" element={<ProtectedRoute component={AddProduct} />} />
+          <Route path="/estadisticas" element={<ProtectedRoute component={Estadisticas} />} />
         </Routes>
       </Router>
     </AuthProvider>

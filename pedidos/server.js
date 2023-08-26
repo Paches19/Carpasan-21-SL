@@ -350,3 +350,27 @@ app.delete("/Productos/:id", (req, res) => {
     }
   });
 });
+
+// Ruta para ventas totales por mes
+app.get("/ventasTotalesPorMes", (req, res) => {
+  const sql =
+    "SELECT MONTH(FechaPedido) as Mes, COUNT(*) as TotalVentas FROM Pedidos GROUP BY Mes";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
+// Ruta para ventas por producto
+app.get("/ventasPorProducto", (req, res) => {
+  const sql = `
+    SELECT Productos.NombreProducto, SUM(DetallesPedidos.Cantidad) as TotalVentas
+    FROM DetallesPedidos
+    JOIN Productos ON DetallesPedidos.ID_Producto = Productos.ID_Producto
+    GROUP BY Productos.NombreProducto
+  `;
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
