@@ -303,7 +303,7 @@ button2 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;     
-  width: 14%;
+  width: 16%;
   justify-content: space-between;
 }
 
