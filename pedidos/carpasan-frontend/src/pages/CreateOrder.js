@@ -1,53 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { createPedido } from "../api/pedidos";
-import "./CreateOrder.css";
-import { fetchProductos } from "../api/productos";
+import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 
-function CreateOrder() {
+function CrearPedido() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [direccion, setDireccion] = useState("");
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
-  const [opcionEnvio, setOpcionEnvio] = useState("");
+  const [opcionEnvio, setOpcionEnvio] = useState("recoger");
   const [infoExtra, setInfoExtra] = useState("");
-  const [productos, setProductos] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const [error, setError] = useState("");
   const [estadoPedido, setEstadoPedido] = useState("Recibido");
+  const [detallesPedidos, setDetallesPedidos] = useState([]);
+  const [todosLosProductos, setTodosLosProductos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const loadProductos = async () => {
-      try {
-        const productosData = await fetchProductos();
-        setProductos(productosData);
-
-        // Inicializa selectedProducts con 0 cantidad
-        const initialProductState = {};
-        productosData.forEach((product) => {
-          initialProductState[product.ID_Producto] = 0;
-        });
-        setSelectedProducts(initialProductState);
-      } catch (err) {
-        setError("Error al cargar productos.");
-      }
-    };
-
-    loadProductos();
+    fetch("http://localhost:3001/productos")
+      .then((res) => res.json())
+      .then((data) => {
+        setTodosLosProductos(data);
+      });
   }, []);
 
-  // const handleProductChange = (productId, quantity) => {
-  //   setSelectedProducts((prev) => ({
-  //     ...prev,
-  //     [productId]: quantity,
-  //   }));
-  // };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const pedidoData = {
+  const handleSave = () => {
+    fetch(`http://localhost:3001/crearPedido`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         Nombre: nombre,
         Apellido: apellido,
         Direccion: direccion,
@@ -56,37 +38,60 @@ function CreateOrder() {
         OpcionEnvio: opcionEnvio,
         InfoExtra: infoExtra,
         EstadoPedido: estadoPedido,
-        Productos: Object.entries(selectedProducts).filter(
-          ([id, cantidad]) => cantidad > 0
-        ), // Filtra productos con cantidad 0
-      };
+        Productos: detallesPedidos,
+      }),
+    })
+      .then(() => {
+        navigate("/HistorialPedidos");
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
 
-      // Aquí estás creando el pedido
-      const response = await createPedido(pedidoData);
+  const opcionesProductos = todosLosProductos.map((producto) => ({
+    value: producto.ID_Producto,
+    label: producto.NombreProducto,
+  }));
 
-      if (response && response.success) {
-        // Si deseas, puedes agregar una notificación para el usuario de que se creó con éxito.
-        alert("Pedido creado con éxito!");
-      } else {
-        throw new Error(response.message || "Error al crear pedido.");
-      }
-    } catch (err) {
-      setError(err.message);
-    }
+  const handleProductoChange = (index, selectedOption) => {
+    const newID = selectedOption.value;
+    const newDetalles = [...detallesPedidos];
+    newDetalles[index].ID_Producto = newID;
+    setDetallesPedidos(newDetalles);
+  };
+
+  const handleCantidadChange = (index, e) => {
+    const newCantidad = e.target.value;
+    const newDetalles = [...detallesPedidos];
+    newDetalles[index].Cantidad = newCantidad;
+    setDetallesPedidos(newDetalles);
+  };
+
+  const handleRemoveProduct = (index) => {
+    const newDetalles = [...detallesPedidos];
+    newDetalles.splice(index, 1);
+    setDetallesPedidos(newDetalles);
+  };
+
+  const handleAddProduct = () => {
+    setDetallesPedidos([
+      ...detallesPedidos,
+      { ID_Producto: null, Cantidad: 1 },
+    ]);
   };
 
   return (
-    <main>
-      <header>
-        <img src="/path_to_logo.png" alt="Logo Empresa" />
-        <h2>Nombre de la Empresa</h2>
-      </header>
-
-      {error && <div className="error">{error}</div>}
-
-      <form onSubmit={handleSubmit}>
+    <div className="modificar-pedido-container">
+      <button
+        className="back-button"
+        onClick={() => navigate("/HistorialPedidos")}
+      >
+        ← Volver
+      </button>
+      <form>
         <div className="input-group">
-          <label>Nombre:</label>
+          <label>Nombre</label>
           <input
             type="text"
             value={nombre}
@@ -95,7 +100,7 @@ function CreateOrder() {
         </div>
 
         <div className="input-group">
-          <label>Apellido:</label>
+          <label>Apellido</label>
           <input
             type="text"
             value={apellido}
@@ -115,11 +120,9 @@ function CreateOrder() {
         <div className="input-group">
           <label>Teléfono:</label>
           <input
-            type="text"
+            type="tel"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
-            pattern="\d*"
-            maxLength="10"
           />
         </div>
 
@@ -133,30 +136,28 @@ function CreateOrder() {
         </div>
 
         <div className="input-group">
-          <label htmlFor="opcionEnvio">Opción de envío:</label>
+          <label>Opción de Envío:</label>
           <select
-            id="opcionEnvio"
             value={opcionEnvio}
             onChange={(e) => setOpcionEnvio(e.target.value)}
           >
-            <option value="Recoger">Recoger</option>
-            <option value="A domicilio">A domicilio</option>
+            <option value="recoger">recoger</option>
+            <option value="domicilio">a domicilio</option>
           </select>
         </div>
 
         <div className="input-group">
-          <label htmlFor="infoExtra">Información extra:</label>
+          <label>Información Extra:</label>
           <textarea
-            id="infoExtra"
+            rows="4"
             value={infoExtra}
             onChange={(e) => setInfoExtra(e.target.value)}
-          ></textarea>
+          />
         </div>
 
         <div className="input-group">
-          <label htmlFor="estadoPedido">Estado del pedido:</label>
+          <label>Estado del Pedido:</label>
           <select
-            id="estadoPedido"
             value={estadoPedido}
             onChange={(e) => setEstadoPedido(e.target.value)}
           >
@@ -167,28 +168,70 @@ function CreateOrder() {
           </select>
         </div>
 
-        {productos.map((product) => (
-          <div className="input-group" key={product.ID_Producto}>
-            <label>
-              {product.NombreProducto} - ${product.Precio.toFixed(2)}
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={selectedProducts[product.ID_Producto] || 0}
-              onChange={(e) =>
-                setSelectedProducts((prevState) => ({
-                  ...prevState,
-                  [product.ID_Producto]: Number(e.target.value),
-                }))
-              }
-            />
+        <div className="input-group">
+          <label>Productos </label>
+          <div>
+            {" "}
+            <button
+              type="button"
+              className="button-outline"
+              onClick={handleAddProduct}
+            >
+              Añadir Producto
+            </button>
           </div>
-        ))}
-        <button type="submit">Crear Pedido</button>
+
+          {detallesPedidos.map((detalle, index) => {
+            const productoSeleccionado = todosLosProductos.find(
+              (producto) => producto.ID_Producto === detalle.ID_Producto
+            );
+
+            const productoNombre = productoSeleccionado
+              ? productoSeleccionado.NombreProducto
+              : "";
+            return (
+              <div className="product-group" key={index}>
+                <div className="product-select">
+                  <Select
+                    className="custom-select"
+                    options={opcionesProductos}
+                    value={{
+                      value: detalle.ID_Producto,
+                      label: productoNombre,
+                    }}
+                    onChange={(selectedOption) =>
+                      handleProductoChange(index, selectedOption)
+                    }
+                  />
+                </div>
+                <div className="product-quantity">
+                  <input
+                    type="number"
+                    value={detalle.Cantidad}
+                    onChange={(e) => handleCantidadChange(index, e)}
+                  />
+                  <span>kg</span>
+                </div>
+                <button
+                  type="button"
+                  className="button-outline"
+                  onClick={() => handleRemoveProduct(index)}
+                >
+                  Eliminar
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="button-group">
+          <button type="button" onClick={handleSave}>
+            Guardar Pedido
+          </button>
+        </div>
       </form>
-    </main>
+    </div>
   );
 }
 
-export default CreateOrder;
+export default CrearPedido;

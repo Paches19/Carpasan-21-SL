@@ -59,6 +59,7 @@ function OrderHistory() {
   const [endMonth, setEndMonth] = useState(null);
   const [specificDate, setSpecificDate] = useState(null);
   const [selectedStates, setSelectedStates] = useState([]);
+  const navigate = useNavigate();
 
   const filteredOrders = useMemo(
     () =>
@@ -197,6 +198,12 @@ function OrderHistory() {
         >
           Limpiar Filtros
         </button>
+        <button
+          className="add-order-button"
+          onClick={() => navigate(`/crearPedido`)} // Asume que la URL para crear un nuevo pedido es "/nuevoPedido"
+        >
+          Añadir Pedido
+        </button>
       </div>
       {filteredOrders.map((order) => (
         <OrderCard key={order.ID_Pedido} order={order} />
@@ -228,6 +235,12 @@ function OrderCard({ order }) {
       <div className="order-header" onClick={() => setExpanded(!expanded)}>
         <h2>Pedido #{order.ID_Pedido}</h2>
         <div className="header-right">
+          <button
+            className="button4"
+            onClick={() => navigate(`/modificarPedido/${order.ID_Pedido}`)}
+          >
+            Modificar Pedido
+          </button>
           <button
             className="button3"
             onClick={() => navigate(`/pedido/${order.ID_Pedido}`)}

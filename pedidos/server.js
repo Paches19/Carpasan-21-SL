@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const app = express();
@@ -138,10 +138,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Algo salió mal!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
-});
-
 // Ruta de inicio de sesión
 app.post("/iniciar-sesion", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
@@ -158,7 +154,7 @@ app.post("/iniciar-sesion", (req, res, next) => {
 
       // Genera el token aquí después de que el usuario se haya autenticado
       const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-        expiresIn: '1d', // Duración del token (1 día en este caso)
+        expiresIn: "1d", // Duración del token (1 día en este caso)
       });
 
       res.cookie("user_id", user.id); // Establece una cookie con el ID de usuario
@@ -170,7 +166,7 @@ app.post("/iniciar-sesion", (req, res, next) => {
 // Ruta de cierre de sesión
 app.get("/cerrar-sesion", (req, res) => {
   req.logout();
-  res.clearCookie("user_id");  // Borra la cookie al cerrar sesión
+  res.clearCookie("user_id"); // Borra la cookie al cerrar sesión
   res.redirect("/");
 });
 
@@ -197,15 +193,19 @@ app.put("/pedido/:pedidoId/estado", (req, res) => {
   const pedidoId = req.params.pedidoId;
   const nuevoEstado = req.body.estado;
 
-  db.query(`UPDATE Pedidos SET EstadoPedido = ? WHERE ID_Pedido = ?`, [nuevoEstado, pedidoId], function (error, results) {
+  db.query(
+    `UPDATE Pedidos SET EstadoPedido = ? WHERE ID_Pedido = ?`,
+    [nuevoEstado, pedidoId],
+    function (error, results) {
       if (error) {
-          console.error("Error al actualizar el estado del pedido: ", error);
-          res.status(500).send("Error interno del servidor");
-          return;
+        console.error("Error al actualizar el estado del pedido: ", error);
+        res.status(500).send("Error interno del servidor");
+        return;
       }
 
-      res.json({ success: true, message: 'Estado actualizado' });
-  });
+      res.json({ success: true, message: "Estado actualizado" });
+    }
+  );
 });
 
 //Mostrar pedido con detalles y productos
@@ -271,13 +271,14 @@ app.get("/pedido/:id", (req, res) => {
 });
 
 //Listado productos
-app.get('/Productos', (req, res) => {
-  const query = 'SELECT ID_Producto, NombreProducto, Precio, Descripcion, Tags, Imagen FROM Productos ORDER BY NombreProducto'
-  
+app.get("/Productos", (req, res) => {
+  const query =
+    "SELECT ID_Producto, NombreProducto, Precio, Descripcion, Tags, Imagen FROM Productos ORDER BY NombreProducto";
+
   db.query(query, (err, results) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error al obtener los productos');
+      res.status(500).send("Error al obtener los productos");
       return;
     }
     res.json(results);
@@ -321,7 +322,7 @@ app.post("/add-product", (req, res) => {
 
   db.query(
     insertQuery,
-    [nombre, precio, descripcion, tagsString, imagen],  
+    [nombre, precio, descripcion, tagsString, imagen],
     (err, result) => {
       if (err) {
         console.error("Error al añadir el producto:", err);
@@ -373,4 +374,156 @@ app.get("/ventasPorProducto", (req, res) => {
     if (err) throw err;
     res.json(result);
   });
+});
+
+app.put("/modificarPedido/:id", (req, res) => {
+  const pedidoId = req.params.id;
+  const {
+    Nombre,
+    Apellido,
+    Direccion,
+    Telefono,
+    Email,
+    OpcionEnvio,
+    InfoExtra,
+    EstadoPedido,
+    Productos,
+  } = req.body;
+
+  // Start MySQL transaction
+  db.beginTransaction((err) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    // Update Pedidos table
+    const updatePedidoQuery = "UPDATE Pedidos SET ? WHERE ID_Pedido = ?";
+    db.query(
+      updatePedidoQuery,
+      [
+        {
+          Nombre,
+          Apellido,
+          Direccion,
+          Telefono,
+          Email,
+          OpcionEnvio,
+          InfoExtra,
+          EstadoPedido,
+        },
+        pedidoId,
+      ],
+      (err) => {
+        if (err) {
+          return db.rollback(() => {
+            res.status(500).json({ error: err.message });
+          });
+        }
+
+        // Delete existing product details for this order
+        const deleteDetallesQuery =
+          "DELETE FROM DetallesPedidos WHERE ID_Pedido = ?";
+        db.query(deleteDetallesQuery, [pedidoId], (err) => {
+          if (err) {
+            return db.rollback(() => {
+              res.status(500).json({ error: err.message });
+            });
+          }
+
+          // Insert new product details for this order
+          const insertDetallesQuery =
+            "INSERT INTO DetallesPedidos (ID_Pedido, ID_Producto, Cantidad) VALUES ?";
+          const detallesData = Productos.map((producto) => [
+            pedidoId,
+            producto.ID_Producto,
+            producto.Cantidad,
+          ]);
+
+          db.query(insertDetallesQuery, [detallesData], (err) => {
+            if (err) {
+              return db.rollback(() => {
+                res.status(500).json({ error: err.message });
+              });
+            }
+
+            db.commit((err) => {
+              if (err) {
+                return db.rollback(() => {
+                  res.status(500).json({ error: err.message });
+                });
+              }
+              res
+                .status(200)
+                .json({ message: "Pedido modificado exitosamente" });
+            });
+          });
+        });
+      }
+    );
+  });
+});
+
+app.post("/crearPedido", (req, res) => {
+
+  const {
+    Nombre,
+    Apellido,
+    Direccion,
+    Telefono,
+    Email,
+    OpcionEnvio,
+    InfoExtra,
+    EstadoPedido,
+    Productos,
+  } = req.body;
+
+  const nuevoPedido = {
+    Nombre,
+    Apellido,
+    Direccion,
+    Telefono,
+    Email,
+    OpcionEnvio,
+    InfoExtra,
+    EstadoPedido,
+    FechaPedido: new Date().toISOString().slice(0, 19).replace('T', ' '),
+  };
+
+  const sqlInsertPedido = "INSERT INTO Pedidos SET ?";
+
+  db.query(sqlInsertPedido, nuevoPedido, (err, resultado) => {
+
+    if (err) {
+      console.error("Error al insertar en Pedidos: ", err);
+      return res.status(500).send("Error al crear el pedido");
+    }
+    const idPedidoCreado = resultado.insertId;
+
+    if (!idPedidoCreado) {
+      console.error("No se pudo obtener el idPedidoCreado");
+      return res.status(500).send("Error desconocido");
+    }
+
+    const detallesPedidos = Productos.map((producto) => [
+      idPedidoCreado,
+      producto.ID_Producto,
+      producto.Cantidad,
+    ]);
+
+    const sqlInsertDetalles =
+      "INSERT INTO DetallesPedidos (ID_Pedido, ID_Producto, Cantidad) VALUES ?";
+
+    db.query(sqlInsertDetalles, [detallesPedidos], (err, resultado) => {
+      if (err) {
+        console.error("Error al insertar en DetallesPedidos: ", err);
+        return res.status(500).send("Error al crear los detalles del pedido");
+      }
+
+      res.status(201).send("Pedido creado con éxito");
+    });
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });

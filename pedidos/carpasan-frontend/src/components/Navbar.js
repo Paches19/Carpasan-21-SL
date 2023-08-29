@@ -13,14 +13,18 @@ const Navbar = () => {
 
   const getPageName = (path) => {
     if (/^\/pedido\/\d+$/.test(path)) {
-      const id = path.split("/")[2];  // Separar la URL por "/" y obtener el tercer fragmento.
+      const id = path.split("/")[2]; // Separar la URL por "/" y obtener el tercer fragmento.
       return `Detalles Pedido ${id}`;
     }
 
     if (/^\/edit-product\/\d+$/.test(path)) {
       return "Modificar Producto";
     }
-  
+
+    if (/^\/modificarPedido\/\d+$/.test(path)) {
+      return "Modificar Pedido";
+    }
+
     switch (path) {
       case "/":
         return "Inicio de Sesión";
@@ -46,8 +50,12 @@ const Navbar = () => {
         return "Gestión de Usuarios";
       case "/edit-product":
         return "Editar Producto";
-        case "/add-product":
-          return "Añadir Producto";
+      case "/add-product":
+        return "Añadir Producto";
+      case "/modificarPedido":
+        return "Modifica Pedido";
+      case "/crearPedido":
+        return "Crear Pedido";
       default:
         return "Pagina desconocida";
     }
