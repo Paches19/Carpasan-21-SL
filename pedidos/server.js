@@ -8,6 +8,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const path = require('path'); // Añade esta línea
 require("dotenv").config();
 
 const app = express();
@@ -145,6 +146,7 @@ app.post("/iniciar-sesion", (req, res, next) => {
       return res.status(500).json({ error: err });
     }
     if (!user) {
+      console.log("no existe usuario");
       return res.status(400).json({ error: info.message });
     }
     req.login(user, (err) => {
