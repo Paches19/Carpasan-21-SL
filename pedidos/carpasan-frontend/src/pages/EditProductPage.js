@@ -14,12 +14,16 @@ function EditProductPage() {
   const navigate = useNavigate();
   const [showSnackbar, setShowSnackbar] = useState(false);
   const possibleTags = [
-    "Vacuno",
-    "Pollo",
-    "Cerdo",
-    "Embutido",
-    "Especiales",
-    "Packs",
+  "Vacuno",
+  "Pollo",
+  "Cerdo",
+  "Embutido",
+  "Cordero",
+  "Oveja",
+  "Adobados",
+  "Obrador",
+  "Especiales",
+  "Packs",
   ];
 
   const handleUpdateProduct = () => {

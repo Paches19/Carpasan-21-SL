@@ -14,6 +14,10 @@ function AddProduct() {
     "Pollo",
     "Cerdo",
     "Embutido",
+    "Cordero",
+    "Oveja",
+    "Adobados",
+    "Obrador",
     "Especiales",
     "Packs",
   ];
@@ -60,67 +64,67 @@ function AddProduct() {
   };
 
   return (
-    <div className="edit-product-page">
-      <button
-        className="back-button"
-        onClick={() => navigate("/ManageProducts")} // navegación a ManageProducts
-      >
-        ← Volver
-      </button>
-      <div>
-        <div>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Descripción:</label>
-          <textarea
-            value={productDescription}
-            onChange={(e) => setProductDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Precio:</label>
-          <input
-            type="number"
-            step="0.01"
-            value={productPrice}
-            onChange={(e) => setProductPrice(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Tags:</label>
-          <div className="tags-container">
-            {tagsList.map((tag, index) => (
-              <div className="tag-item" key={index}>
-                <input
-                  type="checkbox"
-                  checked={productTags.includes(tag)}
-                  onChange={() => toggleTag(tag)}
-                />
-                <label>{tag}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <label>Imagen:</label>
-          <input
-            type="text"
-            value={productImage}
-            onChange={(e) => setProductImage(e.target.value)}
-          />
-        </div>
-        <button onClick={handleAddProduct}>Añadir Producto</button>
-        {showSnackbar && (
-          <div className="snackbar">Producto añadido con éxito.</div>
-        )}
-      </div>
-    </div>
+	<div className="edit-product-page">
+	<button
+		className="back-button"
+		onClick={() => navigate("/ManageProducts")} // navegación a ManageProducts
+	>
+		← Volver
+	</button>
+	<div>
+		<div>
+		<label>Nombre:</label>
+		<input
+			type="text"
+			value={productName}
+			onChange={(e) => setProductName(e.target.value)}
+		/>
+		</div>
+		<div>
+		<label>Descripción:</label>
+		<textarea
+			value={productDescription}
+			onChange={(e) => setProductDescription(e.target.value)}
+		/>
+		</div>
+		<div>
+		<label>Precio:</label>
+		<input
+			type="number"
+			step="0.01"
+			value={productPrice}
+			onChange={(e) => setProductPrice(e.target.value)}
+		/>
+		</div>
+		<div>
+		<label>Tags:</label>
+		<div className="tags-container">
+			{tagsList.map((tag, index) => (
+			<div className="tag-item" key={index}>
+				<input
+				type="checkbox"
+				checked={productTags.includes(tag)}
+				onChange={() => toggleTag(tag)}
+				/>
+				<label>{tag}</label>
+			</div>
+			))}
+		</div>
+		</div>
+		<div>
+		<label>Imagen:</label>
+		<input
+			type="text"
+			value={productImage}
+			onChange={(e) => setProductImage(e.target.value)}
+		/>
+		</div>
+		<button onClick={handleAddProduct}>Añadir Producto</button>
+		{showSnackbar && (
+		<div className="snackbar">Producto añadido con éxito.</div>
+		)}
+	</div>
+	</div>
   );
 }
 

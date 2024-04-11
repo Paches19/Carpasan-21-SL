@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/09 19:16:04 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:29:30 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ let filtros = [
   "Pollo",
   "Cerdo",
   "Embutido",
+  "Cordero",
+  "Oveja",
+  "Adobados",
   "Especiales",
   "Packs",
 ];
@@ -240,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
       divProducto.className = "order-item";
       divProducto.innerHTML = `
               <span class="product-name">${producto}</span>
-              <input type="number" class="order-quantity" min="0.0" value="${
+              <input type="number" step="0.1" class="order-quantity" min="0.0" value="${
                 carrito[producto]
               }">
               <span class="subtotal">${subtotal.toFixed(2)} €</span>
