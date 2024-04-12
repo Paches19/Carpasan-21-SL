@@ -548,6 +548,39 @@ transform: translateY(0);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+.pedido-detalle-container h4 {
+  margin-top: 10px;
+  margin-right: 11%;
+  text-align: right;
+}
+
+.print-container{
+  position: relative;
+}
+
+.print-button{
+  position: relative;
+  right: 0;
+  /* top: 50%; */
+  transform: translateY(-50%);
+  background-color: #f8f8f8;
+  border: 2px solid #800000;
+  border-radius: 8px;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+  font-family: "candara", Helvetica, sans-serif;
+  z-index: 10; 
+}
+
+.print-button:hover {
+  background-color: #a0555541;
+  color: red;
+}
+
 .cliente-info {
   background-color: #fffef2;
   padding: 10px;
@@ -585,7 +618,7 @@ transform: translateY(0);
 }
 
 .producto-item-name {
-  flex: 3;
+  flex: 2;
   margin-right: 10px;
 }
 
@@ -1226,3 +1259,31 @@ h8 {
   font-weight: bold;
   color: #800000;
 }
+
+@media print {
+  body * {
+    visibility: hidden; 
+  }
+
+  .print-form, .print-form * {
+    visibility: visible; 
+    position: static; 
+    color: black; 
+    background: white;
+    box-shadow: none;
+    border: none;
+  }
+
+  .print-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    
+  }
+}
+

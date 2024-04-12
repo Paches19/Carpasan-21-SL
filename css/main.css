@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/11 19:36:55 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:01:19 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,32 @@ body {
   .top-bar-right {
 	display: flex;
 	align-items: center;
+	flex-direction: column;
 	margin-left: 100px;
+  }
+
+  .top-bar-right h1 {
+    margin-bottom: 0; /* Elimina el margen inferior del título para que el lema quede más cerca */
+  }
+  
+  .top-bar-right p {
+	font-family: "Candara", cursive;
+	text-shadow: 1px 1px 10px rgba(0,0,0, 0.4);
+	letter-spacing: 1px;
+    margin-top: 0;
+    font-size: 34px;
+	font-weight: 375;
+	/* font-weight: bold; */
+    color: #800000;
   }
   
   h1 {
 	font-family: "Candara", cursive;
+	text-shadow: 1px 1px 7px rgba(0,0,0, 0.3);
 	font-size: 54px;
 	text-align: left;
 	color: #800000;
 	margin-top: 30px;
-	
   }
 
   header {
