@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/01 12:44:59 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:32:24 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -846,4 +846,59 @@ hs {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  #filtroTags {
+    position: absolute; /* Se superpone sobre el contenido de la página */
+    width: 100%; /* Aprovecha todo el ancho disponible */
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2); /* Agrega sombra para destacarlo sobre el contenido */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+  }
+
+  #sidebar hs:after {
+    content: '+';
+    float: right;
+  }
+
+  #sidebar.hs.active hs:after {
+    content: '-';
+  }
+
+  /* Ajustes de la cuadrícula de productos */
+  #gridProductos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas para móviles */
+    grid-gap: 10px; /* Espacio entre los productos */
+    padding: 10px 0; /* Espacio superior e inferior dentro de la grilla */
+  }
+
+  .producto {
+    width: 100%; /* Cada producto utiliza el 100% del espacio de su celda en la grilla */
+    box-sizing: border-box; /* El ancho y alto incluyen el contenido, relleno y bordes */
+  }
+
+  .price-cart, .price-cart3 {
+    flex-direction: column; /* Elementos de precio y carrito uno sobre el otro */
+    align-items: center; /* Centrados horizontalmente */
+  }
+
+  .add-to-cart img {
+    width: 50px; /* Tamaño más grande para facilidad de clic en móviles */
+  }
+
+  /* Ajustes para los elementos de ordenación y visualización de la grilla */
+  #opcionesGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-option, .ordenar {
+    margin-top: 10px;
+  }
+
+  .ordenar select {
+    width: 100%;
+  }
 }

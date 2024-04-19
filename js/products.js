@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/11 19:29:30 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:27:51 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,15 @@ function mostrarProductos(productosMostrar) {
     });
   });
 }
+
+document.querySelector('#sidebar hs').addEventListener('click', function() {
+  var filtroTags = document.querySelector('#filtroTags');
+  if (filtroTags.style.display === 'block') {
+    filtroTags.style.display = 'none';
+  } else {
+    filtroTags.style.display = 'block';
+  }
+});
 
 // Cuando se haga clic en el botón "Añadir al carrito", se añade el producto al carrito
 window.onclick = function (event) {
@@ -595,4 +604,9 @@ function showModal(nombreProducto, precioProducto) {
   modal.querySelector(".close").onclick = function () {
     modal.style.display = "none";
   };
+}
+
+function toggleMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('active');
 }

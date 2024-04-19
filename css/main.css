@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/12 21:01:19 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:15:41 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ header nav ul li {
 	justify-content: space-between;
 	align-items: center;
   }
+
+  .menu-toggle {
+	display: none;
+}
   
   .nav-links {
 	list-style: none;
@@ -432,12 +436,12 @@ header nav ul li {
 	font-weight: bolder;
   }
   
-  .product-list {
+  .featured-products .product-list {
 	display: flex;
 	justify-content: center;
   }
   
-  .product-item {
+  .featured-products .product-item {
 	width: 300px;
 	margin: 20px;
 	padding: 20px;
@@ -446,23 +450,23 @@ header nav ul li {
 	text-align: center;
   }
   
-  .product-item img {
+  .featured-products .product-item img {
 	width: 200px;
 	height: 200px;
 	margin-bottom: 20px;
   }
   
-  .product-item h3 {
+  .featured-products .product-item h3 {
 	font-size: 24px;
 	margin-bottom: 10px;
   }
   
-  .product-item p {
+  .featured-products .product-item p {
 	font-size: 14px;
 	margin-bottom: 20px;
   }
   
-  .product-item .btn {
+  .featured-products .product-item .btn {
 	display: inline-block;
 	padding: 8px 20px;
 	background-color: #FF0000;
@@ -473,7 +477,7 @@ header nav ul li {
 	transition: background-color 0.3s ease;
   }
   
-  .product-item .btn:hover {
+  .featured-products .product-item .btn:hover {
 	background-color: #800000;
   }
   
@@ -644,3 +648,118 @@ h3 {
   .social-icon img{
 	width: 30px;
   }
+
+  @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+	
+	.nav-links {
+        display: none; /* Ocultamos los enlaces en pantallas pequeñas */
+        flex-direction: column;
+        width: 100%; /* Aseguramos que el menú desplegable ocupe toda la anchura */
+    }
+
+    .nav-links.active {
+        display: flex; /* Mostrar enlaces cuando se activa el menú desplegable */
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: #FFFFFF;
+		margin-right: 0;
+    }
+	
+	.featured-products .product-list {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
+	}
+	
+	.featured-products .product-item {
+		flex: 0 0 auto;
+		width: 300px;
+		margin-right: 20px;
+		scroll-snap-align: start;
+	}
+
+	.featured-products .product-item img {
+		width: 200px;
+		margin-bottom: 20px;
+	  }
+	
+    .nav-links li {
+        margin-right: 10px;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+    }
+
+    .top-bar .container, .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-bar-right {
+        margin-left: 0;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+
+    .hero, .social-feed, .featured-products, .subscription, .location {
+        padding: 20px 0;
+    }
+
+    .hero h2, .featured-products h2, .subscription h2, .location h2 {
+        font-size: 24px;
+    }
+
+    .product-item {
+        width: 100%;
+        margin: 10px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-column {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        align-items: center;
+    }
+}
+
+/* Muy pequeños dispositivos (móviles) */
+@media (max-width: 480px) {
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .nav-links li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+	.search-cart input[type="text"]{
+		width: 70%;
+	}
+
+    .carousel-caption {
+        background-color: rgba(248,248,248,0.8);
+    }
+}
