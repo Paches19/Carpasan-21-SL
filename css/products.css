@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/19 14:32:24 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:59:02 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ hs {
   font-family: "candara";
 }
 
+#filtroTags{
+  display: block;  
+}
+
 #sidebar {
   float: left;
   width: 19.3%;
@@ -55,7 +59,7 @@ hs {
 }
 
 #sidebar ul {
-  list-style: none; /* Removes bullet points */
+  list-style: none;
   padding: 0;
   width: 100%;
   display: flex;
@@ -289,6 +293,7 @@ hs {
   font-size: 20px;
   font-weight: bolder;
   color: #000000;
+  
 }
 
 .producto span {
@@ -467,15 +472,14 @@ hs {
 }
 
 #order-summary-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 700px;
-    overflow: visible;
+  position: absolute;
+  /* height: auto; */
+  width: 95%; /* Aprovecha mejor el espacio horizontal */
+  top: 15%; /* Reduce el espacio superior para mejor acceso */
+  left: 50%; /* Centra el modal horizontalmente */
+  transform: translate(-50%, 0); /* Asegura que el modal está centrado */
+  max-width: none; /* Remueve cualquier límite máximo del ancho */
+  overflow: visible;
 }
 
 #order-summary-modal .modal-content {
@@ -636,7 +640,7 @@ hs {
 }
 
 #order-summary-modal .total-row .left-section span {
-  margin-left: 230px;
+  margin-left: 350px;
 }
 
 #order-summary-modal .total-row .right-section {
@@ -671,6 +675,7 @@ hs {
   display: none;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
 .checkout-modal-container .modal-content {
@@ -848,57 +853,297 @@ hs {
   cursor: pointer;
 }
 
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-  #filtroTags {
-    position: absolute; /* Se superpone sobre el contenido de la página */
-    width: 100%; /* Aprovecha todo el ancho disponible */
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2); /* Agrega sombra para destacarlo sobre el contenido */
-    z-index: 10; /* Asegura que esté por encima de otros elementos */
+@media (max-width: 769px) {
+  #sidebar #filtroTags {
+    display: none;
+  }
+  
+  #sidebar.active #filtroTags {
+    display: block;
+    z-index: 3;
+  }
+  
+  #sidebar {
+    position: absolute; /* o absolute, dependiendo de tu layout específico */
+    transform: translateY(50%);
+    transform: translateX(50%);
+    background-color: #f8f8f8;
+    width: 50%;
+    z-index: 1;
   }
 
   #sidebar hs:after {
-    content: '+';
+    content: 'pulse para opciones';
     float: right;
+    font-size: 1.5vh;
+    
   }
 
-  #sidebar.hs.active hs:after {
-    content: '-';
-  }
-
-  /* Ajustes de la cuadrícula de productos */
-  #gridProductos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas para móviles */
-    grid-gap: 10px; /* Espacio entre los productos */
-    padding: 10px 0; /* Espacio superior e inferior dentro de la grilla */
-  }
-
-  .producto {
-    width: 100%; /* Cada producto utiliza el 100% del espacio de su celda en la grilla */
-    box-sizing: border-box; /* El ancho y alto incluyen el contenido, relleno y bordes */
-  }
-
-  .price-cart, .price-cart3 {
-    flex-direction: column; /* Elementos de precio y carrito uno sobre el otro */
-    align-items: center; /* Centrados horizontalmente */
-  }
-
-  .add-to-cart img {
-    width: 50px; /* Tamaño más grande para facilidad de clic en móviles */
-  }
-
-  /* Ajustes para los elementos de ordenación y visualización de la grilla */
   #opcionesGrid {
     flex-direction: column;
+  }
+
+  #gridProductos {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 10px; /* Espacio entre productos */
+    align-items: start; /* Alinea los elementos al inicio del contenedor */
+    padding: 10px 0; /* Agrega algo de padding si es necesario */
+  }
+
+  .producto img {
+    max-width: 100%; /* Asegurarse de que la imagen no exceda el ancho del contenedor */
+    width: auto; /* Mantener la proporción de la imagen */
+  }
+
+  .producto h2 {
+    font-size: 1.25rem; /* Reducir el tamaño del título para dispositivos móviles */
+    margin-top: -5vh;
+  }
+
+  .producto .descripcion {
+     display: none;
+  }
+
+  .producto .price-cart3 {
+    display: flex; /* Usar flexbox para alinear precio y botón de manera responsiva */
+    align-items: center; /* Centrar elementos verticalmente */
+    justify-content: space-between; /* Separar precio y botón */
+    flex-wrap: wrap; /* Permitir que los elementos pasen al siguiente renglón si no hay espacio */
+    width: 60%;
+  }
+
+  .producto .precio {
+    font-size: 1.25rem; /* Ajustar el tamaño del precio */
+    font-weight: bold; /* Poner el precio en negrita */
+    margin-right: 0.5em; /* Agregar margen a la derecha del precio */
+    margin-top: -10vh;
+  }
+
+  .producto .add-to-cart {
+    padding: 0.5em 1em; /* Agregar padding al botón */
+    border-radius: 0.5em; /* Redondear esquinas del botón */
+    margin-left: auto; /* Alinear el botón a la derecha */
+    width: 8vh;
     align-items: center;
   }
 
   .grid-option, .ordenar {
     margin-top: 10px;
+    margin: 2vh;
   }
 
   .ordenar select {
     width: 100%;
   }
+
+  .modal {
+    width: 95%;  /* Más ancho para aprovechar el espacio en pantallas pequeñas */
+    top: 25vh;
+    transform: translateX(-50%);
+  }
+
+  .modal-content {
+    width: 90%;  /* Más ancho para aprovechar mejor el espacio disponible */
+    margin: 10% auto; /* Menor margen para reducir el espacio no utilizado */
+    padding: 20px; /* Padding más pequeño para maximizar el espacio */
+  }
+
+  .close {
+    font-size: 24px; /* Un poco más pequeño para dispositivos móviles */
+    margin-top: 0; /* Reducir el margen superior para evitar desplazamiento negativo */
+  }
+
+  #order-summary-modal {
+    position: absolute;
+    /* height: auto; */
+    width: 95%; /* Aprovecha mejor el espacio horizontal */
+    top: 55%; /* Reduce el espacio superior para mejor acceso */
+    left: 50%; /* Centra el modal horizontalmente */
+    transform: translate(-50%, 0); /* Asegura que el modal está centrado */
+    max-width: none; /* Remueve cualquier límite máximo del ancho */
+    overflow: visible;
+    z-index: 9999;
+}
+
+#order-summary-modal .modal-content {
+  padding: 10px; /* Reduce el padding para dar más espacio al contenido */
+  width: 95%; /* Aumenta el ancho para usar la mayor parte de la pantalla */
+  box-sizing: border-box;
+}
+
+#order-summary-modal .top-bar h1 {
+  font-size: 22px; /* Reduce el tamaño de la fuente del título para que ocupe menos espacio */
+}
+
+#order-summary-modal .order-item, 
+#order-summary-modal .order-summary-header {
+    grid-template-columns: repeat(4, 1fr); /* Coloca los elementos en tres columnas */
+}
+
+#order-summary-modal .close, 
+#order-summary-modal #clear-cart, 
+#order-summary-modal #checkout {
+    font-size: 16px; /* Aumenta el tamaño de la fuente para mejor accesibilidad */
+    padding: 12px; /* Más área de toque para facilitar la interacción */
+}
+
+#order-summary-modal .order-item .order-quantity, 
+#order-summary-modal .subtotal,
+#order-summary-modal .total {
+    font-size: 16px; /* Aumenta la legibilidad con un tamaño de fuente mayor */
+}
+
+#order-summary-modal .order-item .remove-item {
+    font-size: 16px; /* Asegura que los botones de eliminar sean fácilmente accesibles */
+}
+
+#order-summary-modal #order-summary-content {
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es extenso */
+}
+
+#order-summary-modal .total {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #800000
+}
+
+#order-summary-modal .total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#order-summary-modal .total-row .left-section {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+#order-summary-modal .total-row .left-section span {
+  margin-left: 100px;
+}
+
+#order-summary-modal #checkout {
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.checkout-modal-container {
+  width: 90%;
+  margin: 0 auto;
+  height: auto;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  top: -0;
+}
+
+.checkout-modal-container .modal-content {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "candara";
+  font-size: 18px;
+}
+
+#privacy-modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+} 
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1025px) {
+  .producto .price-cart3 {
+    display: flex; /* Usar flexbox para alinear precio y botón de manera responsiva */
+    align-items: center; /* Centrar elementos verticalmente */
+    justify-content: space-between; /* Separar precio y botón */
+    flex-wrap: wrap; /* Permitir que los elementos pasen al siguiente renglón si no hay espacio */
+    width: 60%;
+  }
+  #order-summary-modal {
+    position: absolute;
+    /* height: auto; */
+    width: 95%; /* Aprovecha mejor el espacio horizontal */
+    top: 55%; /* Reduce el espacio superior para mejor acceso */
+    left: 50%; /* Centra el modal horizontalmente */
+    transform: translate(-50%, 0); /* Asegura que el modal está centrado */
+    max-width: none; /* Remueve cualquier límite máximo del ancho */
+    overflow: visible;
+    
+}
+
+#order-summary-modal .modal-content {
+  padding: 10px; /* Reduce el padding para dar más espacio al contenido */
+  width: 95%; /* Aumenta el ancho para usar la mayor parte de la pantalla */
+  box-sizing: border-box;
+}
+
+#order-summary-modal .top-bar h1 {
+  font-size: 22px; /* Reduce el tamaño de la fuente del título para que ocupe menos espacio */
+}
+
+#order-summary-modal .order-item, 
+#order-summary-modal .order-summary-header {
+    grid-template-columns: repeat(4, 1fr); /* Coloca los elementos en tres columnas */
+}
+
+#order-summary-modal .close, 
+#order-summary-modal #clear-cart, 
+#order-summary-modal #checkout {
+    font-size: 16px; /* Aumenta el tamaño de la fuente para mejor accesibilidad */
+    padding: 12px; /* Más área de toque para facilitar la interacción */
+}
+
+#order-summary-modal .order-item .order-quantity, 
+#order-summary-modal .subtotal,
+#order-summary-modal .total {
+    font-size: 16px; /* Aumenta la legibilidad con un tamaño de fuente mayor */
+}
+
+#order-summary-modal .order-item .remove-item {
+    font-size: 16px; /* Asegura que los botones de eliminar sean fácilmente accesibles */
+}
+
+#order-summary-modal #order-summary-content {
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es extenso */
+}
+
+#order-summary-modal .total {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #800000
+}
+
+#order-summary-modal .total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#order-summary-modal .total-row .left-section {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+#order-summary-modal .total-row .left-section span {
+  margin-left: 100px;
+}
+
+#order-summary-modal #checkout {
+  padding: 10px;
+  margin-left: 10px;
+}
 }
