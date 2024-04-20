@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 var mysql = require('mysql');
 const cors = require('cors');
 const app = express();
+const moment = require('moment-timezone');
 require('dotenv').config();
 
 app.use(cors());
@@ -25,8 +26,6 @@ connection.connect(function(err) {
 
   console.log('Conectado con el ID ' + connection.threadId);
 });
-
-const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
 // Ruta para recuperar todos los productos
 app.get('/get-products', (req, res) => {
@@ -67,7 +66,10 @@ app.post('/submit-order', [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
+  function getLocalDateTime() {
+    return moment().tz("Europe/Madrid").format('YYYY-MM-DD HH:mm:ss');
+  }
+  const currentDate = getLocalDateTime();
   console.log('Pedido recibido:', req.body);
   const order = req.body;
 
@@ -124,7 +126,6 @@ app.post('/submit-order', [
       orderDetailsPromises.push(promise);
     });
 
-    // Ejecuta todas las promesas
     Promise.all(orderDetailsPromises)
       .then(() => res.json({ message: 'Pedido recibido correctamente', orderId }))
       .catch((error) => {
