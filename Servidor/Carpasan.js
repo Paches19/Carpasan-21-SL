@@ -1,4 +1,5 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
 const cors = require('cors');
@@ -49,76 +50,89 @@ app.get('/get-products', (req, res) => {
   });
 });
 
-app.post('/submit-order', (req, res) => {
-console.log('Pedido recibido:', req.body);
+app.post('/submit-order', [
+  body('firstName').notEmpty().trim().escape(),
+  body('lastName').notEmpty().trim().escape(),
+  body('address').notEmpty().trim().escape(),
+  body('phone').notEmpty().isMobilePhone().trim().escape(),
+  body('email').notEmpty().isEmail().normalizeEmail(),
+  body('deliveryOption').notEmpty().trim().escape(),
+  body('extraInfo').optional().trim().escape(),
+  body('cart').isObject(),
+  body('cart.*.quantity').isNumeric(),
+  body('cart.*.productName').trim().escape()
+], (req, res) => {
+  // Revisa errores de validación
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  
+  console.log('Pedido recibido:', req.body);
   const order = req.body;
 
-  // Agrega el pedido a la tabla de Pedidos
-  connection.query('INSERT INTO Pedidos SET ?', {
-    Nombre: order.firstName,
-    Apellido: order.lastName,
-    Direccion: order.address,
-    Telefono: order.phone,
-    Email: order.email,
-    OpcionEnvio: order.deliveryOption,
-    InfoExtra: order.extraInfo,
-    EstadoPedido: 'Recibido',
-    FechaPedido: currentDate
-  }, (error, results) => {
+  // Agrega el pedido a la tabla de Pedidos con marcadores de posición para evitar inyecciones SQL
+  const insertOrderQuery = `
+    INSERT INTO Pedidos (Nombre, Apellido, Direccion, Telefono, Email, OpcionEnvio, InfoExtra, EstadoPedido, FechaPedido) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  connection.query(insertOrderQuery, [
+    order.firstName,
+    order.lastName,
+    order.address,
+    order.phone,
+    order.email,
+    order.deliveryOption,
+    order.extraInfo || '',
+    'Recibido',
+    currentDate
+  ], (error, results) => {
     if (error) {
-	console.error(error);
+      console.error('Error al agregar el pedido:', error);
       return res.status(500).json({ error });
     }
 
     const orderId = results.insertId;
-
     let orderDetailsPromises = [];
 
-// Agrega los detalles del pedido a la tabla de DetallesPedidos
-for (let productName in order.cart) {
-    let quantity = order.cart[productName];
+    // Procesa cada producto en el pedido
+    Object.entries(order.cart).forEach(([productName, quantity]) => {
+      // Promesa para insertar los detalles del pedido
+      let promise = new Promise((resolve, reject) => {
+        const selectProductQuery = 'SELECT ID_Producto FROM Productos WHERE NombreProducto = ?';
+        connection.query(selectProductQuery, [productName], (error, results) => {
+          if (error) {
+            return reject(error);
+          }
 
-    // Crea una nueva promesa para cada operación de base de datos
-    let promise = new Promise((resolve, reject) => {
-        // Busca el ID del producto que corresponde al nombre del producto
-        connection.query('SELECT ID_Producto FROM Productos WHERE NombreProducto = ?', [productName], (error, results) => {
-            if (error) {
+          if (results.length > 0) {
+            let productId = results[0].ID_Producto;
+            const insertDetailsQuery = 'INSERT INTO DetallesPedidos (ID_Pedido, ID_Producto, Cantidad) VALUES (?, ?, ?)';
+            connection.query(insertDetailsQuery, [orderId, productId, quantity], (error) => {
+              if (error) {
                 return reject(error);
-            }
-
-            if (results.length > 0) {
-                let productId = results[0].ID_Producto;
-
-                // Inserta una fila en la tabla de DetallesPedidos
-                connection.query('INSERT INTO DetallesPedidos SET ?', {
-                    ID_Pedido: orderId,
-                    ID_Producto: productId,
-                    Cantidad: quantity
-                }, (error) => {
-                    if (error) {
-                        return reject(error);
-                    }
-
-                    resolve();
-                });
-            } else {
-                console.log(`No se encontró un producto con el nombre ${productName}.`);
-                resolve();
-            }
+              }
+              resolve();
+            });
+          } else {
+            console.log(`No se encontró un producto con el nombre ${productName}.`);
+            resolve();
+          }
         });
+      });
+
+      orderDetailsPromises.push(promise);
     });
 
-    orderDetailsPromises.push(promise);
-}
-
-// Ejecuta todas las operaciones de base de datos y envía una única respuesta HTTP
-Promise.all(orderDetailsPromises)
-    .then(() => res.json({ orderId }))
-    .catch((error) => res.status(500).json({ error }));
-    // res.status(200).json({ message: 'Pedido recibido correctamente.' });
+    // Ejecuta todas las promesas
+    Promise.all(orderDetailsPromises)
+      .then(() => res.json({ message: 'Pedido recibido correctamente', orderId }))
+      .catch((error) => {
+        console.error('Error al procesar los detalles del pedido:', error);
+        res.status(500).json({ error });
+      });
   });
 });
-
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack)
