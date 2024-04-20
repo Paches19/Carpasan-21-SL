@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/19 17:24:12 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/20 10:58:26 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ let filtros = [
   "Packs",
 ];
 
-let productos; // Declaramos la variable globalmente
-let productosMostrados; // Array para almacenar los productos mostrados
-let columnasSeleccionadas = 3; // Columnas seleccionadas por defecto
+let productos;
+let productosMostrados;
+let columnasSeleccionadas = 3;
 
 let CartCountOnLoad = function () {
   let cartCount = document.getElementById("cart-count");

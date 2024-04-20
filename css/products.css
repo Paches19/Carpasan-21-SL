@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/19 17:59:02 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:19:25 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,8 +349,13 @@ hs {
 }
 
 .add-to-cart img {
-  width: 30px;
+  width: 4vh;
 }
+
+.add-to-cart:hover {
+  transform: scale(1.2);
+}
+
 
 .modal {
   display: none;
@@ -853,7 +858,7 @@ hs {
   cursor: pointer;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 600px) {
   #sidebar #filtroTags {
     display: none;
   }
@@ -907,6 +912,7 @@ hs {
 
   .producto .price-cart3 {
     display: flex; /* Usar flexbox para alinear precio y botón de manera responsiva */
+    flex-direction: column;
     align-items: center; /* Centrar elementos verticalmente */
     justify-content: space-between; /* Separar precio y botón */
     flex-wrap: wrap; /* Permitir que los elementos pasen al siguiente renglón si no hay espacio */
@@ -921,11 +927,12 @@ hs {
   }
 
   .producto .add-to-cart {
+    position: relative;
     padding: 0.5em 1em; /* Agregar padding al botón */
     border-radius: 0.5em; /* Redondear esquinas del botón */
-    margin-left: auto; /* Alinear el botón a la derecha */
-    width: 8vh;
+    width: 7vh;
     align-items: center;
+    margin-top: 2.5vh;
   }
 
   .grid-option, .ordenar {
@@ -1058,17 +1065,19 @@ hs {
   width: 100%; 
   height: 100%; 
   overflow: auto;
-} 
+}
 }
 
 
-@media screen and (min-width: 769px) and (max-width: 1025px) {
+@media screen and (min-width: 600px) and (max-width: 1025px) {
   .producto .price-cart3 {
     display: flex; /* Usar flexbox para alinear precio y botón de manera responsiva */
+    flex-direction: column;
     align-items: center; /* Centrar elementos verticalmente */
     justify-content: space-between; /* Separar precio y botón */
     flex-wrap: wrap; /* Permitir que los elementos pasen al siguiente renglón si no hay espacio */
     width: 60%;
+    margin-top: 2vh;
   }
   #order-summary-modal {
     position: absolute;

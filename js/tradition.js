@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:38:41 by adpachec          #+#    #+#             */
-/*   Updated: 2023/07/13 12:41:50 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:07:55 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,4 @@ iniciarRotacionAutomatica();
 const sliderContainer = document.querySelector('.slider-container');
 sliderContainer.addEventListener('mouseover', detenerRotacionAutomatica);
 sliderContainer.addEventListener('mouseout', iniciarRotacionAutomatica);
+

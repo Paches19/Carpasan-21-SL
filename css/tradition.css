@@ -6,26 +6,11 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:30:25 by adpachec          #+#    #+#             */
-/*   Updated: 2023/08/01 12:23:21 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:07:28 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-@media screen and (min-width: 768px) {
-  .section-left,
-  .section-right {
-    flex-basis: 50%;
-  }
-}
-
-/* .container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 40px;
-  display: flex;
-  flex-wrap: wrap;
-} */
-
-.section {
+.container-section {
   margin-bottom: 100px;
   width: 100%;
   display: flex;
@@ -36,6 +21,7 @@
   text-align: justify;
   padding: 10px 80px 10px 10px; /* Aumentado el padding en el lado derecho */
   box-sizing: border-box;
+  margin-left: 10vh;
 }
 
 .section-right {
@@ -155,4 +141,52 @@
 
 .location {
   text-align: center;
+}
+
+.search-cart input{
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  
+  .container-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-left, .section-right {
+    padding: 10px; /* Padding más pequeño para dispositivos móviles */
+    text-align: center; /* Centrado de texto */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+    max-width: 100%; /* Se asegura de que no exceda el ancho de la pantalla */
+  }
+
+  .section-title {
+    margin-bottom: 20px; /* Margen debajo del título */
+  }
+
+  .slider-container {
+    position: absolute; /* Las imágenes están posicionadas absolutamente dentro de su contenedor */
+    top: 50%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Alinea el centro de la imagen con el centro del contenedor */
+    width: 90%; /* Ancho de la imagen ajustado */
+    height: auto; /* Altura automática para mantener la proporción */
+    opacity: 0; /* Las imágenes inicialmente ocultas */
+    transition: opacity 0.75s ease-in-out;
+  }
+
+  .slider-item {
+    opacity: 0;
+    transition: opacity 0.75s ease-in-out;
+  }
+  .slider-item.active {
+    opacity: 1; /* La imagen activa se muestra */
+  }
+
+  .slider-item img {
+    width: 100%; /* La imagen se ajusta al ancho del contenedor del slider */
+    height: auto; /* Altura automática para mantener la proporción */
+  }
 }
