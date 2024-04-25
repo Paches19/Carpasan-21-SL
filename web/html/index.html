@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnicería Carpasan 21 SL</title>
+  <base href="/"> 
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/products.css">
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="container">
+        <div class="logo">
+          <img
+            src="/images/Carpasan-min.png"
+            alt="Carnicería Carpasan 21 SL"
+          />
+        </div>
+        <div class="top-bar-right">
+          <h1>Carnicería Carpasan 21 SL</h1>
+          <p>El sabor de la tradición</p>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="container">
+        <div class="nav-container">
+          <span class="menu-toggle" onclick="toggleMenu()">&#9776;</span>
+          <ul class="nav-links">
+            <li><a href="/html/index.html">Inicio</a></li>
+            <li>
+              <a href="/html/products.html">Productos</a>
+            </li>
+            <li><a href="/html/oferts.html">Ofertas</a></li>
+            <li><a href="/html/tradition.html">¿Quiénes somos?</a></li>
+            <li><a href="/html/contact.html">Contacto</a></li>
+          </ul>
+          <div class="search-cart">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar productos"
+            />
+            <div class="search-results" id="search-results">
+              <ul id="search-results-list"></ul>
+            </div>
+            <a class="cart-icon" id="cart-icon-button">
+              <img src="/images/CarritoCompra-min.png" alt="Carrito de compra" />
+              <span class="cart-count" id="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <div id="order-summary-modal" class="modal">
+      <div class="modal-content">
+        <div class="top-bar">
+          <h1>Resumen del Pedido</h1>
+          <span class="close">&times;</span>
+        </div>
+        <div class="order-summary-header">
+          <span class="header-item">Producto</span>
+          <span class="header-item">Cantidad</span>
+          <span class="header-item">Subtotal</span>
+          <span>Eliminar</span>
+        </div>
+        <div id="order-summary-content"></div>
+        <div id="clear-cart-button-container">
+          <button id="clear-cart">Eliminar Todo</button>
+        </div>
+        <div class="total-row">
+          <div class="left-section">
+            <span id="total-price"></span>
+          </div>
+          <div class="right-section">
+            <button id="checkout">Tramitar Pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="checkout-modal" class="modal checkout-modal-container">
+      
+      <div class="modal-content">
+        <div class="top-bar">
+          <h1>Tramitar Pedido</h1>
+          <span class="close">&times;</span>
+        </div>
+        <form id="checkout-form">
+          <label for="first-name">Nombre:</label>
+          <input type="text" id="first-name" name="first-name" required>
+          
+          <label for="last-name">Apellidos:</label>
+          <input type="text" id="last-name" name="last-name" required>
+          
+          <label for="address">Dirección:</label>
+          <input type="text" id="address" name="address" required>
+          
+          <label for="phone">Teléfono de Contacto:</label>
+          <input type="text" id="phone" name="phone" required>
+
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" required>
+          
+          <label for="delivery-option">Opción de Envío:</label>
+          <select id="delivery-option" name="delivery-option" required>
+            <option value="recoger">Recoger</option>
+            <option value="domicilio">A Domicilio</option>
+          </select>
+          
+          <label for="extra-info">Información Extra a Añadir:</label>
+          <textarea id="extra-info" name="extra-info" placeholder="Añade aquí alguna instrucción especial para el pedido"></textarea>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+          <label for="privacy-policy"><a id="show-policy" href="/privacy-policy.html">Acepto la política de privacidad y los términos y condiciones</a>.</label>
+        </div>
+          <div id="privacy-modal" class="modal">
+            <div class="modal-content">
+              <span class="close-privacy">&times;</span>
+              <h2>Política de Privacidad y Términos y Condiciones</h2>
+              <div class="policy-container" style="height: 300px; overflow-y: scroll;">
+                <iframe id="privacy-iframe" style="width: 100%; height: 100%;" src="/privacy-policy.html"></iframe>
+              </div>
+            </div>
+          </div>          
+          <div class="button-container">
+            <button id="confirm-order">Confirmar Pedido</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <main>
+    <section class="hero">
+      <div class="foto_producto">
+        <div class="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/images/carniceria1.png" alt="">
+              <div class="carousel-caption">
+                <h3>Frescura del producto</h3>
+                <p>Garantizamos la frescura de cada producto que ofrecemos.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/images/carniceria2.png" alt="">
+              <div class="carousel-caption">
+                <h3>Tradición de fabricación</h3>
+                <p>Elaboramos nuestros productos con métodos tradicionales.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/images/carniceria3.png" alt="">
+              <div class="carousel-caption">
+                <h3>Cuidado de la calidad</h3>
+                <p>La calidad es nuestra máxima prioridad en cada producto.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/images/carniceria4.png" alt="">
+              <div class="carousel-caption">
+                <h3>Rapidez de envío</h3>
+                <p>Entregamos nuestros productos de manera rápida y segura.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control prev" onclick="moverCarrusel(-1)">&#8249; </button>
+        <button class="carousel-control next" onclick="moverCarrusel(1)">&#8250;</button>
+      </div>
+    </section>
+
+    <section class="featured-products">
+      <div class="container">
+          <h2>Productos Destacados</h2>
+          <div class="product-list">
+            <div class="product-item">
+              <img src="/images/chuleton.png" alt="Producto 1">
+              <h3>Chuleton</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href=".#" class="btn">Ver Detalles</a>
+            </div>
+            <div class="product-item">
+              <img src="/images/chorizo.png" alt="Producto 2">
+              <h3>Chorizo</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href=".#" class="btn">Ver Detalles</a>
+            </div>
+            <div class="product-item">
+              <img src="/images/vaca.jpg" alt="Producto 3">
+              <h3>Lomo de vaca</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href=".#" class="btn">Ver Detalles</a>
+            </div>
+      </div>
+  </section>
+
+  <section class="location">
+    <div class="container">
+      <h2>Nuestra ubicación</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.8132214996485!2d-3.4813781!3d40.1025783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd421387588ba05d%3A0x49a64077b98bc125!2sCarpasan%2021%20SL!5e0!3m2!1sen!2ses!4v1626353208947!5m2!1sen!2ses"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Contáctanos</h3>
+      <p>C. de Jesús Sancho Aguilera, 44, 28360 Villaconejos, Madrid</p>
+      <p>Teléfono: 613 69 39 62</p>
+      <p>Email: info@carniceriacarpasan21.com</p>
+    </div>
+    <div class="footer-column">
+      <h3>Horario de Atención</h3>
+      <p>Lunes a Martes: 9:00 - 13:30 </p>
+      <p>Miercoles a Viernes: 9:00 - 13:30 y 17:00 - 20:00</p>
+      <p>Sábados: 9:00 - 14:00 </p>
+      <p>Domingos: Cerrado </p>
+    </div>
+    <div class="footer-column">
+      <h3>Síguenos</h3>
+      <div class="social-links">
+        <a href=".#" class="social-icon">
+          <img src="/images/facebook.svg" alt="Facebook"/>
+          <span>Facebook</span>
+        </a>
+        <a href=".https://www.instagram.com/carpasan21/?hl=es" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="/images/instagram.png" alt="Instagram"/>
+            <span>Instagram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-copy">
+    &copy; 2023 Carnicería Carpasan 21 SL. Todos los derechos reservados.
+  </p>
+</footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

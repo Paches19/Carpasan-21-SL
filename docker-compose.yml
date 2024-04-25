@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - carpasan_network
+    restart: always
+
+  order-server:
+    build:
+      context: ./order-server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+    networks:
+      - carpasan_network
+    restart: always
+
+  web-server:
+    build:
+      context: ./web-server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - carpasan_network
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mysql/init/:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+    networks:
+      - carpasan_network
+    restart: always
+
+networks:
+  carpasan_network:
+    driver: bridge
+
+volumes:
+  db-data:
