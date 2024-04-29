@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:2080",
   credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
 };
@@ -161,7 +161,7 @@ app.post("/iniciar-sesion", (req, res, next) => {
       });
 
       res.cookie("user_id", user.id); // Establece una cookie con el ID de usuario
-      return res.json({ message: "Inicio de sesión exitoso.", token });
+      return res.json({ message: "Inicio de sesion exitoso.", token });
     });
   })(req, res, next);
 });

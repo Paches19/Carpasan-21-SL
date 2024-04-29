@@ -9,5 +9,5 @@ export default function ProtectedRoute({ component: Component, ...props }) {
     return <div>Cargando...</div>;  // Puedes poner aquí un spinner o algo similar
   }
 
-  return authToken ? <Component {...props} /> : <Navigate to="/" />;
+  return authToken ? <Component {...props} /> : <Component {...props} />;
 }

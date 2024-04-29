@@ -14,7 +14,7 @@
       e.preventDefault();
       try {
         const data = await login(username, password);
-        if (data.message === "Inicio de sesión exitoso.") {
+        if (data.message === "Inicio de sesion exitoso.") {
           loginUser(data.token);
           navigate("/dashboard");
         } else {

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     role ENUM('usuario', 'gestorPedidos', 'admin') NOT NULL
 );
 
-INSER INTO Usuarios (Usuario, Password, role) VALUES ('pedidos', '$2b$10$ZTWBQjqI8JnbstLwmpatpOhzE5jrFJtULfKtYHc2f/.WM0xohyNB6', gestorPedidos);
+INSERT INTO Usuarios (Usuario, Password, role) VALUES ('pedidos', '$2b$10$ZTWBQjqI8JnbstLwmpatpOhzE5jrFJtULfKtYHc2f/.WM0xohyNB6', 'gestorPedidos');
 
 CREATE TABLE IF NOT EXISTS Productos (
     ID_Producto INT AUTO_INCREMENT PRIMARY KEY,

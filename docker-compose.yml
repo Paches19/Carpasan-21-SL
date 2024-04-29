@@ -5,7 +5,17 @@ services:
       context: ./
       dockerfile: ./nginx/Dockerfile
     ports:
-      - "80:80"
+      - "3080:3080"
+    networks:
+      - carpasan_network
+    restart: always
+
+  nginx-react:
+    build:
+      context: ./
+      dockerfile: ./nginx-react/Dockerfile
+    ports:
+      - "2080:2080"
     networks:
       - carpasan_network
     restart: always
@@ -15,7 +25,7 @@ services:
       context: ./order-server
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "3001:3001"
     depends_on:
       - mysql
     networks:
