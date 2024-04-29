@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/25 17:42:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:21:38 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ let filtros = [
   "Vacuno",
   "Pollo",
   "Cerdo",
+  "Obrador",
   "Embutido",
   "Cordero",
   "Oveja",
@@ -137,10 +138,10 @@ function mostrarProductos(productosMostrar) {
               <img src="${producto.imagen}" alt="${producto.nombre}">
               <h2>${producto.nombre}</h2>
               <p class="descripcion">${producto.descripcion}</p>
-              <div class="price-cart">
+              <div class="price-cart3">
                 <p2 class="precio">Precio: ${producto.precio} €/kg</p2>
                 <button class="add-to-cart" data-product="${producto.nombre}" data-price="${producto.precio}">
-                  <img src="/Carpasan-21-SL/images/CarritoCompra-min.png" alt="Añadir al carrito">
+                  <img src="/images/CarritoCompra-min.png" alt="Añadir al carrito">
                 </button>
               </div>
           `;

@@ -230,6 +230,23 @@ function OrderCard({ order }) {
     }
   };
 
+  const handleDelete = (orderId) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este pedido?")) {
+      if (orderId)
+      {
+        fetch(`http://localhost:3001/pedidos/${orderId}`, {
+          method: 'DELETE',
+        })
+        navigate("/Dashboard");
+          setTimeout(() => {
+            navigate("/HistorialPedidos");
+          }, 50);
+      }
+      else
+        console.log("Error orderId: " + orderId);
+    }
+  };
+
   return (
     <div className={`order-card ${expanded ? "expanded" : ""}`}>
       <div className="order-header" onClick={() => setExpanded(!expanded)}>
@@ -254,6 +271,12 @@ function OrderCard({ order }) {
           >
             {order.EstadoPedido}
           </span>
+          <button
+          className="button3"
+          onClick={() => handleDelete(order.ID_Pedido)}
+        >
+          Eliminar Pedido
+        </button>
         </div>
       </div>
       <div className="order-client">

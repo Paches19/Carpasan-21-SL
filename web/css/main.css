@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/20 13:01:18 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:29:43 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ body {
 	background-color: #f8f8f8;
 	overflow-x: hidden;
   }
+
+  .message {
+	position: relative;
+	font-size: 2.3vh;
+	font-style: italic;
+	margin-left: 5px;
+	color: yellow !important;
+}
   
 .container {
 	max-width: 90%; 

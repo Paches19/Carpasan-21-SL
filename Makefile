@@ -19,6 +19,7 @@ all:		$(NAME)
 $(NAME):	
 			@printf "\n$(BLUE)==> $(CYAN)Building Carpasan 🏗️\n\n$(RESET)"
 			@echo "Using compose file at $(COMPOSE_ROUTE)"
+			docker-compose -f $(COMPOSE_ROUTE) build
 			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --remove-orphans
 			@printf "\n$(BLUE)==> $(CYAN)Carpasan is running ✅\n$(RESET)"
 stop:
@@ -29,7 +30,8 @@ clean:		stop
 			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) down
 			@printf "\n$(BLUE)==> $(RED)Removed Carpasan 🗑️\n$(RESET)"
 
-fclean:		clean
+fclean:		stop
+			docker-compose -f $(COMPOSE_ROUTE) down --rmi all --volumes --remove-orphans
 			@printf "\n$(BLUE)==> $(RED)Fully cleaned Carpasan 🗑️\n$(RESET)"
 
 re:			clean
@@ -46,6 +48,8 @@ re-order-server:
 re-nginx:
 			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --no-deps --build nginx
 
+re-nginx-react:
+			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --no-deps --build nginx-react
 
 re-web-server:
 			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --no-deps --build web-server

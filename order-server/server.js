@@ -40,7 +40,11 @@ passport.use(
       "SELECT * FROM Usuarios WHERE Usuario = ?",
       [username],
       (err, results) => {
-        if (err) return done(err);
+        if (err)
+        {
+          console.log(`error` + err);
+          return done(err);
+        }
 
         const user = results[0];
 
@@ -49,8 +53,12 @@ passport.use(
           return done(null, false, { message: "Usuario no encontrado." });
         }
 
-        bcrypt.compare(password, user.Contraseña, (err, isMatch) => {
-          if (err) return done(err);
+        bcrypt.compare(password, user.Password, (err, isMatch) => {
+          if (err) 
+          {
+            console.log(`ierror` + err);
+            return done(err);
+          }
 
           if (isMatch) {
             console.log(`inicio exitoso.`);
@@ -211,6 +219,36 @@ app.put("/pedido/:pedidoId/estado", (req, res) => {
   );
 });
 
+app.delete("/pedidos/:id", (req, res) => {
+  const pedidoId = req.params.id;
+  console.log("Pedido a eliminar: ", pedidoId);
+
+  // Primero elimina los detalles del pedido
+  const deleteDetailsQuery = "DELETE FROM DetallesPedidos WHERE ID_Pedido = ?";
+
+  db.query(deleteDetailsQuery, [pedidoId], (errDetails, resultDetails) => {
+    if (errDetails) {
+      console.error("Error al eliminar los detalles del pedido:", errDetails);
+      res.status(500).send("Error al eliminar los detalles del pedido");
+    } else {
+      console.log("Detalles del pedido eliminados exitosamente");
+
+      // Si se eliminan los detalles, procede a eliminar el pedido
+      const deleteOrderQuery = "DELETE FROM Pedidos WHERE ID_Pedido = ?";
+
+      db.query(deleteOrderQuery, [pedidoId], (errOrder, resultOrder) => {
+        if (errOrder) {
+          console.error("Error al eliminar el pedido:", errOrder);
+          res.status(500).send("Error al eliminar el pedido");
+        } else {
+          console.log("Pedido eliminado exitosamente");
+          res.status(200).send("Pedido y detalles eliminados exitosamente");
+        }
+      });
+    }
+  });
+});
+
 //Mostrar pedido con detalles y productos
 app.get("/pedido/:id", (req, res) => {
   const pedidoId = req.params.id;
@@ -341,7 +379,6 @@ app.post("/add-product", (req, res) => {
 // Eliminar un producto
 app.delete("/Productos/:id", (req, res) => {
   const productId = req.params.id;
-  console.log("Producto a eliminar: ", productId);
   const deleteQuery = "DELETE FROM Productos WHERE ID_Producto = ?";
 
   db.query(deleteQuery, [productId], (err, result) => {
