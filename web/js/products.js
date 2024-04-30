@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/30 12:06:46 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:55:16 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -453,6 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmationMessage.innerHTML = `
     <h2>¡Pedido confirmado!</h2>
     <p>Gracias por tu compra. Pronto recibirás un correo electrónico con los detalles de tu pedido.</p>
+    <p> Nota: Debido a la naturaleza de nuestro negocio, las cantidades y precios finales pueden variar ligeramente y serán confirmados en el momento del pago.</p>
     <span id="close-confirmation-message">X</span>
   `;
 
@@ -468,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(function () {
       confirmationMessage.style.display = "none";
-    }, 10000);
+    }, 15000);
   }
 
   function confirmOrder() {
