@@ -19,7 +19,6 @@ all:		$(NAME)
 $(NAME):	
 			@printf "\n$(BLUE)==> $(CYAN)Building Carpasan 🏗️\n\n$(RESET)"
 			@echo "Using compose file at $(COMPOSE_ROUTE)"
-			docker-compose -f $(COMPOSE_ROUTE) build
 			@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --remove-orphans
 			@printf "\n$(BLUE)==> $(CYAN)Carpasan is running ✅\n$(RESET)"
 stop:

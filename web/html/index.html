@@ -3,10 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carnicería Carpasan 21 SL</title>
+  <title>Carnicería Carpasan21 en Villaconejos | El sabor de la tradicion | Carne fresca de primera calidad y precios altamente competitivos</title>
+  <meta name="description" content="Descubre la mejor carne fresca en Carpasan21SL, tu carnicería de confianza en Villaconejos. Ofrecemos productos de primera calidad al mejor precio. ¡Visitanos!">
   <base href="/"> 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/products.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Butcher",
+      "name": "Carpasan21",
+      "image": "/images/Carpasan-min.png",
+      "telephone": "613 69 39 62",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C. de Jesús Sancho Aguilera, 44",
+        "addressLocality": "Villaconejos",
+        "addressRegion": "Madrid",
+        "postalCode": "28360",
+        "addressCountry": "ES"
+      },
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "13:30",
+          "description": "Morning Hours"  // Optional: Add description for clarity
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "17:00",
+          "closes": "20:00",
+          "description": "Afternoon Hours"  // Optional: Add description for clarity
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.4049522,
+        "longitude": -3.6319141
+      },
+      "url": "http://www.Carpasan21.com",
+      "sameAs": [
+        "http://www.facebook.com/[tuFacebook]",
+        "https://www.instagram.com/carpasan21/?hl=es"
+      ]
+    }
+    </script>    
 </head>
 <body>
   <header>
@@ -15,7 +68,7 @@
         <div class="logo">
           <img
             src="/images/Carpasan-min.png"
-            alt="Carnicería Carpasan 21 SL"
+            alt="Carnicería Carpasan 21 SL en Villaconejos"
           />
         </div>
         <div class="top-bar-right">
@@ -24,7 +77,7 @@
         </div>
       </div>
     </div>
-    <span class="message" >Haz tu pedido ahora desde productos!!!</span>
+    <span class="message" >Haz tu pedido online ahora desde productos!!!</span>
     <nav>
       <div class="container">
         <div class="nav-container">
@@ -32,7 +85,6 @@
           <ul class="nav-links">
             <li><a href="/html/index.html">Inicio</a></li>
             <li>
-              
               <a href="/html/products.html">Productos</a>
             </li>
             <li><a href="/html/oferts.html">Ofertas</a></li>
@@ -111,7 +163,22 @@
             <option value="recoger">Recoger</option>
             <option value="domicilio">A Domicilio</option>
           </select>
-          
+          <div id="localidades-container" style="display:none;">
+            <label for="localidad-option">Seleccione una de las localidades disponibles a domicilio:</label>
+            <select id="localidad-option" name="localidad-option" required>
+                <option value="" disabled selected>Seleccione una localidad</option>
+                <option value="Villaconejos">Villaconejos</option>
+                <option value="Urtajo">Urtajo (urbanización)</option>
+                <option value="Balcon del Tajo">Balcón del Tajo</option>
+                <option value="Valle de San Juan">Valle de San Juan</option>
+                <option value="Los Vallejos">Los Vallejos</option>
+                <option value="Colmenar de Oreja">Colmenar de Oreja</option>
+                <option value="Chinchon">Chinchón</option>
+                <option value="Titulcia">Titulcia</option>
+                <option value="Ciempozuelos">Ciempozuelos</option>
+                <option value="Aranjuez">Aranjuez</option>
+            </select>
+        </div>
           <label for="extra-info">Información Extra a Añadir:</label>
           <textarea id="extra-info" name="extra-info" placeholder="Añade aquí alguna instrucción especial para el pedido"></textarea>
           
@@ -119,15 +186,15 @@
             <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
           <label for="privacy-policy"><a id="show-policy" href="/html/privacy-policy.html">Acepto la política de privacidad y los términos y condiciones</a>.</label>
         </div>
-          <div id="privacy-modal" class="modal">
-            <div class="modal-content">
-              <span class="close-privacy">&times;</span>
-              <h2>Política de Privacidad y Términos y Condiciones</h2>
-              <div class="policy-container" style="height: 300px; overflow-y: scroll;">
-                <iframe id="privacy-iframe" style="width: 100%; height: 100%;" src="/html/privacy-policy.html"></iframe>
-              </div>
+        <div id="privacy-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-privacy">&times;</span>
+            <h2>Política de Privacidad y Términos y Condiciones</h2>
+            <div class="policy-container" style="height: 300px; overflow-y: scroll;">
+              <iframe id="privacy-iframe" style="width: 100%; height: 100%;" src="privacy-policy.html"></iframe>
             </div>
-          </div>          
+          </div>
+        </div>   
           <div class="button-container">
             <button id="confirm-order">Confirmar Pedido</button>
           </div>
@@ -232,7 +299,7 @@
           <img src="/images/facebook.svg" alt="Facebook"/>
           <span>Facebook</span>
         </a>
-        <a href=".https://www.instagram.com/carpasan21/?hl=es" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <a href="https://www.instagram.com/carpasan21/?hl=es" target="_blank" rel="noopener noreferrer" class="social-icon">
             <img src="/images/instagram.png" alt="Instagram"/>
             <span>Instagram</span>
         </a>

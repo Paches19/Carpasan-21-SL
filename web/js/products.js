@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/29 13:21:38 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:06:46 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,6 +391,17 @@ document.addEventListener("DOMContentLoaded", function () {
     checkoutModal.style.display = "none";
   });
 
+  document.getElementById('delivery-option').addEventListener('change', function() {
+    var seleccion = this.value;
+    var contenedorLocalidades = document.getElementById('localidades-container');
+    
+    if (seleccion === 'domicilio') {
+        contenedorLocalidades.style.display = 'block';
+    } else {
+        contenedorLocalidades.style.display = 'none';
+    }
+});
+
   let confirmOrderButton = document.getElementById("confirm-order");
   confirmOrderButton.addEventListener("click", function () {
     event.preventDefault(); // Evitar que el formulario se envíe automáticamente
@@ -467,6 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let phone = document.getElementById("phone");
     let email = document.getElementById("email");
     let deliveryOption = document.getElementById("delivery-option");
+    let localidad = document.getElementById("localidad-option");
     let extraInfo = document.getElementById("extra-info");
     let privacyCheckbox = document.getElementById("privacy-policy");
     let tramModal = document.getElementById("checkout-modal");
@@ -478,22 +490,27 @@ document.addEventListener("DOMContentLoaded", function () {
     hideErrorField(lastName);
     hideErrorField(address);
     hideErrorField(phone);
+    hideErrorField(email);
+    hideErrorField(localidad);
     hideErrorField(privacyCheckbox);
     hideErrorField(firstName);
 
     if (firstName.value === "") {
       showErrorField(firstName, "Por favor, introduce tu nombre.");
       isEmptyField = true;
+      return ;
     }
 
     if (lastName.value === "") {
       showErrorField(lastName, "Por favor, introduce tus apellidos.");
       isEmptyField = true;
+      return ;
     }
 
     if (address.value === "") {
       showErrorField(address, "Por favor, introduce tu dirección.");
       isEmptyField = true;
+      return ;
     }
 
     let phoneRegex = /^\d{9}$|^\d{3} \d{3} \d{3}$/;
@@ -501,26 +518,35 @@ document.addEventListener("DOMContentLoaded", function () {
     if (phone.value === "") {
       showErrorField(phone, "Por favor, introduce tu teléfono de contacto.");
       isEmptyField = true;
+      return ;
     } else if (!phone.value.match(phoneRegex)) {
       showErrorField(
         phone,
         "Por favor, introduce un número de teléfono válido. Formato: 123456789 o 123 456 789"
       );
       isEmptyField = true;
+      return ;
     }
 
     if (email.value === "") {
       showErrorField(email, "Por favor, introduce tu email.");
       isEmptyField = true;
+      return ;
+    }
+
+    if(deliveryOption.value === 'domicilio' && localidad.value === "")
+    {
+      showErrorField(localidad, "Por favor, introduce localidad de envío.");
+      isEmptyField = true;
+      return ;
     }
 
     if (!privacyCheckbox.checked) {
       let privacyLabel = document.querySelector('label[for="privacy-policy"]');
       privacyLabel.style.color = "red";
+      showErrorField(privacyCheckbox, "Por favor, acepta los términos y condiciones de uso.");
       isEmptyField = true;
-    } else {
-      let privacyLabel = document.querySelector('label[for="privacy-policy"]');
-      privacyLabel.style.color = "#000";
+      return ;
     }
 
     if (isEmptyField) {

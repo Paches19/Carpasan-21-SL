@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/25 17:41:27 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:06:56 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,6 +299,17 @@ document.addEventListener("DOMContentLoaded", function () {
     checkoutModal.style.display = "none";
   });
 
+  document.getElementById('delivery-option').addEventListener('change', function() {
+    var seleccion = this.value;
+    var contenedorLocalidades = document.getElementById('localidades-container');
+    
+    if (seleccion === 'domicilio') {
+        contenedorLocalidades.style.display = 'block';
+    } else {
+        contenedorLocalidades.style.display = 'none';
+    }
+});
+
   let confirmOrderButton = document.getElementById("confirm-order");
   confirmOrderButton.addEventListener("click", function () {
     event.preventDefault();
@@ -327,7 +338,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function hideErrorField(element) {
-    // Eliminar el div de error específico del campo, si existe
+    if (!element) return;
+
     let errorDiv = element.nextElementSibling;
     if (errorDiv && errorDiv.className === "error-message") {
       errorDiv.parentNode.removeChild(errorDiv);
@@ -365,132 +377,146 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function confirmOrder() {
-    let firstName = document.getElementById("first-name");
-    let lastName = document.getElementById("last-name");
-    let address = document.getElementById("address");
-    let phone = document.getElementById("phone");
-    let email = document.getElementById("email");
-    let deliveryOption = document.getElementById("delivery-option");
-    let extraInfo = document.getElementById("extra-info");
-    let privacyCheckbox = document.getElementById("privacy-policy");
-    let tramModal = document.getElementById("checkout-modal");
-    let carritoEnd = JSON.parse(localStorage.getItem("carrito")) || {};
-
-    // Verificar si algún campo está vacío
-    let isEmptyField = false;
-    hideErrorField(firstName);
-    hideErrorField(lastName);
-    hideErrorField(address);
-    hideErrorField(phone);
-    hideErrorField(privacyCheckbox);
-    hideErrorField(firstName);
-
-    if (firstName.value === "") {
-      showErrorField(firstName, "Por favor, introduce tu nombre.");
-      isEmptyField = true;
-    }
-
-    if (lastName.value === "") {
-      showErrorField(lastName, "Por favor, introduce tus apellidos.");
-      isEmptyField = true;
-    }
-
-    if (address.value === "") {
-      showErrorField(address, "Por favor, introduce tu dirección.");
-      isEmptyField = true;
-    }
-
-    let phoneRegex = /^\d{9}$|^\d{3} \d{3} \d{3}$/;
-
-    if (phone.value === "") {
-      showErrorField(phone, "Por favor, introduce tu teléfono de contacto.");
-      isEmptyField = true;
-    } else if (!phone.value.match(phoneRegex)) {
-      showErrorField(
-        phone,
-        "Por favor, introduce un número de teléfono válido. Formato: 123456789 o 123 456 789"
-      );
-      isEmptyField = true;
-    }
-
-    if (email.value === "") {
-      showErrorField(email, "Por favor, introduce tu email.");
-      isEmptyField = true;
-    }
-
-    if (!privacyCheckbox.checked) {
-      let privacyLabel = document.querySelector('label[for="privacy-policy"]');
-      privacyLabel.style.color = "red";
-      isEmptyField = true;
-    } else {
-      let privacyLabel = document.querySelector('label[for="privacy-policy"]');
-      privacyLabel.style.color = "#000";
-    }
-
-    if (isEmptyField) {
-      showGeneralError(
-        "Debes completar todos los campos antes de confirmar el pedido."
-      );
-      return;
-    }
-
-    // hideGeneralError();
-    let order = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      address: address.value,
-      phone: phone.value,
-      email: email.value,
-      deliveryOption: deliveryOption.value,
-      extraInfo: extraInfo.value,
-      cart: carritoEnd,
-    };
-
-    fetch("http://localhost:3000/submit-order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(order),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(
-          "Pedido enviado correctamente. Respuesta del servidor:",
-          data
+      let firstName = document.getElementById("first-name");
+      let lastName = document.getElementById("last-name");
+      let address = document.getElementById("address");
+      let phone = document.getElementById("phone");
+      let email = document.getElementById("email");
+      let deliveryOption = document.getElementById("delivery-option");
+      let localidad = document.getElementById("localidad-option");
+      let extraInfo = document.getElementById("extra-info");
+      let privacyCheckbox = document.getElementById("privacy-policy");
+      let tramModal = document.getElementById("checkout-modal");
+      let carritoEnd = JSON.parse(localStorage.getItem("carrito")) || {};
+  
+      let isEmptyField = false;
+      hideErrorField(firstName);
+      hideErrorField(lastName);
+      hideErrorField(address);
+      hideErrorField(phone);
+      hideErrorField(email);
+      hideErrorField(localidad);
+      hideErrorField(privacyCheckbox);
+      hideErrorField(firstName);
+  
+      if (firstName.value === "") {
+        showErrorField(firstName, "Por favor, introduce tu nombre.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      if (lastName.value === "") {
+        showErrorField(lastName, "Por favor, introduce tus apellidos.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      if (address.value === "") {
+        showErrorField(address, "Por favor, introduce tu dirección.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      let phoneRegex = /^\d{9}$|^\d{3} \d{3} \d{3}$/;
+  
+      if (phone.value === "") {
+        showErrorField(phone, "Por favor, introduce tu teléfono de contacto.");
+        isEmptyField = true;
+        return ;
+      } else if (!phone.value.match(phoneRegex)) {
+        showErrorField(
+          phone,
+          "Por favor, introduce un número de teléfono válido. Formato: 123456789 o 123 456 789"
         );
+        isEmptyField = true;
+        return ;
+      }
+  
+      if (email.value === "") {
+        showErrorField(email, "Por favor, introduce tu email.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      if(deliveryOption.value === 'domicilio' && localidad.value === "")
+      {
+        showErrorField(localidad, "Por favor, introduce localidad de envío.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      if (!privacyCheckbox.checked) {
+        let privacyLabel = document.querySelector('label[for="privacy-policy"]');
+        privacyLabel.style.color = "red";
+        showErrorField(privacyCheckbox, "Por favor, acepta los términos y condiciones de uso.");
+        isEmptyField = true;
+        return ;
+      }
+  
+      if (isEmptyField) {
+        showGeneralError(
+          "Debes completar todos los campos antes de confirmar el pedido."
+        );
+        return;
+      }
+  
+      // hideGeneralError();
+      let order = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        address: address.value,
+        phone: phone.value,
+        email: email.value,
+        deliveryOption: deliveryOption.value,
+        extraInfo: extraInfo.value,
+        cart: carritoEnd,
+      };
+  
+      fetch("http://localhost:3000/submit-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
       })
-      .catch((error) => {
-        console.error("Error al enviar el pedido:", error);
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(
+            "Pedido enviado correctamente. Respuesta del servidor:",
+            data
+          );
+        })
+        .catch((error) => {
+          console.error("Error al enviar el pedido:", error);
+        });
+  
+      // Mostrar un mensaje de confirmación al usuario
+      showConfirmationMessage();
+  
+      carrito = {};
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+  
+      showOrderSummary();
+      updateCartCount();
+      document.getElementById("checkout-form").reset();
+      tramModal.style.display = "none";
+      orderSummaryModal.style.display = "none";
+    }
+  
+    document
+      .getElementById("show-policy")
+      .addEventListener("click", function (event) {
+        event.preventDefault(); // Evitar que el enlace realice la acción por defecto
+        document.getElementById("privacy-modal").style.display = "block";
       });
-
-    // Mostrar un mensaje de confirmación al usuario
-    showConfirmationMessage();
-
-    carrito = {};
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    showOrderSummary();
-    updateCartCount();
-    document.getElementById("checkout-form").reset();
-    tramModal.style.display = "none";
-    orderSummaryModal.style.display = "none";
-  }
-
-  document
-    .getElementById("show-policy")
-    .addEventListener("click", function (event) {
-      event.preventDefault(); // Evitar que el enlace realice la acción por defecto
-      document.getElementById("privacy-modal").style.display = "block";
-    });
-  document
-    .getElementsByClassName("close-privacy")[0]
-    .addEventListener("click", function () {
-      document.getElementById("privacy-modal").style.display = "none";
-    });
-});
+    document
+      .getElementsByClassName("close-privacy")[0]
+      .addEventListener("click", function () {
+        document.getElementById("privacy-modal").style.display = "none";
+      });
+  });

@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/29 13:32:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:47:47 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ body {
 }
 
 header {
-  background-color: #333;
-  padding: 10px 0;
+  background-color: #222;
+  /* padding: 10px 0; */
   color: #ffffff;
   text-align: center;
 }
@@ -384,6 +384,7 @@ hs {
   border: 3px solid #800000;
   width: 30%;
   border-radius: 15px;
+  background-color: #fff;
 }
 
 .modal-content .quantity {
@@ -395,10 +396,13 @@ hs {
   margin: 15px 0;
 }
 
-.top-bar {
+.modeal-content .top-bar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  top: 0;
+  background-color: #f8f8f8 !important;
 }
 
 .close {
@@ -667,14 +671,22 @@ hs {
 }
 
 .checkout-modal-container {
+  position: fixed;
   width: auto;
-  max-width: 90%;
-  margin: 0 auto;
-  height: auto;
+  height: 90%;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
   display: none;
+  transform: translate(-50%, -50%);
+  overflow: visible;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+}
+
+.checkout-modal-container .extra-info{
+  height: auto;
 }
 
 .checkout-modal-container .modal-content {

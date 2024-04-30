@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2024/04/29 13:29:43 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:29:35 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ body {
 }
 
   /* Estilos de la barra superior */
+
   .top-bar {
-	background-color: #F8F8F8;
-	/* color: #000000; */
+	display: flex;
+	background-color: #F8f8f8 !important;
+	align-items: center;
   }
   
   .top-bar .container {
-	display: flex; 
-	padding-left: 9.2%;
-	
+	display: flex;
+	background-color: #F8f8f8;
+	/* transform: translate(-50%, -50%); */
   }
   
   .logo img {
@@ -84,8 +86,8 @@ body {
   }
 
   header {
-	background-color: #333;
-	padding: 10px 0;
+	background-color: #222;
+	/* padding: 10px 0; */
 	color: #ffffff;
 	text-align: center;
   }
@@ -128,6 +130,10 @@ body {
 	flex-grow: 1;
 	min-width: 0;
   }
+
+  .nav-links li:hover {
+	transform: scale(1.2);
+  }
   
   .nav-links li:last-child {
 	margin-right: 0;
@@ -157,6 +163,7 @@ body {
   
   .nav-links a:hover {
 	opacity: 0.8;
+	transform: scale(1.2);
   }
 
   .search-cart input[type="text"] {
@@ -268,6 +275,7 @@ body {
   }
   
   .cart-count {
+	font-family: arial;
 	background-color: #FF0000;
 	color: #FFFFFF;
 	border-radius: 50%;
@@ -533,7 +541,7 @@ footer::before {
 	/* left: 5%; */
 	width: 100%;
 	height: 5px;
-	background: linear-gradient(to right, #ff9c9c, #800000, #ff9c9c);
+	background:  #800000;
 }
 
 footer::after {
@@ -545,7 +553,7 @@ footer::after {
 	/* left: 5%; */
 	width: 100%;
 	height: 5px;
-	background: linear-gradient(to right, #ff9c9c, #800000, #ff9c9c);
+	background: #800000;
 }
   
   .footer-container {
@@ -670,9 +678,14 @@ h3 {
         font-size: 18px;
     }
 
+	.top-bar{
+		background-color: #f8f8f8 !important;
+	}
+
     .top-bar .container, .nav {
         flex-direction: column;
         align-items: center;
+		
     }
 
     .top-bar-right {
