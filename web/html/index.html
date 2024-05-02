@@ -33,7 +33,7 @@
           ],
           "opens": "09:00",
           "closes": "13:30",
-          "description": "Morning Hours"  // Optional: Add description for clarity
+          "description": "Horario de mañana"
         },
         {
           "@type": "OpeningHoursSpecification",
@@ -45,7 +45,7 @@
           ],
           "opens": "17:00",
           "closes": "20:00",
-          "description": "Afternoon Hours"  // Optional: Add description for clarity
+          "description": "Horario de tarde"
         }
       ],
       "geo": {
@@ -180,18 +180,17 @@
             </select>
         </div>
           <label for="extra-info">Información Extra a Añadir:</label>
-          <textarea id="extra-info" name="extra-info" placeholder="Añade aquí alguna instrucción especial para el pedido"></textarea>
+          <input type="text" id="extra-info" name="extra-info" placeholder="Añade aquí alguna instrucción especial para el pedido">
           
           <div class="checkbox-container">
             <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
-          <label for="privacy-policy"><a id="show-policy" href="/html/privacy-policy.html">Acepto la política de privacidad y los términos y condiciones</a>.</label>
+          <label for="privacy-policy"><a id="show-policy">Acepto la política de privacidad y los términos y condiciones</a>.</label>
         </div>
         <div id="privacy-modal" class="modal">
           <div class="modal-content">
             <span class="close-privacy">&times;</span>
             <h2>Política de Privacidad y Términos y Condiciones</h2>
-            <div class="policy-container" style="height: 300px; overflow-y: scroll;">
-              <iframe id="privacy-iframe" style="width: 100%; height: 100%;" src="privacy-policy.html"></iframe>
+              <div class="policy-container" style="height: 300px; overflow-y: scroll;" id="policy-content">
             </div>
           </div>
         </div>   

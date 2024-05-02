@@ -5,5 +5,5 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 # Copiar los archivos estáticos de la web
 COPY ./web /usr/share/nginx/html/static
 
-EXPOSE 3080
-CMD ["nginx", "-g", "daemon off;" , "-p", "3080"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;" , "-p", "80"]

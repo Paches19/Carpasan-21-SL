@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS DetallesPedidos (
 INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Carne Picada Mixta', 8.50, '/images/vacuno/carne_picada.jpg', 'Vacuno', 'Carne picada de cerdo, ternera y mixta'),
 ('Carne Magra para Guisar', 8.50, '/images/vacuno/carne_magra.jpg', 'Vacuno', 'Carne magra para guisar de vacuno'),
-('Falda Churrasco', 9.50, '/images/vacuno/falda_churrasco.jpg', 'Vacuno', ''),
+('Churrasco de Falda Vaca', 9.50, '/images/vacuno/falda_churrasco.jpg', 'Vacuno', ''),
 ('Filetes de Babilla y Cadera', 10.90, '/images/vacuno/filetes_babilla_cadera.jpg', 'Vacuno', ''),
 ('Rabo de Vaca Gallega', 12.50, '/images/vacuno/rabo_vaca.jpg', 'Vacuno', ''),
 ('Aguja de Novilla', 12.50, '/images/vacuno/aguja_novilla.jpg', 'Vacuno', ''),
@@ -77,16 +77,16 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Pollos Enteros', 3.40, '/images/pollo/pollos_enteros.jpg', 'Pollo', 'Pollos enteros'),
 ('Alas de Pollo Frescas', 4.20, '/images/pollo/alas_pollo.jpg', 'Pollo', 'Alas de pollo frescas'),
 ('Contras de Pollo', 4.40, '/images/pollo/contras_pollo.jpg', 'Pollo', 'Contras de pollo'),
-('Alas Adobadas de Pollo', 4.50, '/images/pollo/alas_adobadas.jpg', 'Pollo', 'Alas adobadas de pollo'),
-('Pechugas Deshuesadas', 6.50, '/images/pollo/pechugas_desguesadas.jpg', 'Pollo', 'Pechugas deshuesadas'),
-('Conejos', 9.20, '/images/especiales/conejos.jpg', 'Especiales', 'Conejos'),
+('Alas Adobadas de Pollo', 4.50, '/images/pollo/alas_adobadas.jpg', 'Pollo, Adobados', 'Alas adobadas de pollo'),
+('Pechugas Deshuesadas', 6.50, '/images/pollo/pechugas_deshuesadas.jpg', 'Pollo', 'Pechugas deshuesadas'),
+('Conejo', 9.20, '/images/especiales/conejos.jpg', 'Especiales', 'Conejo entero'),
 
 ('Butifarras en Pinchitos', 6.50, '/images/obrador/butifarras_pinchitos.jpg', 'Obrador', 'Butifarras frescas presentadas en pinchitos'),
 ('Chorizo para Guisar, Barbacoa y Pincho', 6.50, '/images/obrador/chorizo_variedades.jpg', 'Obrador', 'Chorizo versatil para guisar, barbacoa y pincho'),
 ('Morcilla de Cebolla y Pincho', 6.50, '/images/obrador/morcilla_cebolla.jpg', 'Obrador', 'Morcilla de cebolla, disponible tambien en pincho'),
 ('Salchichas Frescas', 6.99, '/images/obrador/salchichas_frescas.jpg', 'Obrador', ''),
-('Hamburguesas Mixtas', 6.99, '/images/obrador/hamburguesas_mixtas.jpg', 'Obrador', ''),
-('Hamburguesas de Vaca de Pontevedra', 7.50, '/images/obrador/hamburguesas_vaca.jpg', 'Obrador', ''),
+('Hamburguesas Mixtas', 6.99, '/images/obrador/hamburguesas_mixtas.jpg', 'Obrador, Vacuno, Cerdo', ''),
+('Hamburguesas de Vaca de Pontevedra', 7.50, '/images/obrador/hamburguesas_vaca.jpg', 'Obrador, Vacuno', ''),
 ('Cabeza de Jabali (Chicharron)', 10.00, '/images/obrador/cabeza_jabali.jpg', 'Obrador', 'Cabeza de jabali procesada en forma de chicharron'),
 ('Sarta Dulce', 12.00, '/images/obrador/sarta_dulce.jpg', 'Obrador', ''),
 ('Sarta Picante', 12.00, '/images/obrador/sarta_picante.jpg', 'Obrador', ''),
@@ -101,6 +101,5 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Centros de Jamon para Lonchear', 12.50, '/images/embutido/centros_jamon.jpg', 'Embutido', ''),
 
 -- Adobados
-('Alas de Pollo Adobadas', 4.50, '/images/adobados/alas_pollo_adobadas.jpg', 'Adobados', ''),
-('Pincho Moruno de Cerdo', 6.50, '/images/adobados/pincho_moruno.jpg', 'Adobados', ''),
-('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados', '');
+('Pincho Moruno de Cerdo', 6.50, '/images/adobados/pincho_moruno.jpg', 'Adobados, Cerdo', ''),
+('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados, Cerdo', '');

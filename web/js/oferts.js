@@ -351,3 +351,83 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById("privacy-modal").style.display = "none";
 	  });
   });
+
+  function loadPolicyContent() {
+    const policyContent = document.getElementById('policy-content');
+    policyContent.innerHTML = `
+    <h1>Política de privacidad</h1>
+    <p>En Carpasan 21 SL, nos tomamos muy en serio la privacidad de nuestros usuarios. Esta política de privacidad describe cómo recopilamos, utilizamos, almacenamos y protegemos la información personal que nos proporcionas. Al utilizar nuestro sitio web Carpasan21.com y nuestros servicios, aceptas los términos y condiciones de esta política.</p>
+
+    <h2>Información que recopilamos</h2>
+    <p>Recopilamos la siguiente información personal:</p>
+    <ul>
+      <li>Nombre y apellidos</li>
+      <li>Dirección de correo electrónico</li>
+      <li>Dirección postal</li>
+      <li>Número de teléfono</li>
+    </ul>
+
+    <h2>Uso de la información</h2>
+    <p>Utilizamos la información personal recopilada para los siguientes fines:</p>
+    <ul>
+      <li>Procesar tus pedidos y entregas</li>
+      <li>Proporcionar asistencia al cliente</li>
+      <li>Mejorar nuestros productos y servicios</li>
+      <li>Enviar comunicaciones de marketing y promocionales</li>
+    </ul>
+
+    <h2>Compartir información con terceros</h2>
+    <p>No compartimos tu información personal con terceros sin tu consentimiento, excepto en los siguientes casos:</p>
+    <ul>
+      <li>Proveedores de servicios: Podemos compartir tu información con terceros que nos ayudan a proporcionar servicios, como el procesamiento de pagos o el envío de pedidos.</li>
+      <li>Requisitos legales: Podemos divulgar tu información personal cuando creemos de buena fe que la divulgación es necesaria para cumplir con una obligación legal, proteger tus derechos o responder a una solicitud gubernamental.</li>
+    </ul>
+
+    <h2>Seguridad de la información</h2>
+    <p>Tomamos medidas razonables para proteger la información personal que recopilamos. Sin embargo, no podemos garantizar la seguridad absoluta de la información transmitida a través de Internet.</p>
+
+    <h2>Tus derechos</h2>
+    <p>Tienes derecho a acceder, corregir, actualizar y eliminar tu información personal. Si deseas ejercer alguno de estos derechos, por favor contáctanos a través de los datos de contacto proporcionados al final de esta política.</p>
+
+    <h2>Cambios en la política de privacidad</h2>
+    <p>Podemos actualizar nuestra política de privacidad de vez en cuando. Te recomendamos revisar esta página periódicamente para estar al tanto de los cambios. Al continuar utilizando nuestros servicios después de cualquier modificación de esta política, aceptas los términos actualizados.</p>
+
+
+	<h1>Términos y condiciones</h1>
+    <p>Estos términos y condiciones rigen el uso de nuestro sitio web Carpasan21.com y los servicios que ofrecemos. Al utilizar nuestro sitio web y nuestros servicios, aceptas cumplir con estos términos y condiciones. Si no estás de acuerdo con alguno de los siguientes términos, por favor no utilices nuestro sitio web ni nuestros servicios.</p>
+
+    <h2>Propiedad intelectual</h2>
+    <p>Todos los derechos de propiedad intelectual relacionados con nuestro sitio web y nuestros servicios son propiedad exclusiva de Carpasan21 SL a menos que se indique lo contrario. No está permitida la reproducción, distribución, modificación o uso no autorizado de ningún contenido protegido por derechos de autor sin nuestro consentimiento previo por escrito.</p>
+
+    <h2>Uso del sitio web</h2>
+    <p>Estás autorizado a utilizar nuestro sitio web y nuestros servicios únicamente para fines legítimos y de acuerdo con estos términos y condiciones. No debes utilizar nuestro sitio web de ninguna manera que pueda causar daños o perjuicios a nosotros, a otros usuarios o a terceros.</p>
+
+    <h2>Limitación de responsabilidad</h2>
+    <p>No seremos responsables por ningún daño directo, indirecto, incidental, consecuente o especial que resulte del uso de nuestro sitio web o nuestros servicios. Nos esforzamos por proporcionar información precisa y actualizada, pero no garantizamos la exactitud, integridad o actualidad de la información.</p>
+
+    <h2>Enlaces a otros sitios web</h2>
+    <p>Nuestro sitio web puede contener enlaces a sitios web de terceros que no están bajo nuestro control. No asumimos ninguna responsabilidad por el contenido, políticas de privacidad o prácticas de los sitios web de terceros. Recomendamos leer las políticas de privacidad y los términos y condiciones de dichos sitios web antes de utilizarlos.</p>
+
+    <h2>Modificaciones de los términos y condiciones</h2>
+    <p>Podemos actualizar estos términos y condiciones en cualquier momento sin previo aviso. Te recomendamos revisar esta página periódicamente para estar al tanto de los cambios. Al continuar utilizando nuestro sitio web y nuestros servicios después de cualquier modificación de estos términos y condiciones, aceptas los términos actualizados.</p>
+
+    <h2>Contacto</h2>
+    <p>Si tienes alguna pregunta o inquietud acerca de nuestra política de privacidad o términos y condiciones, por favor contáctanos a través de:</p>
+    <ul>
+      <li>Teléfono: 613 69 39 62</li>
+      <li>Correo electrónico: Carpasan21@gmail.com</li>
+      <li>Dirección postal: 28360</li>
+    </ul>
+    `;
+}
+
+// Asegúrate de llamar a esta función cuando sea necesario, por ejemplo, al abrir el modal.
+document.getElementById('show-policy').addEventListener('click', function (event) {
+    event.preventDefault();
+    loadPolicyContent();
+    document.getElementById('privacy-modal').style.display = 'block';
+});
+
+document.getElementsByClassName('close-privacy')[0].addEventListener('click', function () {
+    document.getElementById('privacy-modal').style.display = 'none';
+});

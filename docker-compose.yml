@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: ./nginx/Dockerfile
     ports:
-      - "3080:3080"
+      - "80:80"
     networks:
       - carpasan_network
     restart: always
