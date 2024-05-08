@@ -110,18 +110,6 @@ function asegurarAutenticacion(req, res, next) {
   }
 }
 
-// Middleware de autorización para el rol admin
-function asegurarAdmin(req, res, next) {
-  if (
-    req.user &&
-    (req.user.rol === "gestorPedidos" || req.user.rol === "admin")
-  ) {
-    return next();
-  } else {
-    res.status(403).send("Requiere permisos de administrador");
-  }
-}
-
 // Conexión a MySQL
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
