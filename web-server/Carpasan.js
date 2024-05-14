@@ -6,6 +6,15 @@ const cors = require('cors');
 const app = express();
 const moment = require('moment-timezone');
 require('dotenv').config();
+const fs = require('fs');
+const readline = require('readline');
+const { google } = require('googleapis');
+
+// Carga las credenciales de cliente desde un archivo local
+const CREDENTIALS_PATH = 'credentials.json';
+const TOKEN_PATH = 'token.json';
+
+const SCOPES = ['https://www.googleapis.com/auth/gmail.send'];
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -124,13 +133,99 @@ app.post('/submit-order', [
     });
 
     Promise.all(orderDetailsPromises)
-      .then(() => res.json({ message: 'Pedido recibido correctamente', orderId }))
+      .then(() => {
+        sendEmail(order);
+
+        res.json({ message: 'Pedido recibido correctamente', orderId });
+      })
       .catch((error) => {
         console.error('Error al procesar los detalles del pedido:', error);
         res.status(500).json({ error });
       });
   });
 });
+
+// Función para cargar las credenciales y autorizar el cliente OAuth2
+function authorize(credentials, callback) {
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+
+  // Comprueba si tenemos un token previamente almacenado
+  fs.readFile(TOKEN_PATH, (err, token) => {
+      if (err) return getAccessToken(oAuth2Client, callback);
+      oAuth2Client.setCredentials(JSON.parse(token));
+      callback(oAuth2Client);
+  });
+}
+
+// Función para obtener un nuevo token de acceso
+function getAccessToken(oAuth2Client, callback) {
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+  console.log('Authorize this app by visiting this url:', authUrl);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  rl.question('Enter the code from that page here: ', (code) => {
+    rl.close();
+    oAuth2Client.getToken(code, (err, token) => {
+      if (err) return console.error('Error retrieving access token', err);
+      oAuth2Client.setCredentials(token);
+      // Almacena el token para futuras ejecuciones
+      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+        if (err) return console.error(err);
+        console.log('Token stored to', TOKEN_PATH);
+      });
+      callback(oAuth2Client);
+    });
+  });
+}
+
+// Función para enviar un correo electrónico
+function sendEmail(order) {
+  // Carga las credenciales de cliente
+  fs.readFile(CREDENTIALS_PATH, (err, content) => {
+    if (err) return console.log('Error loading client secret file:', err);
+    authorize(JSON.parse(content), (auth) => {
+      const gmail = google.gmail({ version: 'v1', auth });
+
+      const emailContent = `
+        To: ${order.email}\r\n
+        Subject: Resumen de tu pedido\r\n
+        \r\n
+        Gracias por tu pedido, ${order.firstName} ${order.lastName}.\r\n
+        Aquí está el resumen de tu compra:\r\n
+        Dirección: ${order.address}\r\n
+        Teléfono: ${order.phone}\r\n
+        \r\n
+        Productos:\r\n
+        ${Object.entries(order.cart).map(([productName, quantity]) => `${productName}: ${quantity}`).join('\r\n')}
+        \r\n
+        Opción de envío: ${order.deliveryOption}\r\n
+        Información adicional: ${order.extraInfo || 'N/A'}\r\n
+        \r\n
+        Fecha de pedido: ${new Date().toLocaleString()}
+      `;
+
+      const encodedMessage = Buffer.from(emailContent)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+      gmail.users.messages.send({
+        userId: 'me',
+        requestBody: { raw: encodedMessage },
+      }, (err, res) => {
+        if (err) return console.log('The API returned an error: ' + err);
+        console.log('Email sent: ', res.data);
+      });
+    });
+  });
+}
 
 app.use(function(err, req, res, next) {
 	console.error(err.stack)
