@@ -12,8 +12,8 @@ RUN apt-get update && \
     apt-get clean
 
 # Configurar NGINX
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx/options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
+COPY ./data/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./data/nginx/options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 
 COPY ./web /usr/share/nginx/html/static
 
