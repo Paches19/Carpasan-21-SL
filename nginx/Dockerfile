@@ -1,9 +1,18 @@
 # Etapa de NGINX para servir los archivos
-FROM nginx:alpine
+FROM nginx:stable
+
+RUN mkdir -p /var/www/certbot
+
+RUN apt-get update && \
+    apt-get install -y certbot python3-certbot-nginx && \
+    apt-get clean
+
 # Configurar NGINX
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-# Copiar los archivos estáticos de la web
+COPY ./nginx/options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
+COPY ./nginx/entrypoint.sh /entrypoint.sh
+
 COPY ./web /usr/share/nginx/html/static
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;" , "-p", "80"]
+EXPOSE 80 443
+ENTRYPOINT ["/entrypoint.sh"]

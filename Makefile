@@ -6,7 +6,7 @@
 #    By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 11:30:04 by adpachec          #+#    #+#              #
-#    Updated: 2024/05/16 11:54:38 by adpachec         ###   ########.fr        #
+#    Updated: 2024/05/17 11:39:35 by adpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME):
 	@echo "Using compose file at $(COMPOSE_ROUTE)"
 	@docker-compose -p $(NAME) -f $(COMPOSE_ROUTE) up -d --remove-orphans
 	@printf "\n$(BLUE)==> $(CYAN)Carpasan is running ✅\n$(RESET)"
-	# @$(MAKE) cert
+	@$(MAKE) cert
 
 cert:
 	@printf "\n$(BLUE)==> $(CYAN)Obtaining SSL certificate with Certbot 🔒\n\n$(RESET)"
