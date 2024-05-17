@@ -10,7 +10,6 @@ RUN apt-get update && \
 # Configurar NGINX
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
-COPY ./nginx/entrypoint.sh /entrypoint.sh
 
 COPY ./web /usr/share/nginx/html/static
 
