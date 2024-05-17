@@ -17,4 +17,4 @@ COPY /web /usr/share/nginx/html/static
 
 EXPOSE 80 443
 
-ENTRYPOINT ["/bin/bash", "/init.sh"]
+CMD ["nginx", "-g", "daemon off;"]
