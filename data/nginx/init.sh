@@ -7,7 +7,7 @@ sleep 10
 certbot certonly --webroot --webroot-path=/var/www/certbot -d carpasan21.com -d www.carpasan21.com --non-interactive --agree-tos -m carpasan21sl@gmail.com
 
 # Copia la configuración SSL de Nginx
-cp /etc/nginx/nginxFinal.conf /etc/nginx/nginx.conf
+cp /etc/nginx/nginx-ssl.conf /etc/nginx/nginx.conf
 
 # Reinicia Nginx con la configuración SSL
 nginx -s reload

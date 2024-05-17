@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y certbot python3-certbot-nginx && apt-ge
 
 # Copiamos la configuración inicial de Nginx
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx-ssl.conf /etc/nginx/nginx-ssl.conf
 COPY ./options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 
 COPY ./web /usr/share/nginx/html/static
