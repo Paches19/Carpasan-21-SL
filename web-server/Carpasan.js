@@ -145,16 +145,45 @@ app.post('/submit-order', [
   });
 });
 
-// Función para cargar las credenciales y autorizar el cliente OAuth2
-function authorize(credentials, callback) {
-  const { client_secret, client_id, redirect_uris } = credentials.installed;
+app.get('/oauth2callback', (req, res) => {
+  const code = req.query.code;
+  if (!code) {
+    return res.status(400).send('No code provided');
+  }
+
+  // Carga las credenciales de cliente
+  fs.readFile(CREDENTIALS_PATH, (err, content) => {
+    if (err) return res.status(500).send('Error loading client secret file');
+    authorizeWithCode(JSON.parse(content), code, (auth) => {
+      res.send('Authorization successful! You can close this window.');
+    });
+  });
+});
+
+function authorizeWithCode(credentials, code, callback) {
+  const { client_secret, client_id, redirect_uris } = credentials.web;
   const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
 
-  // Comprueba si tenemos un token previamente almacenado
+  oAuth2Client.getToken(code, (err, token) => {
+    if (err) return console.error('Error retrieving access token', err);
+    oAuth2Client.setCredentials(token);
+    // Almacena el token para futuras ejecuciones
+    fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+      if (err) return console.error(err);
+      console.log('Token stored to', TOKEN_PATH);
+    });
+    callback(oAuth2Client);
+  });
+}
+
+function authorize(credentials, callback) {
+  const { client_secret, client_id, redirect_uris } = credentials.web;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+
   fs.readFile(TOKEN_PATH, (err, token) => {
-      if (err) return getAccessToken(oAuth2Client, callback);
-      oAuth2Client.setCredentials(JSON.parse(token));
-      callback(oAuth2Client);
+    if (err) return getAccessToken(oAuth2Client, callback);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    callback(oAuth2Client);
   });
 }
 
@@ -184,7 +213,6 @@ function getAccessToken(oAuth2Client, callback) {
   });
 }
 
-// Función para enviar un correo electrónico
 function sendEmail(order) {
   // Carga las credenciales de cliente
   fs.readFile(CREDENTIALS_PATH, (err, content) => {
@@ -193,24 +221,57 @@ function sendEmail(order) {
       const gmail = google.gmail({ version: 'v1', auth });
 
       const emailContent = `
-        To: ${order.email}\r\n
-        Subject: Resumen de tu pedido\r\n
-        \r\n
-        Gracias por tu pedido, ${order.firstName} ${order.lastName}.\r\n
-        Aquí está el resumen de tu compra:\r\n
-        Dirección: ${order.address}\r\n
-        Teléfono: ${order.phone}\r\n
-        \r\n
-        Productos:\r\n
-        ${Object.entries(order.cart).map(([productName, quantity]) => `${productName}: ${quantity}`).join('\r\n')}
-        \r\n
-        Opción de envío: ${order.deliveryOption}\r\n
-        Información adicional: ${order.extraInfo || 'N/A'}\r\n
-        \r\n
-        Fecha de pedido: ${new Date().toLocaleString()}
-      `;
+      <html>
+      <body style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; padding: 20px;">
+        <h2 style="color: #555;">Gracias por tu compra, ${order.firstName} ${order.lastName}.</h2>
+        <p>Nos complace confirmar tu pedido con la siguiente información:</p>
+        <h3 style="color: #555;">Resumen de tu compra</h3>
+        <p><strong>Dirección:</strong> ${order.address}</p>
+        <p><strong>Teléfono:</strong> ${order.phone}</p>
+        <h3 style="color: #555;">Productos:</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Producto</th>
+              <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; text-align: left;">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${Object.entries(order.cart).map(([productName, quantity]) => `
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">${productName}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">${quantity} kg</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <p><strong>Precio total aproximado:</strong> ${order.total} €</p>
+        <p><strong>Opción de envío:</strong> ${order.deliveryOption}</p>
+        <p><strong>Información adicional:</strong> ${order.extraInfo || 'N/A'}</p>
+        <h3 style="color: #555;">Detalles de entrega:</h3>
+        <p>Los plazos normales de entrega son entre 1 y 3 días. Si has elegido la opción de recogida, te avisaremos por teléfono. Las entregas se realizan por la tarde.</p>
+        <p>Recuerda que tanto el precio final como las cantidades son aproximadas. El pago se realizará al entregar el producto y se indicará el importe final real de la compra.</p>
+        <p>¡Gracias por comprar con nosotros!</p>
+        <p>Saludos,<br>Equipo de Carpasan</p>
+      </body>
+      </html>
+    `;
 
-      const encodedMessage = Buffer.from(emailContent)
+      // Asegurarse de que el campo "To" no está vacío o undefined
+      if (!order.email) {
+        return console.log('Error: Recipient address is missing');
+      }
+
+      const rawMessage = [
+        `To: ${order.email}`,
+        'Subject: Resumen de tu pedido',
+        'Content-Type: text/html; charset=utf-8',
+        'Content-Transfer-Encoding: base64',
+        '',
+        Buffer.from(emailContent).toString('base64')
+      ].join('\r\n');
+
+      const encodedMessage = Buffer.from(rawMessage)
         .toString('base64')
         .replace(/\+/g, '-')
         .replace(/\//g, '_')
@@ -221,7 +282,7 @@ function sendEmail(order) {
         requestBody: { raw: encodedMessage },
       }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
-        console.log('Email sent: ', res.data);
+        console.log('Email sent:', res.data);
       });
     });
   });

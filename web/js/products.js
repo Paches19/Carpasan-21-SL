@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/02 13:26:36 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:01:48 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,12 +249,14 @@ document.addEventListener("DOMContentLoaded", function () {
     cartCount.textContent = count;
   };
 
+  let total = 0;
+  
   function showOrderSummary() {
     // Limpiar el contenido anterior
     orderSummaryContent.innerHTML = "";
 
     // Crear elementos para mostrar el resumen del pedido
-    let total = 0;
+    total = 0;
     for (let producto in carrito) {
       let productoInfo = productos.find((p) => p.nombre === producto);
       let subtotal = carrito[producto] * productoInfo.precio;
@@ -567,6 +569,7 @@ document.addEventListener("DOMContentLoaded", function () {
       deliveryOption: deliveryOption.value,
       extraInfo: extraInfo.value,
       cart: carritoEnd,
+      total: total
     };
 
     fetch("http://localhost:3000/submit-order", {
