@@ -15,4 +15,5 @@ COPY ./nginx/entrypoint.sh /entrypoint.sh
 COPY ./web /usr/share/nginx/html/static
 
 EXPOSE 80 443
-ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
