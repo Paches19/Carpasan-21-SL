@@ -2,6 +2,10 @@
 FROM nginx:stable
 
 RUN mkdir -p /var/www/certbot
+RUN mkdir -p data/nginx
+RUN mkdir -p data/certbot/www
+RUN mkdir -p data/certbot/conf
+
 
 RUN apt-get update && \
     apt-get install -y certbot python3-certbot-nginx && \

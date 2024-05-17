@@ -6,7 +6,7 @@
 #    By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 11:30:04 by adpachec          #+#    #+#              #
-#    Updated: 2024/05/17 11:39:35 by adpachec         ###   ########.fr        #
+#    Updated: 2024/05/17 14:07:18 by adpachec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME):
 
 cert:
 	@printf "\n$(BLUE)==> $(CYAN)Obtaining SSL certificate with Certbot 🔒\n\n$(RESET)"
-	@docker-compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot -d carpasan21.com -d www.carpasan21.com
+	@docker-compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot -d carpasan21.com -d www.carpasan21.com --non-interactive --agree-tos -m carpasan21sl@gmail.com
 	@printf "\n$(BLUE)==> $(CYAN)SSL certificate obtained ✅\n$(RESET)"
 	@$(MAKE) restart-nginx
 
