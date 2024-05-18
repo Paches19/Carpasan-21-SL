@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:08:41 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:17:35 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -383,7 +383,6 @@ hs {
   border: 3px solid #800000;
   width: 30%;
   border-radius: 15px;
-  background-color: #fff;
 }
 
 .modal-content .quantity {
@@ -490,7 +489,7 @@ hs {
   position: relative; /* Posición relativa dentro del modal */
   width: 100%; /* Uso del 100% del ancho del modal */
   max-width: 700px; /* Máximo ancho para el contenido */
-  background-color: #fff;
+  background-color: #f8f8f8;
   margin: auto; /* Centra el contenido verticalmente si hay espacio adicional */
   padding: 20px;
   border-radius: 5px;
