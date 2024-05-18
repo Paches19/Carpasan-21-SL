@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:22:07 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:41:02 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:45:16 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ body {
 }
   
   .top-bar-right p {
-	font-family: "candara", 'Open Sans', sans-serif, cursive;
+	font-family: "candara", 'Open Sans', sans-serif;
 	text-shadow: 1px 1px 10px rgba(0,0,0, 0.4);
 	letter-spacing: 1px;
     margin-top: 0;
@@ -79,7 +79,7 @@ body {
   }
   
   h1 {
-	font-family: "Candara", cursive, 'Open Sans', sans-serif;;
+	font-family: "Candara", 'Open Sans', sans-serif;;
 	text-shadow: 1px 1px 7px rgba(0,0,0, 0.3);
 	font-size: 54px;
 	text-align: center;
@@ -304,7 +304,7 @@ body {
   }
   
   .hero h2 {
-	font-family: "candara", 'Open Sans', sans-serif, cursive;
+	font-family: "candara", 'Open Sans', sans-serif;
 	font-size: 36px;
 	color: #800000;
 	margin-bottom: 20px;
