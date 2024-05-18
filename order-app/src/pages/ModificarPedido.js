@@ -17,7 +17,7 @@ function ModificarPedido() {
   const [todosLosProductos, setTodosLosProductos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/productos")
+    fetch("https://carpasan21.com:3001/productos")
       .then((res) => res.json())
       .then((data) => {
         setTodosLosProductos(data);
@@ -27,7 +27,7 @@ function ModificarPedido() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:3001/pedido/${pedidoId}`)
+    fetch(`https://carpasan21.com:3001/pedido/${pedidoId}`)
       .then((res) => res.json())
       .then((data) => {
         setPedido(data);
@@ -45,7 +45,7 @@ function ModificarPedido() {
 
   const handleSave = () => {
     // Save the main order data
-    fetch(`http://localhost:3001/modificarPedido/${pedidoId}`, {
+    fetch(`https://carpasan21.com:3001/modificarPedido/${pedidoId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

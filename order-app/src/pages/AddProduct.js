@@ -36,7 +36,7 @@ function AddProduct() {
       return;
     }
 
-    fetch("http://localhost:3001/add-product", {
+    fetch("https://carpasan21.com:3001/add-product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

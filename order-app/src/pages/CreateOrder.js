@@ -16,7 +16,7 @@ function CrearPedido() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3001/productos")
+    fetch("https://carpasan21.com:3001/productos")
       .then((res) => res.json())
       .then((data) => {
         setTodosLosProductos(data);
@@ -24,7 +24,7 @@ function CrearPedido() {
   }, []);
 
   const handleSave = () => {
-    fetch(`http://localhost:3001/crearPedido`, {
+    fetch(`https://carpasan21.com:3001/crearPedido`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

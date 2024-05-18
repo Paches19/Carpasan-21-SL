@@ -11,7 +11,7 @@ class Producto {
   let productos;
   
   window.onload = async function () {
-	let response = await fetch("http://localhost:3000/get-products");
+	let response = await fetch("https://carpasan21.com:3000/get-products");
 	let data = await response.json();
   
 	productos = data.map((producto) => {
@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		cart: carritoEnd,
 	  };
   
-	  fetch("http://localhost:3000/submit-order", {
+	  fetch("https://carpasan21.com:3000/submit-order", {
 		method: "POST",
 		headers: {
 		  "Content-Type": "application/json",
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	  })
 		.then((response) => {
 		  if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
+			throw new Error(`https error! status: ${response.status}`);
 		  }
 		  return response.json();
 		})

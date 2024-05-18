@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:3001';
+export const API_URL = 'https://carpasan21.com:3001';
 
 export const fetchPedidos = async () => {
   try {

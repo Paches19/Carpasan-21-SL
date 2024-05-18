@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/02 13:24:44 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:43:26 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Producto {
 let productos;
 
 window.onload = async function () {
-  let response = await fetch("http://localhost:3000/get-products");
+  let response = await fetch("https://carpasan21.com:3000/get-products");
   let data = await response.json();
 
   productos = data.map((producto) => {
@@ -468,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cart: carritoEnd,
       };
   
-      fetch("http://localhost:3000/submit-order", {
+      fetch("https://carpasan21.com:3000/submit-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -477,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`https error! status: ${response.status}`);
           }
           return response.json();
         })

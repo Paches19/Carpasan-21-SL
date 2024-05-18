@@ -36,7 +36,7 @@ function PedidoDetalle() {
 
   useEffect(() => {
     console.log(`Fetching pedido with ID: ${pedidoId}`);
-    fetch(`http://localhost:3001/pedido/${pedidoId}`)
+    fetch(`https://carpasan21.com:3001/pedido/${pedidoId}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Error ${res.status}: ${res.statusText}`);
@@ -67,7 +67,7 @@ function PedidoDetalle() {
     const nuevoEstado = e.target.value;
     setEstadoActual(nuevoEstado);
 
-    fetch(`http://localhost:3001/pedido/${pedidoId}/estado`, {
+    fetch(`https://carpasan21.com:3001/pedido/${pedidoId}/estado`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

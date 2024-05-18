@@ -35,7 +35,7 @@ function EditProductPage() {
       tags: productTags.join(","),
       imagen: productImage,
     };
-    fetch(`http://localhost:3001/Productos/${product.ID_Producto}`, {
+    fetch(`https://carpasan21.com:3001/Productos/${product.ID_Producto}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
