@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 10:55:23 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:40:42 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:47:32 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
   }
   
   .offers-header h1 {
-	font-size: 48px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	font-weight: bolder;
