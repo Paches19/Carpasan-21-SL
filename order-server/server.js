@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: ['http://carpasan21.com', 'https://carpasan21.com'],
+  origin: ['http://carpasan21.com:2080', 'https://carpasan21.com:2080'],
   credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
