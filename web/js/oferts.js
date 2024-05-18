@@ -352,6 +352,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	  });
   });
 
+  document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+  
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+
   function loadPolicyContent() {
     const policyContent = document.getElementById('policy-content');
     policyContent.innerHTML = `
