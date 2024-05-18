@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 12:29:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:47:26 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,11 @@ function seleccionarColumnas(columnas) {
 function mostrarProductos(productosMostrar) {
   let div = document.querySelector("#gridProductos");
   div.innerHTML = "";
-  div.style.gridTemplateColumns = `repeat(${columnasSeleccionadas}, 1fr)`;
+  if (window.innerWidth < 768)
+    div.style.gridTemplateColumns = `repeat(2, 1fr)`;
+  else
+    div.style.gridTemplateColumns = `repeat(${columnasSeleccionadas}, 1fr)`;
+  
 
   const searchTerm = document
     .getElementById("search-input")
