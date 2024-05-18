@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 12:53:11 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:01:08 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -903,7 +903,7 @@ hs {
 
   .producto img {
     max-width: 100%; /* Asegurarse de que la imagen no exceda el ancho del contenedor */
-    width: auto; /* Mantener la proporción de la imagen */
+    height: 150px; /* Mantener la proporción de la imagen */
   }
 
   .producto h2 {
@@ -922,6 +922,10 @@ hs {
     justify-content: space-between; /* Separar precio y botón */
     flex-wrap: wrap; /* Permitir que los elementos pasen al siguiente renglón si no hay espacio */
     width: 60%;
+  }
+
+  .producto .price-cart3 img {
+    width: auto;
   }
 
   .producto .precio {
@@ -1048,20 +1052,17 @@ hs {
   overflow-y: auto;
   margin: auto;
   padding: 10px;
-  display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   height: auto;
   top: 0;
-  
 }
 
 .checkout-modal-container .modal-content {
   max-height: 80%;
   padding: 20px;
   box-sizing: border-box;
-  font-family: "candara";
   font-size: 18px;
 }
 
@@ -1075,7 +1076,6 @@ hs {
   overflow: auto;
 }
 }
-
 
 @media screen and (min-width: 600px) and (max-width: 1025px) {
   .producto .price-cart3 {
@@ -1170,8 +1170,7 @@ hs {
   position: fixed;  /* Asegura que el modal es absoluto y siempre visible */
   overflow-y: auto; /* Habilita desplazamiento vertical si el contenido es demasiado alto */
   margin: auto;     /* Centrado automático en direcciones horizontales y verticales */
-  padding: 10px;    /* Añade algo de padding dentro del modal para no tocar los bordes */
-  display: flex;    /* Utiliza flexbox para manejar los contenidos internos */
+  padding: 10px;    /* Añade algo de padding dentro del modal para no tocar los bordes */   /* Utiliza flexbox para manejar los contenidos internos */
   flex-direction: column; /* Organiza los hijos en columnas */
   align-items: center; /* Centra los elementos horizontalmente */
   justify-content: flex-start; /* Alinea el contenido desde la parte superior */
