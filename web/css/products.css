@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:38:00 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:40:23 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -428,7 +428,7 @@ hs {
   width: 25%; /* Reducir el tamaño del recuadro */
   padding: 10px;
   font-weight: bolder;
-  font-family: sans-serif;
+  font-family: "candara", 'Open Sans', sans-serif;
   border: 1px solid #800000;
   border-radius: 12px;
   text-align: right;
@@ -438,7 +438,7 @@ hs {
   margin-left: 5px; /* Posicionar la unidad kg al lado del recuadro */
   align-items: center;
   font-weight: bolder;
-  font-family: sans-serif;
+  font-family: "candara", 'Open Sans', sans-serif;
   font-size: 20px;
   align-self: flex-end;
   position: relative;

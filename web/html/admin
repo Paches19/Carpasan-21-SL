@@ -1,2 +1,0 @@
-1105_marzo
-GRANT DELETE ON Pedidos.* TO 'gestorPedidos'@'localhost';
