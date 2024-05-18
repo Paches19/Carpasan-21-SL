@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function toggleProcesado(pedidoId, productId, producto, setPedido) {
-  fetch(`/api/pedido/${pedidoId}/producto/${productId}`, {
+  fetch(`http://carpasan21.com:2080/react/pedido/${pedidoId}/producto/${productId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +36,7 @@ function PedidoDetalle() {
 
   useEffect(() => {
     console.log(`Fetching pedido with ID: ${pedidoId}`);
-    fetch(`http://carpasan21.com/react/pedido/${pedidoId}`)
+    fetch(`http://carpasan21.com:2080/react/pedido/${pedidoId}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Error ${res.status}: ${res.statusText}`);
@@ -67,7 +67,7 @@ function PedidoDetalle() {
     const nuevoEstado = e.target.value;
     setEstadoActual(nuevoEstado);
 
-    fetch(`https://carpasan21.com:3001/pedido/${pedidoId}/estado`, {
+    fetch(`http://carpasan21.com:2080/pedido/${pedidoId}/estado`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
