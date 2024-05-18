@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: "http://localhost:2080",
+  origin: "https://carpasan21.com:2080",
   credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
 };
@@ -553,5 +553,5 @@ app.post("/crearPedido", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+  console.log(`Servidor ejecutándose en http://carpasan21.com:${PORT}`);
 });
