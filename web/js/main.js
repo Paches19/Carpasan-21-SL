@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:59:35 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:05:18 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -515,14 +515,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .addEventListener("click", function () {
         document.getElementById("privacy-modal").style.display = "none";
       });
-  });
 
-  document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
-  
-  function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-  }
+    document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+  });
 
   function loadPolicyContent() {
     const policyContent = document.getElementById('policy-content');

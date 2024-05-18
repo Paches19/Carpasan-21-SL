@@ -350,14 +350,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	  .addEventListener("click", function () {
 		document.getElementById("privacy-modal").style.display = "none";
 	  });
-  });
 
-  document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+	  document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
   
-  function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-  }
+	  function toggleMenu() {
+		const navLinks = document.querySelector('.nav-links');
+		navLinks.classList.toggle('active');
+	  }
+  });
 
   function loadPolicyContent() {
     const policyContent = document.getElementById('policy-content');
