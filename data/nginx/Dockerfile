@@ -16,7 +16,7 @@ COPY /data/nginx/options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
 COPY /data/nginx/init.sh /init.sh
 RUN chmod +x /init.sh
 
-COPY /web /usr/share/nginx/html/static
+COPY ./web /usr/share/nginx/html/static
 
 EXPOSE 80 443
 
