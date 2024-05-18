@@ -34,7 +34,7 @@ connection.connect(function(error) {
 });
 
 // Ruta para recuperar todos los productos
-app.get('/get-products', (req, res) => {
+app.get('/api/get-products', (req, res) => {
   let query = 'SELECT * FROM Productos';
   connection.query(query, (err, result) => {
     if (err) {
@@ -55,7 +55,7 @@ app.get('/get-products', (req, res) => {
   });
 });
 
-app.post('/submit-order', [
+app.post('/api/submit-order', [
   body('firstName').notEmpty().trim().escape(),
   body('lastName').notEmpty().trim().escape(),
   body('address').notEmpty().trim().escape(),

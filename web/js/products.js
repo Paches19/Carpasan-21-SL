@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:12:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 11:43:29 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:52:01 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ let CartCountOnLoad = function () {
 };
 
 window.onload = async function () {
-  let response = await fetch("https://carpasan21.com:3000/get-products");
+  let response = await fetch("https://carpasan21.com:3000/api/get-products");
   let data = await response.json();
 
   productos = data.map((producto) => {
@@ -572,7 +572,7 @@ document.addEventListener("DOMContentLoaded", function () {
       total: total
     };
 
-    fetch("https://carpasan21.com:3000/submit-order", {
+    fetch("https://carpasan21.com:3000/api/submit-order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
