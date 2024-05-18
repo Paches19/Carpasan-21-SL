@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://carpasan21.com';
+const API_URL = 'http://carpasan21.com:2080';
 
 export const fetchProductos = async () => {
   try {
