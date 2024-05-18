@@ -6,12 +6,12 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:59:33 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 12:36:57 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:53:11 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 body {
-  font-family: "candara", Arial, sans-serif;
+  font-family: "candara", 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
@@ -795,7 +795,7 @@ hs {
   box-shadow: 0px 0px 15px rgba(0,0,0,0.1); /* Sombra alrededor del mensaje */
   width: 80%; /* Anchura */
   max-width: 500px; /* Anchura máxima */
-  font-family: "cardana", sans-serif, Arial, Helvetica, sans-serif;
+  font-family: "candara", 'Open Sans', sans-serif;
 }
 
 #confirmation-message h2 {
@@ -1044,6 +1044,7 @@ hs {
 }
 
 .checkout-modal-container {
+  display: none;
   overflow-y: auto;
   margin: auto;
   padding: 10px;
