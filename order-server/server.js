@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: "https://carpasan21.com:2080",
+  origin: "http://carpasan21.com:2080",
   credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
 };
@@ -137,7 +137,7 @@ app.use((err, req, res, next) => {
 });
 
 // Ruta de inicio de sesión
-app.post("/iniciar-sesion", (req, res, next) => {
+app.post("/react/iniciar-sesion", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return res.status(500).json({ error: err });
@@ -163,19 +163,19 @@ app.post("/iniciar-sesion", (req, res, next) => {
 });
 
 // Ruta de cierre de sesión
-app.get("/cerrar-sesion", (req, res) => {
+app.get("/react/cerrar-sesion", (req, res) => {
   req.logout();
   res.clearCookie("user_id"); // Borra la cookie al cerrar sesión
   res.redirect("/");
 });
 
 // Dashboard
-app.get("/dashboard", asegurarAutenticacion, (req, res) => {
+app.get("/react/dashboard", asegurarAutenticacion, (req, res) => {
   res.send("Bienvenido al Dashboard");
 });
 
 // Ver historial de pedidos ordenados por fecha
-app.get("/HistorialPedidos", (req, res) => {
+app.get("/react/HistorialPedidos", (req, res) => {
   db.query(
     "SELECT * FROM Pedidos ORDER BY FechaPedido DESC, ID_Pedido DESC;",
     (err, results) => {
@@ -188,7 +188,7 @@ app.get("/HistorialPedidos", (req, res) => {
 });
 
 // Actualizar el estado de un pedido específico
-app.put("/pedido/:pedidoId/estado", (req, res) => {
+app.put("/react/pedido/:pedidoId/estado", (req, res) => {
   const pedidoId = req.params.pedidoId;
   const nuevoEstado = req.body.estado;
 
@@ -207,7 +207,7 @@ app.put("/pedido/:pedidoId/estado", (req, res) => {
   );
 });
 
-app.delete("/pedidos/:id", (req, res) => {
+app.delete("/react/pedidos/:id", (req, res) => {
   const pedidoId = req.params.id;
   console.log("Pedido a eliminar: ", pedidoId);
 
@@ -238,7 +238,7 @@ app.delete("/pedidos/:id", (req, res) => {
 });
 
 //Mostrar pedido con detalles y productos
-app.get("/pedido/:id", (req, res) => {
+app.get("/react/pedido/:id", (req, res) => {
   const pedidoId = req.params.id;
   // Consulta SQL para obtener detalles del pedido junto con los productos
   const query = `
@@ -300,7 +300,7 @@ app.get("/pedido/:id", (req, res) => {
 });
 
 //Listado productos
-app.get("/Productos", (req, res) => {
+app.get("/react/Productos", (req, res) => {
   const query =
     "SELECT ID_Producto, NombreProducto, Precio, Descripcion, Tags, Imagen FROM Productos ORDER BY NombreProducto";
 
@@ -315,7 +315,7 @@ app.get("/Productos", (req, res) => {
 });
 
 //Modificar productos
-app.put("/Productos/:id", (req, res) => {
+app.put("/react/Productos/:id", (req, res) => {
   const productId = req.params.id;
   const { nombre, precio, descripcion, tags, imagen } = req.body;
 
@@ -341,7 +341,7 @@ app.put("/Productos/:id", (req, res) => {
 });
 
 // Añadir un nuevo producto
-app.post("/add-product", (req, res) => {
+app.post("/react/add-product", (req, res) => {
   const { nombre, precio, descripcion, tags, imagen } = req.body;
   const tagsString = tags.join(",");
   const insertQuery = `
@@ -365,7 +365,7 @@ app.post("/add-product", (req, res) => {
 });
 
 // Eliminar un producto
-app.delete("/Productos/:id", (req, res) => {
+app.delete("/react/Productos/:id", (req, res) => {
   const productId = req.params.id;
   const deleteQuery = "DELETE FROM Productos WHERE ID_Producto = ?";
 
@@ -381,7 +381,7 @@ app.delete("/Productos/:id", (req, res) => {
 });
 
 // Ruta para ventas totales por mes
-app.get("/ventasTotalesPorMes", (req, res) => {
+app.get("/react/ventasTotalesPorMes", (req, res) => {
   const sql =
     "SELECT MONTH(FechaPedido) as Mes, COUNT(*) as TotalVentas FROM Pedidos GROUP BY Mes";
   db.query(sql, (err, result) => {
@@ -391,7 +391,7 @@ app.get("/ventasTotalesPorMes", (req, res) => {
 });
 
 // Ruta para ventas por producto
-app.get("/ventasPorProducto", (req, res) => {
+app.get("/react/ventasPorProducto", (req, res) => {
   const sql = `
     SELECT Productos.NombreProducto, SUM(DetallesPedidos.Cantidad) as TotalVentas
     FROM DetallesPedidos
@@ -404,7 +404,7 @@ app.get("/ventasPorProducto", (req, res) => {
   });
 });
 
-app.put("/modificarPedido/:id", (req, res) => {
+app.put("/react/modificarPedido/:id", (req, res) => {
   const pedidoId = req.params.id;
   const {
     Nombre,
@@ -491,7 +491,7 @@ app.put("/modificarPedido/:id", (req, res) => {
   });
 });
 
-app.post("/crearPedido", (req, res) => {
+app.post("/react/crearPedido", (req, res) => {
 
   const {
     Nombre,

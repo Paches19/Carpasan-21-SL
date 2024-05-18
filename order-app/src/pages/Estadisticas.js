@@ -36,7 +36,7 @@ function VentasTotalesChart() {
   const [ventasTotalesData, setVentasTotalesData] = useState({});
 
   useEffect(() => {
-    fetch("https://carpasan21.com:3001/ventasTotalesPorMes")
+    fetch("http://carpasan21.com/react/ventasTotalesPorMes")
       .then((res) => res.json())
       .then((data) => {
         if (data && Array.isArray(data)) {

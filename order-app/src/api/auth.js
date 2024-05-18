@@ -1,11 +1,11 @@
 
 import axios from 'axios';
 
-const API_URL = 'https://carpasan21.com:3001'; // URL de tu backend
+const API_URL = 'http://carpasan21.com'; // URL de tu backend
 
 export const login = async (username, password) => {
   try {
-    const response = await axios.post(`${API_URL}/iniciar-sesion`, {
+    const response = await axios.post(`${API_URL}/react/iniciar-sesion`, {
       username,
       password
     });

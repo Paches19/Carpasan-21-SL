@@ -36,7 +36,7 @@ function PedidoDetalle() {
 
   useEffect(() => {
     console.log(`Fetching pedido with ID: ${pedidoId}`);
-    fetch(`https://carpasan21.com:3001/pedido/${pedidoId}`)
+    fetch(`http://carpasan21.com/react/pedido/${pedidoId}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Error ${res.status}: ${res.statusText}`);

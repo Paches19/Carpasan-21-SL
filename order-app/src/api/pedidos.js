@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const API_URL = 'https://carpasan21.com:3001';
+export const API_URL = 'http://carpasan21.com';
 
 export const fetchPedidos = async () => {
   try {
-    const response = await axios.get(`${API_URL}/HistorialPedidos`);
+    const response = await axios.get(`${API_URL}/react/HistorialPedidos`);
     return response.data;
   } catch (error) {
     console.log("Error fetching orders:", error); // Imprime el error completo

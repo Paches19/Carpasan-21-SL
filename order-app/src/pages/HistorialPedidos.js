@@ -84,7 +84,7 @@ function OrderHistory() {
   };
 
   useEffect(() => {
-    fetch("https://carpasan21.com:3001/HistorialPedidos")
+    fetch("http://carpasan21.com/react/HistorialPedidos")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener los pedidos");
@@ -234,7 +234,7 @@ function OrderCard({ order }) {
     if (window.confirm("¿Estás seguro de que deseas eliminar este pedido?")) {
       if (orderId)
       {
-        fetch(`https://carpasan21.com:3001/pedidos/${orderId}`, {
+        fetch(`http://carpasan21.com/react/pedidos/${orderId}`, {
           method: 'DELETE',
         })
         navigate("/Dashboard");

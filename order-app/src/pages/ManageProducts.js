@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const fetchProducts = async (setProducts, setLoading, setError) => {
   setLoading(true);
   try {
-    const response = await fetch("https://carpasan21.com:3001/Productos");
+    const response = await fetch("http://carpasan21.com/react/Productos");
     if (!response.ok) {
       throw new Error("Error al obtener los productos");
     }
@@ -113,7 +113,7 @@ function ProductCard({ product, removeProduct }) {
   };
 
   const confirmDelete = () => {
-    fetch(`https://carpasan21.com:3001/Productos/${product.ID_Producto}`, {
+    fetch(`http://carpasan21.com/react/Productos/${product.ID_Producto}`, {
         method: 'DELETE'
       })
       .then((response) => {
