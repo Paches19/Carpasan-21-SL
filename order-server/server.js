@@ -29,9 +29,12 @@ const corsOptions = {
   origin: "http://carpasan21.com:2080",
   credentials: true, // Permitir cookies
   optionsSuccessStatus: 200,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type, Authorization'
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 passport.use(
   new LocalStrategy((username, password, done) => {
