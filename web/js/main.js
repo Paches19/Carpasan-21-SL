@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:32:18 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 12:28:45 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:59:35 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -587,7 +587,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <p>Si tienes alguna pregunta o inquietud acerca de nuestra política de privacidad o términos y condiciones, por favor contáctanos a través de:</p>
     <ul>
       <li>Teléfono: 613 69 39 62</li>
-      <li>Correo electrónico: Carpasan21@gmail.com</li>
+      <li>Correo electrónico: carpasan21sl@gmail.com</li>
       <li>Dirección postal: 28360</li>
     </ul>
     `;

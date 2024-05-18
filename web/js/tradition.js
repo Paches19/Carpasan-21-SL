@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:38:41 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/18 13:36:14 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:03:59 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,14 +399,14 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function () {
       document.getElementById("privacy-modal").style.display = "none";
     });
-});
 
-document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+    document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
   
-function toggleMenu() {
-  const navLinks = document.querySelector('.nav-links');
-  navLinks.classList.toggle('active');
-}
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+});
 
 function loadPolicyContent() {
   const policyContent = document.getElementById('policy-content');
@@ -471,7 +471,7 @@ function loadPolicyContent() {
   <p>Si tienes alguna pregunta o inquietud acerca de nuestra política de privacidad o términos y condiciones, por favor contáctanos a través de:</p>
   <ul>
     <li>Teléfono: 613 69 39 62</li>
-    <li>Correo electrónico: Carpasan21@gmail.com</li>
+    <li>Correo electrónico: carpasan21sl@gmail.com</li>
     <li>Dirección postal: 28360</li>
   </ul>
   `;
