@@ -6,7 +6,7 @@
 /*   By: adpachec <adpachec@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:30:25 by adpachec          #+#    #+#             */
-/*   Updated: 2024/05/22 12:46:54 by adpachec         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:48:55 by adpachec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
   width: 100%;
 }
 
-.tradition-p {
+p .tradition-p {
   font-size: 1.5vh;
   line-height: 1.6;
   text-align: ce;
@@ -93,10 +93,13 @@
 }
 
 .additional-section {
+  display: flex;
   margin-top: 80px;
   padding-top: 60px;
   border-top: 1px solid #ccc;
   width: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
 .additional-section-title {
