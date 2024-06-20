@@ -106,5 +106,12 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados, Cerdo', ''),
 
 --Ofertas Especiales
-('Pack Barbacoa', 29.00, '/images/especiales/pack_barbacoa.jpg', 'Especiales', 'Oferta especial barbacoa'),
-('Pack Pollo', 17.50, '/images/especiales/pack_pollo.jpg', 'Especiales', 'Oferta especial pollo');
+('Pack Barbacoa', 29.00, '/images/especiales/pack_barbacoa.jpg', 'Especiales', '1 kg de morcilla
+1 kg de alas de pollo
+1 kg de panceta
+1 kg de blanquitos
+1 kg de chorizos caseros'),
+('Pack Pollo', 17.50, '/images/especiales/pack_pollo.jpg', 'Especiales', '1 kg de alas
+1 kg de pechugas
+1 kg de jamoncitos
+1 kg de contras');
