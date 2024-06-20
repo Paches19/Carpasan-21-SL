@@ -103,8 +103,8 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 
 -- Adobados
 ('Pincho Moruno de Cerdo', 6.50, '/images/adobados/pincho_moruno.jpg', 'Adobados, Cerdo', ''),
-('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados, Cerdo', '');
+('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados, Cerdo', ''),
 
 --Ofertas Especiales
-('Pack Barbacoa', 29.00, '/images/especiales/pack_barbacoa.jpg', 'Especiales', 'Oferta especial barbacoa')
-('Pack Pollo', 17.50, '/images/especiales/pack_pollo.jpg', 'Especiales', 'Oferta especial pollo')
+('Pack Barbacoa', 29.00, '/images/especiales/pack_barbacoa.jpg', 'Especiales', 'Oferta especial barbacoa'),
+('Pack Pollo', 17.50, '/images/especiales/pack_pollo.jpg', 'Especiales', 'Oferta especial pollo');
