@@ -191,7 +191,7 @@ app.get("/react/HistorialPedidos", (req, res) => {
 });
 
 // Actualizar el estado de un pedido específico
-app.put("/react/pedido/:pedidoId/estado", (req, res) => {
+app.post("/react/pedido/:pedidoId/estado", (req, res) => {
   const pedidoId = req.params.pedidoId;
   const nuevoEstado = req.body.estado;
 
