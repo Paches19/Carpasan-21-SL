@@ -54,7 +54,7 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Filetes de Babilla y Cadera', 10.90, '/images/vacuno/filetes_babilla_cadera.jpg', 'Vacuno', ''),
 ('Rabo de Vaca Gallega', 12.50, '/images/vacuno/rabo_vaca.jpg', 'Vacuno', ''),
 ('Aguja de Novilla', 12.50, '/images/vacuno/aguja_novilla.jpg', 'Vacuno', ''),
-('Lomo Alto de Vaca Gallega Madurada', 15.50, '/images/vacuno/lomo_alto_vaca.jpg', 'Vacuno', ''),
+('Lomo Alto de Vaca Gallega Madurado', 12.00, '/images/vacuno/lomo_alto_vaca.jpg', 'Vacuno', ''),
 
 ('Oreja de Cerdo', 3.50, '/images/cerdo/oreja.jpg', 'Cerdo', ''),
 ('Manos de Cerdo', 3.50, '/images/cerdo/manos.jpg', 'Cerdo', ''),
@@ -73,9 +73,9 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 ('Higados de Pollo', 2.40, '/images/pollo/higados_pollo.jpg', 'Pollo', ''),
 ('Mollejas de Pollo', 2.50, '/images/pollo/mollejas_pollo.jpg', 'Pollo', 'Mollejas de pollo'),
 ('Jamoncitos de Pollo', 3.20, '/images/pollo/jamoncitos_pollo.jpg', 'Pollo', 'Jamoncitos de pollo'),
-('Traseros de Pollo', 3.40, '/images/pollo/traseros_pollo.jpg', 'Pollo', 'Traseros de pollo'),
+('Traseros de Pollo', 3.20, '/images/pollo/traseros_pollo.jpg', 'Pollo', 'Traseros de pollo'),
 ('Pollos Enteros', 3.40, '/images/pollo/pollos_enteros.jpg', 'Pollo', 'Pollos enteros'),
-('Alas de Pollo Frescas', 4.20, '/images/pollo/alas_pollo.jpg', 'Pollo', 'Alas de pollo frescas'),
+('Alas de Pollo Frescas', 3.95, '/images/pollo/alas_pollo.jpg', 'Pollo', 'Alas de pollo frescas'),
 ('Contras de Pollo', 4.40, '/images/pollo/contras_pollo.jpg', 'Pollo', 'Contras de pollo'),
 ('Alas Adobadas de Pollo', 4.50, '/images/pollo/alas_adobadas.jpg', 'Pollo, Adobados', 'Alas adobadas de pollo'),
 ('Pechugas Deshuesadas', 6.50, '/images/pollo/pechugas_deshuesadas.jpg', 'Pollo', 'Pechugas deshuesadas'),
@@ -83,11 +83,12 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 
 ('Butifarras en Pinchitos', 6.50, '/images/obrador/butifarras_pinchitos.jpg', 'Obrador', 'Butifarras frescas presentadas en pinchitos'),
 ('Chorizo para Guisar, Barbacoa y Pincho', 6.50, '/images/obrador/chorizo_variedades.jpg', 'Obrador', 'Chorizo versatil para guisar, barbacoa y pincho'),
-('Morcilla de Cebolla y Pincho', 6.50, '/images/obrador/morcilla_cebolla.jpg', 'Obrador', 'Morcilla de cebolla, disponible tambien en pincho'),
+('Morcilla de Cebolla', 6.50, '/images/obrador/morcilla_cebolla.jpg', 'Obrador', 'Morcilla de cebolla'),
+('Morcilla de Cebolla en Pincho', 6.50, '/images/obrador/morcilla_cebolla.jpg', 'Obrador', 'Morcilla de cebolla en pincho'),
 ('Salchichas Frescas', 6.99, '/images/obrador/salchichas_frescas.jpg', 'Obrador', ''),
 ('Hamburguesas Mixtas', 6.99, '/images/obrador/hamburguesas_mixtas.jpg', 'Obrador, Vacuno, Cerdo', ''),
 ('Hamburguesas de Vaca de Pontevedra', 7.50, '/images/obrador/hamburguesas_vaca.jpg', 'Obrador, Vacuno', ''),
-('Cabeza de Jabali (Chicharron)', 10.00, '/images/obrador/cabeza_jabali.jpg', 'Obrador', 'Cabeza de jabali procesada en forma de chicharron'),
+('Cabeza de Jabali (Chicharron)', 10.00, '/images/obrador/chicharron.jpg', 'Obrador', 'Cabeza de jabali procesada en forma de chicharron'),
 ('Sarta Dulce', 12.00, '/images/obrador/sarta_dulce.jpg', 'Obrador', ''),
 ('Sarta Picante', 12.00, '/images/obrador/sarta_picante.jpg', 'Obrador', ''),
 ('Fuet Imperial', 12.00, '/images/obrador/fuet_imperial.jpg', 'Obrador', ''),
@@ -103,3 +104,7 @@ INSERT INTO Productos (NombreProducto, Precio, Imagen, Tags, Descripcion) VALUES
 -- Adobados
 ('Pincho Moruno de Cerdo', 6.50, '/images/adobados/pincho_moruno.jpg', 'Adobados, Cerdo', ''),
 ('Costillas Adobadas de Cerdo', 6.99, '/images/adobados/costillas_adobadas.jpg', 'Adobados, Cerdo', '');
+
+--Ofertas Especiales
+('Pack Barbacoa', 29.00, '/images/especiales/pack_barbacoa.jpg', 'Especiales', 'Oferta especial barbacoa')
+('Pack Pollo', 17.50, '/images/especiales/pack_pollo.jpg', 'Especiales', 'Oferta especial pollo')
