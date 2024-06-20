@@ -68,7 +68,7 @@ function PedidoDetalle() {
     setEstadoActual(nuevoEstado);
 
     fetch(`http://carpasan21.com:2080/pedido/${pedidoId}/estado`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
