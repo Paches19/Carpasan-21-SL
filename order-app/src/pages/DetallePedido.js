@@ -67,7 +67,7 @@ function PedidoDetalle() {
     const nuevoEstado = e.target.value;
     setEstadoActual(nuevoEstado);
 
-    fetch(`http://carpasan21.com:2080/pedido/${pedidoId}/estado`, {
+    fetch(`http://carpasan21.com:2080/react/pedido/${pedidoId}/estado`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
