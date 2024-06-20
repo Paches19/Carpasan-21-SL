@@ -46,7 +46,7 @@ function ModificarPedido() {
   const handleSave = () => {
     // Save the main order data
     fetch(`http://carpasan21.com:2080/react/modificarPedido/${pedidoId}`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
